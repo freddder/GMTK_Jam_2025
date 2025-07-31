@@ -19,11 +19,16 @@ config/icon="res://icon.svg"
 
 EventBus="*res://globals/event_bus.gd"
 FishParts="*res://globals/fish_parts.gd"
+FishNicknamePool="*res://globals/fish_nickname_pool.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+
+[global_group]
+
+player=""
 
 [input]
 

@@ -1,9 +1,12 @@
 class_name FishCharacter
 extends Node2D
 
-class Attributes:
-	var health: int = 0
-	var attack: int = 0
-	var speed: int = 0
-
 var attributes: Attributes
+
+
+func _ready() -> void:
+	attributes = Attributes.create()
+
+
+func apply_data(data: RewardOptionData) -> void:
+	attributes = data.attributes

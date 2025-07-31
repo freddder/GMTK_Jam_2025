@@ -6,5 +6,14 @@
 [node name="FishCharacter" type="Node2D"]
 script = ExtResource("1_wg25l")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="fishsprite" type="Node2D" parent="."]
+
+[node name="body" type="Sprite2D" parent="fishsprite"]
+position = Vector2(-3.8147e-06, 1.35525e-20)
+texture = ExtResource("2_t45y5")
+
+[node name="tail" type="Sprite2D" parent="fishsprite"]
+texture = ExtResource("2_t45y5")
+
+[node name="fins" type="Sprite2D" parent="fishsprite"]
 texture = ExtResource("2_t45y5")

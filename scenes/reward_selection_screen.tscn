@@ -1,19 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dy7hncax65228"]
+[gd_scene load_steps=3 format=3 uid="uid://dy7hncax65228"]
 
 [ext_resource type="PackedScene" uid="uid://0x30u3drfr0v" path="res://scenes/reward_option.tscn" id="1_bksdm"]
+[ext_resource type="Script" uid="uid://d6kiwpa5pq7e" path="res://scripts/reward_selection_screen.gd" id="1_cwmr2"]
 
 [node name="RewardSelectionScreen" type="CanvasLayer"]
+script = ExtResource("1_cwmr2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = -1
-anchor_left = 0.087
-anchor_top = 0.154
-anchor_right = 0.953
-anchor_bottom = 0.824
-offset_left = -0.224007
-offset_top = 0.207993
-offset_right = 0.143921
-offset_bottom = -8.95203
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 200.0
+offset_right = -200.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -21,14 +19,14 @@ size_flags_vertical = 6
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="RewardOption" parent="HBoxContainer" instance=ExtResource("1_bksdm")]
+[node name="Option1" parent="HBoxContainer" instance=ExtResource("1_bksdm")]
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="RewardOption2" parent="HBoxContainer" instance=ExtResource("1_bksdm")]
+[node name="Option2" parent="HBoxContainer" instance=ExtResource("1_bksdm")]
 layout_mode = 2
 size_flags_horizontal = 6
 
-[node name="RewardOption3" parent="HBoxContainer" instance=ExtResource("1_bksdm")]
+[node name="Option3" parent="HBoxContainer" instance=ExtResource("1_bksdm")]
 layout_mode = 2
 size_flags_horizontal = 6

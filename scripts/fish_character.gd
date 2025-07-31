@@ -6,4 +6,5 @@ class Attributes:
 	var attack: int = 0
 	var speed: int = 0
 
+
 var attributes: Attributes

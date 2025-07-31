@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://br2rr3gvloa36"]
+
+[ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_m6np2"]
+
+[resource]
+font = ExtResource("1_m6np2")
+font_size = 24
+font_color = Color(0.820143, 0.896941, 1, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)

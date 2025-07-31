@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b13arffhyayeg"]
+
+[ext_resource type="Material" uid="uid://8ybutfy543rj" path="res://assets/materials/water_ripple.tres" id="1_vipce"]
+[ext_resource type="Script" uid="uid://crgqjkwvmvxho" path="res://scripts/water_ripple.gd" id="2_ippio"]
+
+[node name="WaterRipple" type="Control"]
+material = ExtResource("1_vipce")
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_ippio")
+speed = 1.5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("1_vipce")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(50, 50)
+size_flags_horizontal = 4
+size_flags_vertical = 4

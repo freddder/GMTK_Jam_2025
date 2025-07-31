@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://8ybutfy543rj"]
+
+[ext_resource type="Shader" uid="uid://cfkvctr6gyfm4" path="res://assets/shaders/water_ripple.gdshader" id="1_4r785"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_4r785")
+shader_parameter/debug = false
+shader_parameter/progress = 0.0
+shader_parameter/thickness = 0.059
+shader_parameter/color = Color(0.5625, 0.670673, 0.9375, 1)

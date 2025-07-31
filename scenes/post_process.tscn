@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://185j55ncdwcn"]
+
+[ext_resource type="Material" uid="uid://d1gjk6s8eyhnn" path="res://assets/materials/pp_water_distortion.tres" id="1_bofxk"]
+[ext_resource type="Script" uid="uid://dy4tafqmaexyt" path="res://scripts/post_process.gd" id="1_d7bio"]
+
+[node name="PostProcess" type="CanvasLayer"]
+layer = 100
+script = ExtResource("1_d7bio")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("1_bofxk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

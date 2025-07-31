@@ -45,18 +45,29 @@ func _get_data_for_attribute(reward_data: RewardOptionData, attribute: Attribute
 	return label_data
 
 
-func set_option_data(reward_data: RewardOptionData) -> void:
-	data = reward_data
+func _handle_attributes(reward_data: RewardOptionData) -> void:
+	var has_attributes := not reward_data.attributes.data.is_empty()
+	%AttributesContainer.visible = has_attributes
 
-	%Label_FishName.text = data.title
+	if not has_attributes:
+		return
 
 	for attribute in Attributes.Type.Count:
 		var label: Label = attribute_labels[attribute]
 
 		var label_data := _get_data_for_attribute(reward_data, attribute)
 		label.text = "%s: %d (%s)" % [Attributes.type_to_string(attribute),
-			data.attributes.data[attribute], label_data.str]
+		data.attributes.data[attribute], label_data.str]
 		label.self_modulate = label_data.color
+
+
+func set_option_data(reward_data: RewardOptionData) -> void:
+	data = reward_data
+
+	%Label_Title.text = data.title
+	%Label_Description.text = data.description
+
+	_handle_attributes(reward_data)
 
 
 func _on_button_pressed() -> void:

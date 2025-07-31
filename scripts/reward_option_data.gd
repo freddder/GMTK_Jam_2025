@@ -1,6 +1,8 @@
 ﻿class_name RewardOptionData
 
+var icon: Texture2D
 var title: String
+var description: String
 var attributes: Attributes
 
 

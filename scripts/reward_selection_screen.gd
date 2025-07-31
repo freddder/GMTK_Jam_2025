@@ -16,7 +16,11 @@ func _ready() -> void:
 	var names := FishNicknamePool.request_unique_names(size)
 	for i in size:
 		var data := RewardOptionData.create()
+
+		data.icon = ResourceManager.textures[ResourceManager.TextureId.COOL_FISH]
 		data.title = names[i]
+		data.description = "Test description"
+
 		for attribute in data.attributes.data:
 			data.attributes.data[attribute] = randi_range(-5, 5)
 

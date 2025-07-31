@@ -36,9 +36,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -175.0
-offset_top = -250.0
+offset_top = -300.0
 offset_right = 175.0
-offset_bottom = 250.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ry3jo")
@@ -53,45 +53,62 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Button"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Button"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -27.0
+offset_right = 28.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="TextureRect" type="TextureRect" parent="Panel/Button/VBoxContainer"]
-custom_minimum_size = Vector2(140, 140)
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/Button/MarginContainer"]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Panel/Button/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 3
 texture = ExtResource("1_ry3jo")
 expand_mode = 3
+stretch_mode = 3
 
-[node name="Control" type="Control" parent="Panel/Button/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/Button/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 5.0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Control2" type="Control" parent="Panel/Button/MarginContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Label_FishName" type="Label" parent="Panel/Button/VBoxContainer"]
+[node name="Label_Title" type="Label" parent="Panel/Button/MarginContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "{Fish Name}"
+text = "{Reward Title}"
 label_settings = ExtResource("2_iaep2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control2" type="Control" parent="Panel/Button/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
+[node name="Control" type="Control" parent="Panel/Button/MarginContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="AttributesContainer" type="VBoxContainer" parent="Panel/Button/VBoxContainer"]
+[node name="AttributesContainer" type="VBoxContainer" parent="Panel/Button/MarginContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="Label_Health" type="Label" parent="Panel/Button/VBoxContainer/AttributesContainer"]
+[node name="Label_Health" type="Label" parent="Panel/Button/MarginContainer/VBoxContainer/VBoxContainer2/AttributesContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Health: 1 (-)"
@@ -99,7 +116,7 @@ label_settings = ExtResource("2_iaep2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label_Attack" type="Label" parent="Panel/Button/VBoxContainer/AttributesContainer"]
+[node name="Label_Attack" type="Label" parent="Panel/Button/MarginContainer/VBoxContainer/VBoxContainer2/AttributesContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Attack: 3 (+2)"
@@ -107,12 +124,22 @@ label_settings = ExtResource("2_iaep2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label_Speed" type="Label" parent="Panel/Button/VBoxContainer/AttributesContainer"]
+[node name="Label_Speed" type="Label" parent="Panel/Button/MarginContainer/VBoxContainer/VBoxContainer2/AttributesContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Speed: 2 (+1)"
 label_settings = ExtResource("2_iaep2")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Label_Description" type="Label" parent="Panel/Button/MarginContainer/VBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+label_settings = ExtResource("2_iaep2")
+horizontal_alignment = 1
+autowrap_mode = 1
 
 [connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

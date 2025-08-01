@@ -9,6 +9,7 @@ enum Winner {
 
 signal on_battle_finished(winner: Winner)
 
+@onready var player_socket: Node2D = $PlayerSocket
 @onready var player: FishPlayerCharacter = get_tree().get_first_node_in_group("player")
 @onready var opponent: FishCharacter = $Opponent
 
@@ -17,6 +18,7 @@ var action_bar_max_amount: float = 100.0
 
 
 func _ready():
+	player_socket.add_child(player)
 	opponent.set_profile(randomize_enemy_profile(player.profile.level))
 
 

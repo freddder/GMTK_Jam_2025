@@ -1,8 +1,6 @@
 extends CanvasLayer
 
-
 @export var water_ripple_scene := preload("res://scenes/water_ripple.tscn")
-
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("lmb"):

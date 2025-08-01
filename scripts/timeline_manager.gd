@@ -2,7 +2,17 @@ class_name TimelineManager extends Node2D
 
 signal Tile(type:Type)
 
-enum Type {FIGHT, EVENT, MATE, NOTHING, PATH_UP, PATH_DOWN, RETURN_DOWN,RETURN_UP, BOSS}
+enum Type {
+	FIGHT,
+	EVENT,
+	MATE,
+	NOTHING,
+	PATH_UP,
+	PATH_DOWN,
+	RETURN_DOWN,
+	RETURN_UP,
+	BOSS
+}
 
 
 var mainPath: Array[cell] = []
@@ -113,7 +123,7 @@ func resetPath():
 	mainPath.clear()
 	topPath.clear()
 	subPath.clear()
-	
+
 	var children = get_children()
 	for item in children:
 		item.queue_free()

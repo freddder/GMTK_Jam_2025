@@ -11,6 +11,11 @@ enum Type {
 	BUBBLE_SHIELD,
 }
 
+@export var icon: CompressedTexture2D
+@export var title: String
+@export var description: String
+@export var type := Type.INVALID
+
 static var items: Dictionary = {
 	Type.FAKE_VAMPIRE_TEETH: load("res://assets/items/fake_vampire_teeth.tres"),
 	Type.CONTACT_LENSES: load("res://assets/items/contact_lenses.tres"),
@@ -19,11 +24,6 @@ static var items: Dictionary = {
 	Type.SELECTIVE_EYE: load("res://assets/items/selective_eye.tres"),
 	Type.BUBBLE_SHIELD: load("res://assets/items/bubble_shield.tres")
 }
-
-@export var icon: CompressedTexture2D
-@export var title: String
-@export var description: String
-@export var type := Type.INVALID
 
 
 func to_reward() -> RewardOptionData:

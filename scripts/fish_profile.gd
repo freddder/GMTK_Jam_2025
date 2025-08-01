@@ -5,6 +5,7 @@ var title: String
 var attributes: Attributes
 var level: int
 
+
 static func create() -> FishProfile:
 	var this := FishProfile.new()
 	this.attributes = Attributes.create()

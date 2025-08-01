@@ -7,6 +7,7 @@ signal on_option_selected(option: RewardOptionData)
 
 var options: Array[RewardOption]
 
+
 func _ready() -> void:
 	for child in $HBoxContainer.get_children():
 		var option: RewardOption = child

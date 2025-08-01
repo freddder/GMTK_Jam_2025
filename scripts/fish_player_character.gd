@@ -1,11 +1,10 @@
 class_name FishPlayerCharacter
 extends FishCharacter
 
+signal on_inventory_changed
 
 # The inventory has to limit
 var inventory: Array[Item]
-
-signal on_inventory_changed
 
 
 func _ready() -> void:

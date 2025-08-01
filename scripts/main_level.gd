@@ -29,11 +29,18 @@ func _promote_random_rewards() -> void:
 
 func _start_battle() -> void:
 	assert(active_battle == null)
+
 	active_battle = battle_scene.instance()
+	get_tree().root.add_child(active_battle)
+
 	active_battle.start_battle()
 	var winner: Battle.Winner = await active_battle.on_battle_finished
 
 	if winner == Battle.Winner.PLAYER:
 		GameState.on_tile_cleared()
 
+	# TODO: if we're going to use the same player node instance everywhere,
+	# make sure to return it back to the main scene once battle scene is over,
+	# as currently it attaches the player to its root to correctly display it
+	get_tree().root.add_child(player)
 	active_battle.queue_free()

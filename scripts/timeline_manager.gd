@@ -1,6 +1,7 @@
 class_name TimelineManager extends Node2D
 
 signal Tile(type:Type)
+signal MovementDone
 
 enum Type {
 	FIGHT,
@@ -35,51 +36,71 @@ class playerIcon extends Node:
 	var path:String
 
 var player:playerIcon = playerIcon.new()
+var visScale = .35
+var moveing:bool = false
+var tweener:Tween
+var oldMoveing:bool = false
 
 class cell:
 	var type:Type
 
 func _process(delta: float) -> void:
 	#player.pos.x += delta * 4
-	player.icon.transform.origin = player.pos
+	#player.icon.transform.origin = player.pos
+	oldMoveing = moveing
+	if tweener:
+		moveing = tweener.is_running()
+	if oldMoveing and not moveing:
+		self.MovementDone.emit()
+	pass
 
 #interl method to send the correct signal
 func sendSignal(type:Type):
+	print(type)
 	Tile.emit(type)
 
-func moveIcon(xPos, yPos, time):
+func moveIcon(deltaX:float, deltaY:float, time):
+	tweener = get_tree().create_tween()
+	await tweener.tween_property(player.icon, "position", player.icon.position + Vector2(deltaX,deltaY), time)
+	print("move")
 	pass
 
 
 #moves the player internaly, not visualy. Pass True to take the optional path
-func movePlayer(takePath:bool):
+func on_action_completed(takePath:bool):
+	if moveing:
+		return
+	
 	if player.path == "main":
 		if takePath:
 			if mainPath[player.mainProgress].type == Type.PATH_UP:
 				player.path = "top"
 				player.mainProgress += topPath.size()
+				moveIcon(0,-32,1)
 				sendSignal(topPath[player.topProgress].type)
 				player.topProgress += 1
 				#move player
 			if mainPath[player.mainProgress].type == Type.PATH_DOWN:
 				player.path = "sub"
 				player.mainProgress += subPath.size()
+				moveIcon(0,32,1)
 				sendSignal(subPath[player.subProgress].type)
 				player.subProgress += 1
-				#move player
 		else:
 			player.mainProgress += 1
 			if player.mainProgress >= totalLength:
 				print("end reached")
 				return
-			#move icon
+			moveIcon(128 * visScale,0,1)
 			self.sendSignal(mainPath[player.mainProgress].type)
 
 	elif player.path == "top":
 		player.topProgress += 1
+		moveIcon(128 * visScale,0,1)
 		if topPath[player.topProgress].type == Type.RETURN_DOWN:
 			player.path = "main"
-			#move player
+			moveIcon(0,32,1)
+			moveIcon(128 * visScale,0,1)
 			return
 		sendSignal(topPath[player.topProgress].type)
 		pass
@@ -87,10 +108,11 @@ func movePlayer(takePath:bool):
 		player.topProgress += 1
 		if subPath[player.subProgress].type == Type.RETURN_UP:
 			player.path = "main"
-			#move player
+			moveIcon(0,-32,1)
+			moveIcon(128 * visScale,0,1)
 			return
 		else:
-			#move player
+			moveIcon(128 * visScale,0,1)
 			sendSignal(subPath[player.subProgress].type)
 		pass
 
@@ -133,14 +155,15 @@ func resetPath():
 
 # creates the visuals for the map and adds them as a child of the manager
 func generateVisuals():
-	var scale = .35
+	
 	var col = Color(0,0,.2)
 	var mainY = 100
 
 	player.icon = Sprite2D.new()
 	player.icon.texture = playerSprite
-	player.icon.scale = Vector2(scale,scale)
+	player.icon.scale = Vector2(visScale,visScale)
 	player.pos = Vector2(64,mainY)
+	player.icon.transform.origin = player.pos
 
 
 
@@ -149,34 +172,34 @@ func generateVisuals():
 		var track:Sprite2D = Sprite2D.new()
 		track.texture = playerSprite
 		track.self_modulate = col
-		track.position.x = i * 128 * scale + 64
+		track.position.x = i * 128 * visScale + 64
 		track.position.y = mainY
-		track.scale = Vector2(scale,scale)
+		track.scale = Vector2(visScale,visScale)
 		self.add_child(track)
 
-		self.placeIcon(mainPath[i].type, mainY, i * 128 * scale + 64, .20)
+		self.placeIcon(mainPath[i].type, mainY, i * 128 * visScale + 64, .20)
 
 		if mainPath[i].type == Type.PATH_UP:
 			for j in topPath.size():
 				var uptrack:Sprite2D = Sprite2D.new()
 				uptrack.texture = playerSprite
 				uptrack.self_modulate = col
-				uptrack.position.x = (j * 128 * scale) + (i * 128 * scale) + 64
+				uptrack.position.x = (j * 128 * visScale) + (i * 128 * visScale) + 64
 				uptrack.position.y = mainY - 32
-				uptrack.scale = Vector2(scale,scale)
+				uptrack.scale = Vector2(visScale,visScale)
 				self.add_child(uptrack)
-				self.placeIcon(topPath[j].type, mainY-32,((j * 128 * scale) + (i * 128 * scale) + 64), .2)
+				self.placeIcon(topPath[j].type, mainY-32,((j * 128 * visScale) + (i * 128 * visScale) + 64), .2)
 
 		if mainPath[i].type == Type.PATH_DOWN:
 			for j in subPath.size():
 				var subtrack:Sprite2D = Sprite2D.new()
 				subtrack.texture = playerSprite
 				subtrack.self_modulate = col
-				subtrack.position.x = (j * 128 * scale) + (i * 128 * scale) + 64
+				subtrack.position.x = (j * 128 * visScale) + (i * 128 * visScale) + 64
 				subtrack.position.y = mainY + 32
-				subtrack.scale = Vector2(scale,scale)
+				subtrack.scale = Vector2(visScale,visScale)
 				self.add_child(subtrack)
-				self.placeIcon(subPath[j].type, mainY + 32,((j * 128 * scale) + (i * 128 * scale) + 64), .2)
+				self.placeIcon(subPath[j].type, mainY + 32,((j * 128 * visScale) + (i * 128 * visScale) + 64), .2)
 
 
 	self.add_child(player.icon)
@@ -203,7 +226,7 @@ func generateTimeline():
 	# go through the cells and make them follow the rules
 	for i in totalLength - 1:
 		if mainPath[i].type == Type.PATH_UP and not hasTop: # generate the top path at the first oppurtunity
-			var length = randi() % (totalLength - 3 - i)
+			var length = randi() % (totalLength - 4 - i)
 			if length < 3: length = 3
 			mainPath[i + length - 1].type = Type.NOTHING
 			for j in length - 1:
@@ -239,9 +262,14 @@ func generateTimeline():
 	mainPath.push_back(finalCell)
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		on_action_completed(false)
 	pass
 
 # for debugging
 func _ready() -> void:
 	self.player.icon = Sprite2D.new()
+	resetPath()
+	generateTimeline()
+	generateVisuals()
 	pass

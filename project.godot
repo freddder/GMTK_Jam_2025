@@ -36,6 +36,7 @@ BattleManager="*res://globals/battle_manager.gd"
 [global_group]
 
 player=""
+TimelineManager=""
 
 [input]
 

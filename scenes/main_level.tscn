@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cuhrm3x6dqagi"]
+[gd_scene load_steps=21 format=3 uid="uid://cuhrm3x6dqagi"]
 
 [ext_resource type="Script" uid="uid://cw2041xcsj26y" path="res://scripts/main_level.gd" id="1_ufxs0"]
 [ext_resource type="PackedScene" uid="uid://dy7hncax65228" path="res://scenes/reward_selection_screen.tscn" id="2_6we3w"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="5_u2c82"]
 [ext_resource type="Shader" uid="uid://d0bsakbq4s5ma" path="res://assets/shaders/bubble_shield.gdshader" id="6_bq26l"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="7_u2c82"]
+[ext_resource type="PackedScene" uid="uid://byrvjftegb2na" path="res://scenes/timeline_manager.tscn" id="8_k5pu3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
 atlas = ExtResource("7_u2c82")
@@ -136,3 +137,5 @@ offset_left = -494.0
 offset_top = -309.0
 offset_right = -200.0
 offset_bottom = -40.0
+
+[node name="TimelineManager" parent="." groups=["TimelineManager"] instance=ExtResource("8_k5pu3")]

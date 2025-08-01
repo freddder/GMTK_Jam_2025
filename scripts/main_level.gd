@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var player: FishPlayerCharacter = get_tree().get_first_node_in_group("player")
 @onready var battle_scene := preload("res://scenes/battle.tscn")
+@onready var map_scene: TimelineManager =  get_tree().get_first_node_in_group("TimelineManager")
 
 var active_battle: Battle
 

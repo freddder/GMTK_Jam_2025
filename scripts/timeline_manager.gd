@@ -255,15 +255,11 @@ func generateTimeline():
 		elif mainPath[i].type == Type.PATH_DOWN:
 			mainPath[i].type = Type.NOTHING
 
-
-
 	var finalCell = cell.new()
 	finalCell.type = Type.BOSS
 	mainPath.push_back(finalCell)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.is_pressed():
-		on_action_completed(false)
 	pass
 
 # for debugging

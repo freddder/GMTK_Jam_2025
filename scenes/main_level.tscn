@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="4_bq26l"]
 [ext_resource type="PackedScene" uid="uid://b7w13cmgfwh2r" path="res://scenes/fish_player_character.tscn" id="5_8ra5a"]
 [ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="5_u2c82"]
-[ext_resource type="Shader" uid="uid://d0bsakbq4s5ma" path="res://assets/shaders/bubble_shield.gdshader" id="6_bq26l"]
+[ext_resource type="Shader" path="res://assets/shaders/bubble_shield.gdshader" id="6_bq26l"]
 
 [sub_resource type="Curve" id="Curve_5fr2l"]
 _data = [Vector2(0, 1), 0.0, -0.045137, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(0.801653, 0.361738), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.225864, 0.0, 0, 0]

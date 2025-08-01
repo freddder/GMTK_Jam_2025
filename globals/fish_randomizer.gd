@@ -9,11 +9,17 @@ func rand_value(bound: int) -> int:
 
 	return value
 
-func randomize_many(count: int, level: int, base_attributes: Attributes) -> Array[FishProfile]:
+func randomize_many(count: int, level: int, base_attributes: Attributes,
+	player_inventory: Array[Item]) -> Array[FishProfile]:
 	var names := FishNicknamePool.request_unique_names(count)
 
 	var result: Array[FishProfile]
 	result.resize(count)
+
+	var selective_eyes: int = 0
+	for item in player_inventory:
+		if item.type == Item.Type.SELECTIVE_EYE:
+			selective_eyes += 1
 
 	for i in count:
 		var profile := FishProfile.create()
@@ -21,7 +27,10 @@ func randomize_many(count: int, level: int, base_attributes: Attributes) -> Arra
 		profile.icon = ResourceManager.textures[ResourceManager.TextureId.COOL_FISH]
 		profile.title = names[i]
 
-		var grace_count := randi_range(0, 2)
+		var min_grace: int = 0 + selective_eyes
+		var max_grace: int = 2 + selective_eyes
+
+		var grace_count := randi_range(min_grace, max_grace)
 		var remaining_negatives := Attributes.Type.Count - 1
 
 		# Shuffle attributes to randomize a garanteed positive attribute

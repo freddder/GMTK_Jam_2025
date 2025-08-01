@@ -1,9 +1,11 @@
 extends Node
 
 enum TextureId {
-	COOL_FISH
+	COOL_FISH,
+	GODOT_ICON,
 }
 
-var textures := {
-	TextureId.COOL_FISH: preload("res://assets/sprites/cool_fish.png")
+var textures: Dictionary = {
+	TextureId.COOL_FISH: preload("res://assets/sprites/cool_fish.png"),
+	TextureId.GODOT_ICON: preload("res://icon.svg"),
 }

@@ -12,6 +12,16 @@ enum Type {
 var data: Array
 
 
+static func shuffled_attributes() -> Array[Type]:
+	var result: Array[Type]
+	result.resize(Type.Count)
+
+	for i in Type.Count:
+		result[i] = i
+
+	result.shuffle()
+	return result
+
 static func type_to_string(type: Type) -> String:
 	match type:
 		Type.Attack: return "Attack"
@@ -24,5 +34,5 @@ static func type_to_string(type: Type) -> String:
 static func create() -> Attributes:
 	var this := Attributes.new()
 	for attribute in Attributes.Type.Count:
-		this.data.append(attribute)
+		this.data.append(0)
 	return this

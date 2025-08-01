@@ -2,6 +2,7 @@ class_name FishCharacter
 extends Node2D
 
 var attributes: Attributes
+var profile: FishProfile
 
 var body: String = "debug_body"
 var tail: String = "debug_tail"
@@ -12,5 +13,5 @@ func _ready() -> void:
 	attributes = Attributes.create()
 
 
-func apply_data(data: RewardOptionData) -> void:
-	attributes = data.attributes
+func set_profile(in_profile: FishProfile) -> void:
+	profile = in_profile

@@ -28,7 +28,7 @@ func _ready() -> void:
 func _get_data_for_attribute(reward_data: RewardOptionData, attribute: Attributes.Type) -> LabelData:
 	var label_data := LabelData.new()
 
-	var lhs: int = player.attributes.data[attribute]
+	var lhs: int = player.profile.attributes.data[attribute]
 	var rhs: int = reward_data.attributes.data[attribute]
 	var diff := rhs - lhs
 
@@ -64,6 +64,7 @@ func _handle_attributes(reward_data: RewardOptionData) -> void:
 func set_option_data(reward_data: RewardOptionData) -> void:
 	data = reward_data
 
+	%Icon.texture = data.icon
 	%Label_Title.text = data.title
 	%Label_Description.text = data.description
 

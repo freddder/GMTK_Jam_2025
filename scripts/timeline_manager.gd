@@ -1,13 +1,9 @@
-extends Node2D
+class_name TimelineManager extends Node2D
 
-signal fight
-signal event
-signal mate
-signal path
-signal boss
-signal nothing
+signal Tile(type:Type)
 
 enum Type {FIGHT, EVENT, MATE, NOTHING, PATH_UP, PATH_DOWN, RETURN_DOWN,RETURN_UP, BOSS}
+
 
 var mainPath: Array[cell] = []
 var topPath: Array[cell] = []
@@ -39,16 +35,7 @@ func _process(delta: float) -> void:
 
 #interl method to send the correct signal
 func sendSignal(type:Type):
-	if type == Type.NOTHING:
-		nothing.emit()
-	elif type == Type.MATE:
-		mate.emit()
-	elif type == Type.FIGHT:
-		fight.emit()
-	elif type == Type.EVENT:
-		event.emit()
-	elif type == Type.BOSS:
-		boss.emit()
+	Tile.emit(type)
 
 func moveIcon(xPos, yPos, time):
 	pass
@@ -246,4 +233,5 @@ func _input(event: InputEvent) -> void:
 
 # for debugging
 func _ready() -> void:
+	self.player.icon = Sprite2D.new()
 	pass

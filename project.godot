@@ -24,6 +24,7 @@ ResourceManager="*res://globals/resource_manager.gd"
 FishRandomizer="*res://globals/fish_randomizer.gd"
 FamilyTree="*res://globals/family_tree.gd"
 BattleManager="*res://globals/battle_manager.gd"
+TextBoxManager="*res://globals/text_box_manager.gd"
 
 [display]
 

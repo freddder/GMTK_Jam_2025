@@ -242,11 +242,8 @@ func generateTimeline():
 	mainPath.push_back(finalCell)
 
 func _input(event: InputEvent) -> void:
-	movePlayer(false)
+	pass
 
 # for debugging
 func _ready() -> void:
-	resetPath()
-	generateTimeline()
-	generateVisuals()
-	var sadf = 0
+	pass

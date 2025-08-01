@@ -40,3 +40,9 @@ static func to_reward_array(profiles: Array[FishProfile]) -> Array[RewardOptionD
 		result[i] = profiles[i].to_reward()
 
 	return result
+
+
+func _to_string() -> String:
+	var str: String
+	str = "Title: [%s] Level [%d] Attributes [%s]" % [ title, level, attributes._to_string()]
+	return str

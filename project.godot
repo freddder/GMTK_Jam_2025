@@ -22,6 +22,7 @@ FishParts="*res://globals/fish_parts.gd"
 FishNicknamePool="*res://globals/fish_nickname_pool.gd"
 ResourceManager="*res://globals/resource_manager.gd"
 FishRandomizer="*res://globals/fish_randomizer.gd"
+FamilyTree="*res://globals/family_tree.gd"
 
 [display]
 

@@ -36,3 +36,14 @@ static func create() -> Attributes:
 	for attribute in Attributes.Type.Count:
 		this.data.append(0)
 	return this
+
+
+func _to_string() -> String:
+	var str: String
+	for attribute in data.size():
+		if attribute > 0:
+			str += " "
+
+		str += " %s: %d" % [type_to_string(attribute), data[attribute]]
+
+	return str

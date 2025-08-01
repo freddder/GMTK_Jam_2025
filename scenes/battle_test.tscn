@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv204n8kxuhp2"]
+
+[ext_resource type="Script" uid="uid://coh1ki32aag1y" path="res://scripts/battle_test.gd" id="1_onvjh"]
+[ext_resource type="PackedScene" uid="uid://baxxsojpi36f1" path="res://scenes/fish_character.tscn" id="2_8ajim"]
+
+[node name="BattleTest" type="Node2D"]
+script = ExtResource("1_onvjh")
+
+[node name="FishCharacter" parent="." instance=ExtResource("2_8ajim")]
+position = Vector2(866, 290)
+
+[node name="FishCharacter2" parent="." instance=ExtResource("2_8ajim")]
+position = Vector2(266, 290)

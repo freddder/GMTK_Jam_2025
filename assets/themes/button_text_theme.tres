@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://d1ts7kas1ofut"]
+
+[ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_b7skl"]
+
+[resource]
+default_font = ExtResource("1_b7skl")
+default_font_size = 70

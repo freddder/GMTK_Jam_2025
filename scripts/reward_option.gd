@@ -71,5 +71,5 @@ func set_option_data(reward_data: RewardOptionData) -> void:
 	_handle_attributes(reward_data)
 
 
-func _on_button_pressed() -> void:
+func _on_button_down() -> void:
 	on_option_selected.emit(self)

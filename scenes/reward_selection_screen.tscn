@@ -20,13 +20,16 @@ theme_override_constants/separation = 100
 alignment = 1
 
 [node name="Option1" parent="HBoxContainer" instance=ExtResource("1_bksdm")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 6
 
 [node name="Option2" parent="HBoxContainer" instance=ExtResource("1_bksdm")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 6
 
 [node name="Option3" parent="HBoxContainer" instance=ExtResource("1_bksdm")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 6

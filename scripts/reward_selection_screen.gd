@@ -33,8 +33,6 @@ func _on_option_selected(option: RewardOption) -> void:
 
 
 func _DEBUG_propose_breeding() -> void:
-	await get_tree().create_timer(0.5).timeout
-
 	var test_options := FishProfile.to_reward_array(
 		FishRandomizer.randomize_many(
 			3, player.profile.level, player.profile.attributes))

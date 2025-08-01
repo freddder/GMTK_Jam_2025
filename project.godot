@@ -23,6 +23,8 @@ FishNicknamePool="*res://globals/fish_nickname_pool.gd"
 ResourceManager="*res://globals/resource_manager.gd"
 FishRandomizer="*res://globals/fish_randomizer.gd"
 FamilyTree="*res://globals/family_tree.gd"
+BattleManager="*res://globals/battle_manager.gd"
+
 [display]
 
 window/size/viewport_width=1920

@@ -57,7 +57,7 @@ static func request_unique_names(count: int) -> Array[String]:
 
 
 static func _populate_pool(filter: Array[String]) -> void:
-	FishNicknamePool._active_pool = FishNicknamePool.pool
+	FishNicknamePool._active_pool.append_array(FishNicknamePool.pool)
 
 	for name in filter:
 		var found_index: int = FishNicknamePool._active_pool.find(name)

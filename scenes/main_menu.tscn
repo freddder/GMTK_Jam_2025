@@ -1,0 +1,243 @@
+[gd_scene load_steps=15 format=3 uid="uid://dr8cdktg4i7ud"]
+
+[ext_resource type="Script" uid="uid://iu0pg3fkmu5m" path="res://scripts/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_l6cm7"]
+[ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="2_ekxnf"]
+[ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="6_oa1go"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ln24"]
+font = ExtResource("1_l6cm7")
+font_size = 300
+font_color = Color(0.727236, 0.795334, 0.886719, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqqt6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wu84c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtw2f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
+bg_color = Color(0.429372, 0.540495, 0.6, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.594414, 0.733059, 0.8, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_color = Color(0.737961, 0.883982, 1, 0.6)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_bqqt6")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label_GameTitle" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -368.0
+offset_top = 99.0
+offset_right = 371.0
+offset_bottom = 424.0
+grow_horizontal = 2
+text = "POOL"
+label_settings = SubResource("LabelSettings_8ln24")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = 60.0
+offset_right = 150.0
+offset_bottom = 290.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="Button_Play" type="Button" parent="HUD/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme = ExtResource("3_wu84c")
+theme_override_colors/font_hover_color = Color(0.771584, 0.84542, 0.941406, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.727236, 0.795334, 0.886719, 1)
+theme_override_colors/font_focus_color = Color(0.727236, 0.795334, 0.886719, 1)
+theme_override_colors/font_pressed_color = Color(0.820143, 0.896941, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wu84c")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
+text = "Play"
+
+[node name="Button_Settings" type="Button" parent="HUD/VBoxContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme = ExtResource("3_wu84c")
+theme_override_colors/font_hover_color = Color(0.771584, 0.84542, 0.941406, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.727236, 0.795334, 0.886719, 1)
+theme_override_colors/font_focus_color = Color(0.727236, 0.795334, 0.886719, 1)
+theme_override_colors/font_pressed_color = Color(0.820143, 0.896941, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wu84c")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
+text = "Settings"
+
+[node name="Settings" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Settings"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -300.0
+offset_right = 450.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rtw2f")
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/Panel/MarginContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_rtw2f")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+label_settings = ExtResource("2_ekxnf")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tbmy8")
+
+[node name="TextureRect2" type="TextureRect" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_rtw2f")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+label_settings = ExtResource("2_ekxnf")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Slider_Music" type="HSlider" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_icons/grabber = ExtResource("6_oa1go")
+theme_override_icons/grabber_highlight = ExtResource("6_oa1go")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HSeparator" type="HSeparator" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_jk1qb")
+
+[node name="Slider_SFX" type="HSlider" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_icons/grabber = ExtResource("6_oa1go")
+theme_override_icons/grabber_highlight = ExtResource("6_oa1go")
+max_value = 1.0
+step = 0.02
+value = 1.0
+
+[node name="Button_CloseSettings" type="Button" parent="Settings/Panel/MarginContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("3_wu84c")
+theme_override_colors/font_hover_color = Color(0.771584, 0.84542, 0.941406, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.727236, 0.795334, 0.886719, 1)
+theme_override_colors/font_focus_color = Color(0.727236, 0.795334, 0.886719, 1)
+theme_override_colors/font_pressed_color = Color(0.820143, 0.896941, 1, 1)
+theme_override_constants/outline_size = 10
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wu84c")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
+text = "Close"
+
+[connection signal="pressed" from="HUD/VBoxContainer/Button_Play" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="HUD/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]
+[connection signal="value_changed" from="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Slider_Music" to="." method="_on_slider_music_value_changed"]
+[connection signal="value_changed" from="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Slider_SFX" to="." method="_on_slider_sfx_value_changed"]
+[connection signal="pressed" from="Settings/Panel/MarginContainer/Button_CloseSettings" to="." method="_on_button_close_settings_pressed"]

@@ -44,6 +44,6 @@ func _to_string() -> String:
 		if attribute > 0:
 			str += " "
 
-		str += " %s: %d" % [type_to_string(attribute), data[attribute]]
+		str += "%s: %d" % [type_to_string(attribute), data[attribute]]
 
 	return str

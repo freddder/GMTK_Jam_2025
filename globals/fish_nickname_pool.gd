@@ -38,7 +38,7 @@ var pool: Array[String] = [
 # the original pool will be used to refill it
 var _active_pool: Array[String]
 
-static func request_unique_names(count: int) -> Array[String]:
+func request_unique_names(count: int) -> Array[String]:
 	var result: Array[String]
 	result.resize(count)
 
@@ -56,7 +56,7 @@ static func request_unique_names(count: int) -> Array[String]:
 	return result
 
 
-static func _populate_pool(filter: Array[String]) -> void:
+func _populate_pool(filter: Array[String]) -> void:
 	FishNicknamePool._active_pool.append_array(FishNicknamePool.pool)
 
 	for name in filter:

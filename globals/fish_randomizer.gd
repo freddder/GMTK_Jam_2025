@@ -1,6 +1,6 @@
 extends Node
 
-static func rand_value(bound: int) -> int:
+func rand_value(bound: int) -> int:
 	# Don't randomize 0's
 	var value := randi_range(-bound, bound - 1)
 
@@ -9,7 +9,7 @@ static func rand_value(bound: int) -> int:
 
 	return value
 
-static func randomize_many(count: int, level: int, base_attributes: Attributes) -> Array[FishProfile]:
+func randomize_many(count: int, level: int, base_attributes: Attributes) -> Array[FishProfile]:
 	var names := FishNicknamePool.request_unique_names(count)
 
 	var result: Array[FishProfile]

@@ -1,7 +1,9 @@
 class_name RewardSelectionScreen
 extends CanvasLayer
 
-@onready var player: FishCharacter = get_tree().get_first_node_in_group("player")
+signal on_option_selected(option: RewardOptionData)
+
+@onready var player: FishPlayerCharacter = get_tree().get_first_node_in_group("player")
 
 var options: Array[RewardOption]
 
@@ -10,9 +12,6 @@ func _ready() -> void:
 		var option: RewardOption = child
 		options.append(option)
 		option.on_option_selected.connect(_on_option_selected)
-
-	player.set_profile(FishProfile.create())
-	_DEBUG_propose_breeding()
 
 
 func show_rewards(data: Array[RewardOptionData]) -> void:
@@ -28,8 +27,16 @@ func show_rewards(data: Array[RewardOptionData]) -> void:
 
 func _on_option_selected(option: RewardOption) -> void:
 	$HBoxContainer.visible = false
-	player.set_profile(FishProfile.from_reward(player.profile.level + 1, option.data))
-	_DEBUG_propose_breeding()
+
+	match option.data.type:
+		RewardOptionData.Type.MATTING:
+			player.set_profile(FishProfile.from_reward(player.profile.level + 1, option.data))
+		RewardOptionData.Type.INVENTORY_ITEM:
+			player.add_item(Item.from_reward(option.data))
+
+#	_DEBUG_propose_breeding()
+
+	on_option_selected.emit(option.data)
 
 
 func _DEBUG_propose_breeding() -> void:

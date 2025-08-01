@@ -1,9 +1,17 @@
 class_name RewardOptionData
 
+enum Type {
+	INVALID,
+	MATTING,
+	INVENTORY_ITEM,
+}
+
+var type := Type.INVALID
 var icon: CompressedTexture2D
 var title: String
 var description: String
 var attributes: Attributes
+var item_type: Item.Type
 
 
 static func create() -> RewardOptionData:

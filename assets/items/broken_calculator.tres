@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bpqyc2vpue4r2"]
+
+[ext_resource type="Script" uid="uid://vlyodsb50mao" path="res://scripts/item.gd" id="1_6o3ku"]
+
+[resource]
+script = ExtResource("1_6o3ku")
+title = "Motivational Poster"
+description = "Deals double damage if below 25% health"
+type = 3
+metadata/_custom_type_script = "uid://vlyodsb50mao"

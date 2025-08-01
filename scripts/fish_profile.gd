@@ -12,13 +12,14 @@ static func create() -> FishProfile:
 
 
 func to_reward() -> RewardOptionData:
-	var data := RewardOptionData.new()
+	var option := RewardOptionData.new()
 
-	data.icon = icon
-	data.title = title
-	data.attributes = attributes
+	option.type = RewardOptionData.Type.MATTING
+	option.icon = icon
+	option.title = title
+	option.attributes = attributes
 
-	return data
+	return option
 
 
 static func from_reward(level: int, data: RewardOptionData) -> FishProfile:

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b8gi88ougv1rq"]
+
+[ext_resource type="Script" uid="uid://vlyodsb50mao" path="res://scripts/item.gd" id="1_iqmgd"]
+
+[resource]
+script = ExtResource("1_iqmgd")
+title = "Fake Vampire Teeth"
+description = "Heals for 40% of damage dealt"
+type = 0
+metadata/_custom_type_script = "uid://vlyodsb50mao"

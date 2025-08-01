@@ -8,6 +8,42 @@
 [ext_resource type="Shader" uid="uid://d0bsakbq4s5ma" path="res://assets/shaders/bubble_shield.gdshader" id="6_bq26l"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="7_u2c82"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
+atlas = ExtResource("7_u2c82")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqu8w"]
+atlas = ExtResource("7_u2c82")
+region = Rect2(1920, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fr2l"]
+atlas = ExtResource("7_u2c82")
+region = Rect2(3840, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sb77"]
+atlas = ExtResource("7_u2c82")
+region = Rect2(5760, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkrx8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5pu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqu8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fr2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sb77")
+}],
+"loop": true,
+"name": &"cycle_texture",
+"speed": 4.0
+}]
+
 [sub_resource type="Curve" id="Curve_5fr2l"]
 _data = [Vector2(0, 1), 0.0, -0.045137, 0, 0, Vector2(0.7, 1), 0.0, 0.0, 0, 0, Vector2(0.801653, 0.361738), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.225864, 0.0, 0, 0]
 point_count = 4
@@ -64,42 +100,6 @@ shader_parameter/noise_speed = 1.0
 shader_parameter/noise_amplitude = 0.89
 shader_parameter/noise_deformation = 300.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
-atlas = ExtResource("7_u2c82")
-region = Rect2(0, 0, 1920, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iqu8w"]
-atlas = ExtResource("7_u2c82")
-region = Rect2(1920, 0, 1920, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5fr2l"]
-atlas = ExtResource("7_u2c82")
-region = Rect2(3840, 0, 1920, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2sb77"]
-atlas = ExtResource("7_u2c82")
-region = Rect2(5760, 0, 1920, 1080)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fkrx8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k5pu3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iqu8w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5fr2l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2sb77")
-}],
-"loop": true,
-"name": &"cycle_texture",
-"speed": 4.0
-}]
-
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_ufxs0")
 
@@ -107,9 +107,19 @@ script = ExtResource("1_ufxs0")
 
 [node name="PostProcess" parent="." instance=ExtResource("5_u2c82")]
 
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(960, 540)
+sprite_frames = SubResource("SpriteFrames_fkrx8")
+animation = &"cycle_texture"
+autoplay = "cycle_texture"
+frame_progress = 0.589292
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = 100
-position = Vector2(664, 317)
+position = Vector2(-332, 186)
 amount = 60
 texture = ExtResource("4_bq26l")
 explosiveness = 0.1
@@ -118,7 +128,7 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_fkrx8")
 
 [node name="FishPlayerCharacter" parent="." instance=ExtResource("5_8ra5a")]
-position = Vector2(537, -225)
+position = Vector2(-350, 374)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_iqu8w")
@@ -126,12 +136,3 @@ offset_left = -494.0
 offset_top = -309.0
 offset_right = -200.0
 offset_bottom = -40.0
-
-[node name="Background" type="CanvasLayer" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background"]
-position = Vector2(960, 540)
-sprite_frames = SubResource("SpriteFrames_fkrx8")
-animation = &"cycle_texture"
-autoplay = "cycle_texture"
-frame_progress = 0.589292

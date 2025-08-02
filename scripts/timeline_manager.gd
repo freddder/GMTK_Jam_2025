@@ -140,7 +140,8 @@ func place_icon(type: Type, pos_y: float, pos_x: float, uniform_scale: float) ->
 	icon.position.x = pos_x
 	icon.position.y = pos_y
 	icon.scale = scale_vec
-
+	
+	
 	var texture_id := tile_type_to_texture_id(type)
 	if texture_id != ResourceManager.TextureId.NONE:
 		icon.texture = ResourceManager.textures[texture_id]
@@ -194,6 +195,9 @@ func generate_visuals() -> void:
 				uptrack.position.x = (j * (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x
 				uptrack.position.y = main_y - (128 * cell_scale)
 				uptrack.scale = _cell_scale_vec
+				if top_path[j].type == Type.RETURN_DOWN:
+					uptrack.rotate(1.73)
+					
 				add_child(uptrack)
 				place_icon(top_path[j].type, main_y-(128 * cell_scale), ((j *  (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)), .2)
 
@@ -206,6 +210,8 @@ func generate_visuals() -> void:
 				subtrack.position.x = (j *  (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)
 				subtrack.position.y = main_y + (128 * cell_scale)
 				subtrack.scale = _cell_scale_vec
+				if sub_path[j].type == Type.RETURN_UP:
+					subtrack.rotate(-1.73)
 				add_child(subtrack)
 				place_icon(sub_path[j].type, main_y + (128 * cell_scale), ((j * (128+ (padding_x * cell_scale)) * cell_scale) + (i * (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)), .2)
 

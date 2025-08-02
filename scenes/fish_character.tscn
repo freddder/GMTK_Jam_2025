@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://baxxsojpi36f1"]
 
 [ext_resource type="Script" uid="uid://qkykqr3hd6iw" path="res://scripts/fish_character.gd" id="1_wg25l"]
-[ext_resource type="Material" uid="uid://dyv80ei8llcst" path="res://assets/materials/fish_character_dissolve.tres" id="2_rhh4d"]
+[ext_resource type="Material" uid="uid://c6oefivlupje6" path="res://assets/materials/fish_character_dissolve.tres" id="2_rhh4d"]
 [ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="2_t45y5"]
 
 [node name="FishCharacter" type="Node2D"]

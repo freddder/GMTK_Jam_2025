@@ -231,7 +231,7 @@ func generate_timeline() -> void:
 	# go through the cells and make them follow the rules
 	for i in total_length - 1:
 		if main_path[i].type == Type.PATH_UP and not has_top: # generate the top path at the first oppurtunity
-			var length: int = min(randi() % (total_length - 4 - i), 3)
+			var length: int = max(randi() % (total_length - 4 - i), 3)
 			main_path[i + length - 3].type = Type.NOTHING
 
 			for j in length - 1:
@@ -248,7 +248,7 @@ func generate_timeline() -> void:
 			main_path[i].type = Type.NOTHING
 
 		if main_path[i].type == Type.PATH_DOWN and not has_sub: # generate the sub path at the first oppurtunity
-			var length: int = min(randi() % (total_length - i - 1), 3)
+			var length: int = max(randi() % (total_length - i - 1), 3)
 			main_path[i + length - 3].type = Type.NOTHING
 
 			for j in length - 1:

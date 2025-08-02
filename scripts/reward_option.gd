@@ -57,8 +57,8 @@ func _handle_attributes(reward_data: RewardOptionData) -> void:
 			label.text = "%s: %d" % [Attributes.type_to_string(attribute),
 				data.attributes.data[attribute]]
 		else:
-			label.text = "%s: %d (%s)" % [Attributes.type_to_string(attribute),
-				data.attributes.data[attribute], label_data.str]
+			label.text = "%s: %s" % [Attributes.type_to_string(attribute),
+				label_data.str]
 			label.self_modulate = label_data.color
 
 

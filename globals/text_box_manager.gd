@@ -5,7 +5,12 @@ signal close_text_box
 @onready var scene := preload("res://scenes/text_box.tscn")
 var dialog_box: MarginContainer
 var dialog_label: RichTextLabel
+
 var options_menu: MarginContainer
+var options_button_1: Button
+var options_button_2: Button
+var options_button_3: Button
+var options_callback: Callable
 
 var is_text_box_shown: bool = false
 
@@ -18,6 +23,12 @@ func initialize():
 	dialog_label = dialog_box.get_node("RichTextLabel")
 	
 	options_menu = instance.get_node("OptionsMenu")
+	options_button_1 = options_menu.get_node("VBoxContainer/Option1")
+	options_button_2 = options_menu.get_node("VBoxContainer/Option2")
+	options_button_3 = options_menu.get_node("VBoxContainer/Option3")
+	options_button_1.button_down.connect(on_option_1_selected)
+	options_button_2.button_down.connect(on_option_2_selected)
+	options_button_3.button_down.connect(on_option_3_selected)
 
 func display_text(text: String, auto_close_time: float = 0.0):
 	dialog_label.clear()
@@ -31,7 +42,6 @@ func display_text(text: String, auto_close_time: float = 0.0):
 		if auto_close_time != 0.0:
 			tween.tween_callback(on_close_text_box).set_delay(auto_close_time)
 
-
 func on_close_text_box():
 	if not is_text_box_shown:
 		return
@@ -39,3 +49,33 @@ func on_close_text_box():
 	is_text_box_shown = false
 	var tween := create_tween()
 	tween.tween_property(dialog_box, "position:y", dialog_box.size.y, 1).as_relative().set_trans(Tween.TRANS_QUART)
+
+func on_option_1_selected():
+	on_option_selected(1)
+
+func on_option_2_selected():
+	on_option_selected(2)
+
+func on_option_3_selected():
+	on_option_selected(3)
+
+func on_option_selected(index: int):
+	options_menu.hide()
+	# TODO: make sure this works
+	options_callback.call(index)
+
+func display_options(callback: Callable, option_1_text : String, option_2_text : String, option_3_text : String = ""):
+	if option_1_text == "" or option_2_text == "":
+		return
+	
+	options_button_1.text = option_1_text
+	options_button_2.text = option_2_text
+	
+	options_callback = callback
+	options_menu.show()
+	if option_3_text != "":
+		options_button_3.show()
+		options_button_3.text = option_3_text
+	else:
+		options_button_3.hide()
+	

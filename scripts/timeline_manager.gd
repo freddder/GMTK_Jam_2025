@@ -39,38 +39,37 @@ var visScale = .6
 var moveing: bool = false
 var tweener: Tween
 var oldMoveing: bool = false
+var landedTile: Type
 
+var mainY = 128
+var buffX = 200
+var padX = 12
 
 class cell:
 	var type: Type
 
 
 func _process(delta: float) -> void:
-	#player.pos.x += delta * 4
-	#player.icon.transform.origin = player.pos
 	oldMoveing = moveing
 	if tweener:
 		moveing = tweener.is_running()
 	if oldMoveing and not moveing:
-		self.MovementDone.emit()
+		#print(landedTile)
+		on_tile_landed.emit(landedTile)
 	pass
 
 
-#interl method to send the correct signal
-func sendSignal(type: Type):
-	print(type)
-	on_tile_landed.emit(type)
 
-
-func moveIcon(deltaX: float, deltaY: float, time):
+func moveIcon(deltaX: float, deltaY: float, time: float, type: Type) -> void:
 	tweener = get_tree().create_tween()
 	await tweener.tween_property(player.icon, "position", player.icon.position + Vector2(deltaX, deltaY), time)
-	print("move")
+	landedTile = type
+	#print("move")
 	pass
 
 
 #moves the player internaly, not visualy. Pass True to take the optional path
-func on_action_completed(takePath: bool):
+func on_action_completed(takePath: bool) -> void:
 	if moveing:
 		return
 
@@ -79,51 +78,42 @@ func on_action_completed(takePath: bool):
 			if mainPath[player.mainProgress].type == Type.PATH_UP:
 				player.path = "top"
 				player.mainProgress += topPath.size()
-				moveIcon(0, -(128 * visScale), 1)
-				sendSignal(topPath[player.topProgress].type)
+				moveIcon(0, -(128 * visScale), 1,topPath[player.topProgress].type)
 				player.topProgress += 1
-			#move player
 			if mainPath[player.mainProgress].type == Type.PATH_DOWN:
 				player.path = "sub"
 				player.mainProgress += subPath.size()
-				moveIcon(0, (128 * visScale), 1)
-				sendSignal(subPath[player.subProgress].type)
+				moveIcon(0, (128 * visScale), 1, subPath[player.subProgress].type)
 				player.subProgress += 1
 		else:
 			player.mainProgress += 1
 			if player.mainProgress >= totalLength:
 				print("end reached")
 				return
-			moveIcon(128 * visScale, 0, 1)
-			self.sendSignal(mainPath[player.mainProgress].type)
+			moveIcon((128+ (padX * visScale)) * visScale, 0, 1, mainPath[player.mainProgress].type)
 
 	elif player.path == "top":
 		player.topProgress += 1
-		moveIcon(128 * visScale, 0, 1)
+		
 		if topPath[player.topProgress].type == Type.RETURN_DOWN:
 			player.path = "main"
-			moveIcon(0, (128 * visScale), 1)
-			moveIcon(128 * visScale, 0, 1)
+			moveIcon(0, (128 * visScale), 1,Type.NOTHING)
+			moveIcon((128+ (padX * visScale)) * visScale, 0, 1,Type.NOTHING)
 			return
-		sendSignal(topPath[player.topProgress].type)
-		pass
+		moveIcon((128+ (padX * visScale)) * visScale, 0, 1, topPath[player.topProgress].type)
 	elif player.path == "sub":
 		player.topProgress += 1
 		if subPath[player.subProgress].type == Type.RETURN_UP:
 			player.path = "main"
-			moveIcon(0, -(128 * visScale), 1)
-			moveIcon(128 * visScale, 0, 1)
+			moveIcon(0, -(128 * visScale), 1, Type.NOTHING)
+			moveIcon((128+ (padX * visScale)) * visScale, 0, 1,Type.NOTHING)
 			return
 		else:
-			moveIcon(128 * visScale, 0, 1)
-			sendSignal(subPath[player.subProgress].type)
-		pass
-
-	pass
+			moveIcon((128+ (padX * visScale)) * visScale, 0, 1,subPath[player.subProgress].type)
 
 
 # internal method, places an icon of a type with position and scale
-func placeIcon(type: Type, yPos, xPos, iScale):
+func placeIcon(type: Type, yPos: float, xPos: float, iScale: float) -> void:
 	var icon: Sprite2D = Sprite2D.new()
 	icon.scale = Vector2(iScale, iScale)
 	icon.position.x = xPos
@@ -143,7 +133,7 @@ func placeIcon(type: Type, yPos, xPos, iScale):
 
 
 # removes nodes and data
-func resetPath():
+func resetPath() -> void:
 	mainPath.clear()
 	topPath.clear()
 	subPath.clear()
@@ -157,12 +147,10 @@ func resetPath():
 
 
 # creates the visuals for the map and adds them as a child of the manager
-func generateVisuals():
+func generateVisuals() -> void:
 
 	var col = Color(0, 0, .2)
-	var mainY = 128
-	var buffX = 200
-	var padX = 12
+
 
 	player.icon = Sprite2D.new()
 	player.icon.texture = playerSprite
@@ -210,7 +198,7 @@ func generateVisuals():
 
 
 # creates the data for the map with 'totalLength' tiles (20 default)
-func generateTimeline():
+func generateTimeline() -> void:
 	var hasTop = false
 	var hasSub = false
 
@@ -273,6 +261,7 @@ func _input(event: InputEvent) -> void:
 # for debugging
 func _ready() -> void:
 	self.player.icon = Sprite2D.new()
+	initialize()
 
 
 func initialize() -> void:

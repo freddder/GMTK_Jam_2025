@@ -7,6 +7,6 @@
 script = ExtResource("1_62fqh")
 icon = ExtResource("1_hhdkk")
 title = "Broken Calculator"
-description = "Attacks progressively deal 1 additional damage"
+description = "Increase attributes gained from matting"
 type = 4
 metadata/_custom_type_script = "uid://vlyodsb50mao"

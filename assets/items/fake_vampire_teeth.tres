@@ -8,5 +8,5 @@ script = ExtResource("1_iqmgd")
 icon = ExtResource("1_8yxf6")
 title = "Fake Vampire Teeth"
 description = "Heals for 40% of damage dealt"
-type = 0
+type = 1
 metadata/_custom_type_script = "uid://vlyodsb50mao"

@@ -7,6 +7,6 @@
 script = ExtResource("1_2yuwf")
 icon = ExtResource("1_xecli")
 title = "Contact Lenses"
-description = "Attack have 25% to crit"
-type = 1
+description = "Attack have 25% to deal critical damage"
+type = 2
 metadata/_custom_type_script = "uid://vlyodsb50mao"

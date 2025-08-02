@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_6o3ku")
 icon = ExtResource("1_n4rvl")
-title = "Motivational Poster"
-description = "Deals double damage if below 25% health"
-type = 3
+title = "Broken Calculator"
+description = "Attacks progressively deal 1 additional damage"
+type = 4
 metadata/_custom_type_script = "uid://vlyodsb50mao"

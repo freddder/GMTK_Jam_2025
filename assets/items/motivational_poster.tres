@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_aybtc")
 icon = ExtResource("1_k6eqi")
-title = "Contact Lenses"
-description = "Attack have 25% to crit"
-type = 2
+title = "Motivational Poster"
+description = "Deals double damage if below 25% health"
+type = 3
 metadata/_custom_type_script = "uid://vlyodsb50mao"

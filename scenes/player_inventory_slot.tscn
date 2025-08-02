@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://6k5tft00clq6"]
+
+[ext_resource type="Texture2D" uid="uid://e0ovv8j0b8ik" path="res://assets/sprites/items/broken_calculator.png" id="1_bs3vb"]
+[ext_resource type="Script" uid="uid://no1u65dtsbek" path="res://scripts/player_inventory_slot.gd" id="1_ub5al"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub5al"]
+bg_color = Color(0.38407, 0.502395, 0.6, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.178939, 0.352426, 0.511719, 1)
+border_blend = true
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="PlayerInventorySlot" type="Control"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1920.0
+offset_bottom = -1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ub5al")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ub5al")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Icon" type="TextureRect" parent="Panel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "hallo"
+texture = ExtResource("1_bs3vb")
+expand_mode = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cuhrm3x6dqagi"]
+[gd_scene load_steps=22 format=3 uid="uid://cuhrm3x6dqagi"]
 
 [ext_resource type="Script" uid="uid://cw2041xcsj26y" path="res://scripts/main_level.gd" id="1_ufxs0"]
 [ext_resource type="PackedScene" uid="uid://dy7hncax65228" path="res://scenes/reward_selection_screen.tscn" id="2_6we3w"]
@@ -6,15 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b7w13cmgfwh2r" path="res://scenes/fish_player_character.tscn" id="5_8ra5a"]
 [ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="5_u2c82"]
 [ext_resource type="Shader" uid="uid://d0bsakbq4s5ma" path="res://assets/shaders/bubble_shield.gdshader" id="6_bq26l"]
-[ext_resource type="Script" uid="uid://vlyodsb50mao" path="res://scripts/item.gd" id="7_2sb77"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="7_u2c82"]
-[ext_resource type="Resource" uid="uid://8sxpyfj7uwd8" path="res://assets/items/bubble_shield.tres" id="8_fkrx8"]
 [ext_resource type="PackedScene" uid="uid://byrvjftegb2na" path="res://scenes/timeline_manager.tscn" id="8_k5pu3"]
 [ext_resource type="PackedScene" uid="uid://8abofmi60bja" path="res://scenes/player_inventory.tscn" id="9_iqu8w"]
-[ext_resource type="Resource" uid="uid://b8gi88ougv1rq" path="res://assets/items/fake_vampire_teeth.tres" id="10_ff0s2"]
-[ext_resource type="Resource" uid="uid://uw2o0yeve0l2" path="res://assets/items/motivational_poster.tres" id="11_uk2yf"]
-[ext_resource type="Resource" uid="uid://d10j2yma8ojdw" path="res://assets/items/selective_eye.tres" id="12_ondrs"]
-[ext_resource type="Resource" uid="uid://bpqyc2vpue4r2" path="res://assets/items/broken_calculator.tres" id="13_0e4v7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
 atlas = ExtResource("7_u2c82")
@@ -151,7 +145,6 @@ process_material = SubResource("ParticleProcessMaterial_fkrx8")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("5_8ra5a")]
 position = Vector2(-350, 374)
-inventory = Array[ExtResource("7_2sb77")]([ExtResource("8_fkrx8"), ExtResource("10_ff0s2"), ExtResource("11_uk2yf"), ExtResource("12_ondrs"), ExtResource("13_0e4v7")])
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_iqu8w")

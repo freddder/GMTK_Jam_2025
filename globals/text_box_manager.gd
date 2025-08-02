@@ -15,7 +15,7 @@ func _ready():
 	close_text_box.connect(on_close_text_box)
 
 
-func update_text(text: String, auto_close_time: float = 0.0):
+func display_text(text: String, auto_close_time: float = 0.0):
 	var text_box: MarginContainer = get_node("/root/TextBox/MarginContainer")
 	var text_label: RichTextLabel = text_box.get_node("RichTextLabel")
 	text_label.clear()

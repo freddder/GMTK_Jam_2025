@@ -186,6 +186,7 @@ func generate_visuals() -> void:
 		place_icon(main_path[i].type, main_y, i *  (128+ (padding_x * cell_scale)) * cell_scale + buff_x + (padding_x * cell_scale), .20)
 
 		if main_path[i].type == Type.PATH_UP:
+			track.rotate(-1.73)
 			for j in top_path.size():
 				var uptrack: Sprite2D = Sprite2D.new()
 				uptrack.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
@@ -197,6 +198,7 @@ func generate_visuals() -> void:
 				place_icon(top_path[j].type, main_y-(128 * cell_scale), ((j *  (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)), .2)
 
 		if main_path[i].type == Type.PATH_DOWN:
+			track.rotate(1.73)
 			for j in sub_path.size():
 				var subtrack: Sprite2D = Sprite2D.new()
 				subtrack.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
@@ -222,6 +224,9 @@ func generate_timeline() -> void:
 
 		if i % 4 == 0: #force mating tiles
 			newCell.type = Type.MATE
+		
+		if i % 6 == 0: #force fight tiles
+			newCell.type = Type.FIGHT
 
 		if i == 0: #have nothing on the first tile
 			newCell.type = Type.NOTHING
@@ -232,11 +237,13 @@ func generate_timeline() -> void:
 	for i in total_length - 1:
 		if main_path[i].type == Type.PATH_UP and not has_top: # generate the top path at the first oppurtunity
 			var length: int = max(randi() % (total_length - 4 - i), 3)
-			main_path[i + length - 3].type = Type.NOTHING
-
+			main_path[min(i+length, total_length - 4)].type = Type.NOTHING
+			
 			for j in length - 1:
 				var newCell = Cell.new()
 				newCell.type = Type[Type.keys()[randi() % (Type.size() - 6)]]
+				if j % 3 == 0: #force mating tiles
+					newCell.type = Type.MATE
 				top_path.push_back(newCell)
 
 			var tempCell = Cell.new()
@@ -249,11 +256,15 @@ func generate_timeline() -> void:
 
 		if main_path[i].type == Type.PATH_DOWN and not has_sub: # generate the sub path at the first oppurtunity
 			var length: int = max(randi() % (total_length - i - 1), 3)
-			main_path[i + length - 3].type = Type.NOTHING
+			main_path[min(i+length, total_length - 4)].type = Type.NOTHING
 
 			for j in length - 1:
 				var newCell = Cell.new()
 				newCell.type = Type[Type.keys()[randi() % (Type.size() - 6)]]
+				
+				if j % 3 == 0: #force mating tiles
+					newCell.type = Type.FIGHT
+				
 				sub_path.push_back(newCell)
 
 			var tempCell = Cell.new()

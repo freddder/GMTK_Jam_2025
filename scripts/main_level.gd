@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var battle_scene := preload("res://scenes/battle.tscn")
+@onready var battle_scene = load("res://scenes/battle.tscn")
 @onready var player := $PlayerCharacter
 @onready var map_scene := $TimelineManager
 
@@ -13,9 +13,12 @@ func _ready() -> void:
 	map_scene.on_tile_landed.connect(_on_tile_landed)
 
 	# Start the game by mating; this will need to be moved after initial cut-scene
-	await _promote_mating()
+	#await _promote_mating()
 	map_scene.initialize()
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouse and event.is_pressed():
+		map_scene.on_action_completed(false)
 
 
 func _on_tile_landed(type: TimelineManager.Type) -> void:
@@ -23,11 +26,11 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 		TimelineManager.Type.FIGHT:
 			await _start_battle()
 			await _promote_random_rewards()
-			map_scene.on_action_completed(false)
+			
 
 		TimelineManager.Type.MATE:
 			await _promote_mating()
-			map_scene.on_action_completed(false)
+			
 
 
 func _promote_mating() -> void:
@@ -48,7 +51,7 @@ func _promote_random_rewards() -> void:
 func _start_battle() -> void:
 	assert(active_battle == null)
 
-	active_battle = battle_scene.instance()
+	active_battle = battle_scene.instantiate()
 	get_tree().root.add_child(active_battle)
 
 	active_battle.start_battle()

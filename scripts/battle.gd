@@ -75,7 +75,7 @@ func randomize_enemy_profile(player_level: int) -> FishProfile:
 			profile.attributes.data[attribute] += value
 
 	# Minimum 1 attribute
-	for attribute in profile.attributes:
+	for attribute in profile.attributes.data.size():
 		profile.attributes.data[attribute] = max(1, profile.attributes.data[attribute])
 
 	return profile

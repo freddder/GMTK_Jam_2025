@@ -21,10 +21,8 @@ func _ready():
 	player.set_profile(original_player.profile)
 	opponent.set_profile(randomize_enemy_profile(original_player.profile.level))
 
-	player.curr_health = player.get_max_health()
-	opponent.curr_health = opponent.get_max_health()
-
-	player.update_health_bar()
+	player.prepare_to_battle()
+	opponent.prepare_to_battle()
 
 
 func start_battle() -> void:
@@ -44,7 +42,7 @@ func _on_battle_finished(winner: Winner) -> void:
 
 	await to_dissolve.dissolve(2.0)
 
-	await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(2.0).timeout
 
 	is_battle_active = false
 	on_battle_finished.emit(winner)
@@ -58,8 +56,10 @@ func _attack_fish(attacker: FishCharacter, victim: FishCharacter) -> bool:
 	if attacker.curr_action_amount >= action_bar_max_amount:
 		attacker.curr_action_amount -= action_bar_max_amount
 
-		var total_attack_power = attacker.profile.attributes.data[Attributes.Type.Attack]
-		victim.deal_damage(total_attack_power)
+		var damage := attacker.get_damage()
+		var dealt_damage := victim.deal_damage(damage)
+
+		attacker.on_attack_sent(dealt_damage)
 		return victim.curr_health <= 0
 
 	return false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cuhrm3x6dqagi"]
+[gd_scene load_steps=22 format=3 uid="uid://cuhrm3x6dqagi"]
 
 [ext_resource type="Script" uid="uid://cw2041xcsj26y" path="res://scripts/main_level.gd" id="1_ufxs0"]
 [ext_resource type="PackedScene" uid="uid://dy7hncax65228" path="res://scenes/reward_selection_screen.tscn" id="2_6we3w"]
@@ -8,6 +8,7 @@
 [ext_resource type="Shader" uid="uid://d0bsakbq4s5ma" path="res://assets/shaders/bubble_shield.gdshader" id="6_bq26l"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="7_u2c82"]
 [ext_resource type="PackedScene" uid="uid://byrvjftegb2na" path="res://scenes/timeline_manager.tscn" id="8_k5pu3"]
+[ext_resource type="PackedScene" uid="uid://8abofmi60bja" path="res://scenes/player_inventory.tscn" id="9_iqu8w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
 atlas = ExtResource("7_u2c82")
@@ -104,12 +105,26 @@ shader_parameter/noise_deformation = 300.0
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_ufxs0")
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="PlayerInventory" parent="HUD" instance=ExtResource("9_iqu8w")]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_bottom = -25.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
 [node name="RewardSelectionScreen" parent="." instance=ExtResource("2_6we3w")]
 
 [node name="PostProcess" parent="." instance=ExtResource("5_u2c82")]
+visible = false
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
+visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background"]
 position = Vector2(960, 540)

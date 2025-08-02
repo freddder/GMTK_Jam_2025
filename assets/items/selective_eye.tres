@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_62fqh")
 icon = ExtResource("1_hhdkk")
-title = "Broken Calculator"
+title = "Selective Monocle"
 description = "Increase attributes gained from matting"
-type = 4
+type = 5
 metadata/_custom_type_script = "uid://vlyodsb50mao"

@@ -71,44 +71,44 @@ func on_action_completed(takePath: bool) -> void:
 
 	if player.path == "main":
 		if takePath:
-			if main_path[player.mainProgress].type == Type.PATH_UP:
+			if main_path[player.main_progress].type == Type.PATH_UP:
 				player.path = "top"
-				player.mainProgress += top_path.size()
-				move_icon(0, -(128 * cell_scale), 1, top_path[player.topProgress].type)
-				player.topProgress += 1
+				player.main_progress += top_path.size()
+				move_icon(0, -(128 * cell_scale), 1, top_path[player.top_progress].type)
+				player.top_progress += 1
 
-			if main_path[player.mainProgress].type == Type.PATH_DOWN:
+			if main_path[player.main_progress].type == Type.PATH_DOWN:
 				player.path = "sub"
-				player.mainProgress += sub_path.size()
-				move_icon(0, (128 * cell_scale), 1, sub_path[player.subProgress].type)
-				player.subProgress += 1
+				player.main_progress += sub_path.size()
+				move_icon(0, (128 * cell_scale), 1, sub_path[player.sub_progress].type)
+				player.sub_progress += 1
 		else:
-			player.mainProgress += 1
-			if player.mainProgress >= total_length:
+			player.main_progress += 1
+			if player.main_progress >= total_length:
 				print("end reached")
 				return
-			move_icon((128+ (padding_x * cell_scale)) * cell_scale, 0, 1, main_path[player.mainProgress].type)
+			move_icon((128+ (padding_x * cell_scale)) * cell_scale, 0, 1, main_path[player.main_progress].type)
 
 	elif player.path == "top":
-		player.topProgress += 1
+		player.top_progress += 1
 
-		if top_path[player.topProgress].type == Type.RETURN_DOWN:
+		if top_path[player.top_progress].type == Type.RETURN_DOWN:
 			player.path = "main"
 			move_icon(0, (128 * cell_scale), 1,Type.NOTHING)
 			move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1,Type.NOTHING)
 			return
 
-		move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1, top_path[player.topProgress].type)
+		move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1, top_path[player.top_progress].type)
 
 	elif player.path == "sub":
-		player.topProgress += 1
-		if sub_path[player.subProgress].type == Type.RETURN_UP:
+		player.top_progress += 1
+		if sub_path[player.sub_progress].type == Type.RETURN_UP:
 			player.path = "main"
 			move_icon(0,  -(128 * cell_scale), 1, Type.NOTHING)
 			move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1,Type.NOTHING)
 			return
 		else:
-			move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1, sub_path[player.subProgress].type)
+			move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1, sub_path[player.sub_progress].type)
 
 
 func tile_type_to_texture_id(tile_type: Type) -> ResourceManager.TextureId:

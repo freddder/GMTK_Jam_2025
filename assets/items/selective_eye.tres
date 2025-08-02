@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://d10j2yma8ojdw"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://d10j2yma8ojdw"]
 
 [ext_resource type="Script" uid="uid://vlyodsb50mao" path="res://scripts/item.gd" id="1_62fqh"]
+[ext_resource type="Texture2D" uid="uid://dqkqbdnps1b62" path="res://assets/sprites/items/monocle.png" id="1_hhdkk"]
 
 [resource]
 script = ExtResource("1_62fqh")
+icon = ExtResource("1_hhdkk")
 title = "Broken Calculator"
 description = "Attacks progressively deal 1 additional damage"
 type = 4

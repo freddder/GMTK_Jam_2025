@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b8gi88ougv1rq"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b8gi88ougv1rq"]
 
+[ext_resource type="Texture2D" uid="uid://bsvnr4u32hgkp" path="res://assets/sprites/items/vampire_teeth.png" id="1_8yxf6"]
 [ext_resource type="Script" uid="uid://vlyodsb50mao" path="res://scripts/item.gd" id="1_iqmgd"]
 
 [resource]
 script = ExtResource("1_iqmgd")
+icon = ExtResource("1_8yxf6")
 title = "Fake Vampire Teeth"
 description = "Heals for 40% of damage dealt"
 type = 0

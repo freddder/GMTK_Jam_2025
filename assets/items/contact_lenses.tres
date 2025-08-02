@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://dy6viy1ocl6ou"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dy6viy1ocl6ou"]
 
 [ext_resource type="Script" uid="uid://vlyodsb50mao" path="res://scripts/item.gd" id="1_2yuwf"]
+[ext_resource type="Texture2D" uid="uid://cyvlyr5fg4tms" path="res://assets/sprites/items/contact_lenses.png" id="1_xecli"]
 
 [resource]
 script = ExtResource("1_2yuwf")
+icon = ExtResource("1_xecli")
 title = "Contact Lenses"
 description = "Attack have 25% to crit"
 type = 1

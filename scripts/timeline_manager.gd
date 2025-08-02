@@ -1,7 +1,7 @@
 class_name TimelineManager
 extends Node2D
 
-signal Tile(type: Type)
+signal on_tile_landed(type: Type)
 signal MovementDone
 enum Type {
 	FIGHT,
@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 #interl method to send the correct signal
 func sendSignal(type: Type):
 	print(type)
-	Tile.emit(type)
+	on_tile_landed.emit(type)
 
 
 func moveIcon(deltaX: float, deltaY: float, time):
@@ -273,7 +273,9 @@ func _input(event: InputEvent) -> void:
 # for debugging
 func _ready() -> void:
 	self.player.icon = Sprite2D.new()
+
+
+func initialize() -> void:
 	resetPath()
 	generateTimeline()
 	generateVisuals()
-	pass

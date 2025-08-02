@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var player: FishPlayerCharacter = get_tree().get_first_node_in_group("player")
 @onready var battle_scene := preload("res://scenes/battle.tscn")
-@onready var map_scene: TimelineManager =  get_tree().get_first_node_in_group("TimelineManager")
+@onready var player := $PlayerCharacter
+@onready var map_scene := $TimelineManager
 
 var active_battle: Battle
 
@@ -10,9 +10,24 @@ var active_battle: Battle
 func _ready() -> void:
 	EventBus.promote_player_mating.connect(_promote_mating)
 	EventBus.on_game_started.emit()
+	map_scene.on_tile_landed.connect(_on_tile_landed)
 
 	# Start the game by mating; this will need to be moved after initial cut-scene
-	_promote_mating()
+	await _promote_mating()
+	map_scene.initialize()
+
+
+
+func _on_tile_landed(type: TimelineManager.Type) -> void:
+	match type:
+		TimelineManager.Type.FIGHT:
+			await _start_battle()
+			await _promote_random_rewards()
+			map_scene.on_action_completed(false)
+
+		TimelineManager.Type.MATE:
+			await _promote_mating()
+			map_scene.on_action_completed(false)
 
 
 func _promote_mating() -> void:
@@ -21,11 +36,13 @@ func _promote_mating() -> void:
 	var rewards := FishProfile.to_reward_array(initial_fish_profiles)
 
 	$RewardSelectionScreen.show_rewards(rewards)
+	await $RewardSelectionScreen.on_option_selected
 
 
 func _promote_random_rewards() -> void:
 	var rewards := Item.to_reward_array(Item.get_random_count(3))
 	$RewardSelectionScreen.show_rewards(rewards)
+	await $RewardSelectionScreen.on_option_selected
 
 
 func _start_battle() -> void:

@@ -128,7 +128,7 @@ fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_fkrx8")
 
-[node name="FishPlayerCharacter" parent="." instance=ExtResource("5_8ra5a")]
+[node name="PlayerCharacter" parent="." instance=ExtResource("5_8ra5a")]
 position = Vector2(-350, 374)
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -139,3 +139,4 @@ offset_right = -200.0
 offset_bottom = -40.0
 
 [node name="TimelineManager" parent="." groups=["TimelineManager"] instance=ExtResource("8_k5pu3")]
+position = Vector2(275, 351)

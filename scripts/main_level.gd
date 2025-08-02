@@ -27,8 +27,15 @@ func _input(event: InputEvent) -> void:
 func _on_tile_landed(type: TimelineManager.Type) -> void:
 	match type:
 		TimelineManager.Type.FIGHT:
-			await _start_battle()
-			await _promote_random_rewards()
+			var winner: Battle.Winner = await _start_battle()
+
+			if winner == Battle.Winner.PLAYER:
+				await _promote_random_rewards()
+				GameState.on_tile_cleared()
+			else:
+				# TODO: player has lost: return them back to square 1 with original stats
+				assert(false)
+				pass
 
 		TimelineManager.Type.MATE:
 			await _promote_mating()
@@ -63,7 +70,7 @@ func _promote_random_rewards() -> void:
 	can_handle_action_input = true
 
 
-func _start_battle() -> void:
+func _start_battle() -> Battle.Winner:
 	can_handle_action_input = false
 
 	assert(active_battle == null)
@@ -74,13 +81,7 @@ func _start_battle() -> void:
 	active_battle.start_battle()
 	var winner: Battle.Winner = await active_battle.on_battle_finished
 
-	if winner == Battle.Winner.PLAYER:
-		GameState.on_tile_cleared()
-
-	# TODO: if we're going to use the same player node instance everywhere,
-	# make sure to return it back to the main scene once battle scene is over,
-	# as currently it attaches the player to its root to correctly display it
-	get_tree().root.add_child(player)
 	active_battle.queue_free()
-
 	can_handle_action_input = true
+
+	return winner

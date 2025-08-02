@@ -1,9 +1,17 @@
 class_name FishCharacter
 extends Node2D
 
-signal took_damage(health_lost: int)
+signal on_inventory_changed
+signal on_took_damage(health_lost: int)
+
+@onready var health_bar : ProgressBar = %HealthBar
+@onready var action_bar : ProgressBar = %ActionBar
+
 
 var profile: FishProfile
+
+# The inventory has to limit
+var inventory: Array[Item]
 
 var body: String = "debug_body"
 var tail: String = "debug_tail"
@@ -12,30 +20,86 @@ var deco: String = "debug_deco"
 var curr_health: int = 0
 var curr_action_amount: float = 0.0
 
-@onready var health_bar : ProgressBar = $Control/VBoxContainer/HealthBar
-@onready var action_bar : ProgressBar = $Control/VBoxContainer/ActionBar
-
 
 func _ready() -> void:
-	took_damage.connect(update_health_bar)
+	on_took_damage.connect(_on_damage_taken)
 
-func _process(delta):
-	# TODO: toimplement Tony
-	pass
-	# TODO: not run battle manager logic when it's not a battle
-	#if action_bar != null:
-		#action_bar.value = float(curr_action_amount) / float(BattleManager.action_bar_max_amount) * 100.0
+
+func increase_action_amount(amount: float) -> void:
+	curr_action_amount += amount
+	action_bar.value = curr_action_amount
+
 
 func set_profile(in_profile: FishProfile) -> void:
 	profile = in_profile
 
-# Returns amount of damage taken
-func get_attacked(incoming_damage: int) -> int:
-	# TODO: check if fish has a shield
+	print("Set profile: ", profile._to_string())
 
-	curr_health -= incoming_damage
-	took_damage.emit(incoming_damage)
-	return incoming_damage
 
-func update_health_bar(asm: int):
-	health_bar.value = float(curr_health) / float(profile.attributes.data[Attributes.Type.Health]) * 100.0
+func deal_damage(damage: int) -> int:
+	var scaled_damage: float = damage
+
+	# Decrease scaled damage by 30%; the effect stacks up, but is weaker
+	# 10.0 -> 7.0 -> 4.9 -> 3.43 ...
+	for item in inventory:
+		if item.type == Item.Type.BUBBLE_SHIELD:
+			scaled_damage *= 0.7
+
+	# Round up: make sure to deal at least 1 damage
+	var final_damage: int = ceil(scaled_damage)
+
+	curr_health -= final_damage
+	on_took_damage.emit(final_damage)
+
+	if curr_health > 0:
+		shake(2.5, 0.03, 20)
+		flash(0.1)
+
+	return final_damage
+
+
+func _on_damage_taken(health_lost: int) -> void:
+	update_health_bar()
+
+
+func get_max_health() -> int:
+	return max(profile.attributes.data[Attributes.Type.Health], 1) * 5
+
+
+func update_health_bar():
+	var max_health := get_max_health()
+	health_bar.value = (float(curr_health) / float(max_health)) * 100.0
+
+
+func add_item(item: Item) -> void:
+	assert(item != null)
+	inventory.append(item)
+	on_inventory_changed.emit()
+
+
+func dissolve(duration: float) -> void:
+	var tween := get_tree().create_tween()
+	material = load("res://assets/materials/fish_character_dissolve.tres")
+	tween.tween_property(%Sprite2D, "material:shader_parameter/dissolve_value", 0.0, duration)
+	await tween.finished
+
+
+func shake(amplitude: float, duration: float, count: int) -> void:
+	var tween := get_tree().create_tween()
+	for i in count:
+		var destination := Vector2(randf_range(-amplitude, amplitude), randf_range(-amplitude, amplitude))
+		tween.tween_property(%Sprite2D, "position", destination, duration)
+
+	tween.play()
+	await tween.finished
+
+
+func flash(duration: float) -> void:
+	#var tween := get_tree().create_tween()
+	#%Sprite2D.material = load("res://assets/materials/fish_character_flash.tres")
+	#%Sprite2D.set_instance_shader_parameter("alpha", 1.0)
+	#tween.tween_property(%Sprite2D, "material:shader_parameter/alpha", 0.0, duration)
+#
+	#tween.play()
+	#await tween.finished
+	pass

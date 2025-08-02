@@ -6,8 +6,8 @@
 [node name="BattleTest" type="Node2D"]
 script = ExtResource("1_th188")
 
-[node name="PlayerSocket" type="Node2D" parent="."]
-position = Vector2(1468, 401)
-
 [node name="Opponent" parent="." instance=ExtResource("2_p1qf1")]
 position = Vector2(1468, 401)
+
+[node name="Player" parent="." instance=ExtResource("2_p1qf1")]
+position = Vector2(467, 444)

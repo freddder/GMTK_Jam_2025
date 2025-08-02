@@ -56,6 +56,10 @@ func request_unique_names(count: int) -> Array[String]:
 	return result
 
 
+func request_unique_name() -> String:
+	return request_unique_names(1)[0]
+
+
 func _populate_pool(filter: Array[String]) -> void:
 	FishNicknamePool._active_pool.append_array(FishNicknamePool.pool)
 

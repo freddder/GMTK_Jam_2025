@@ -165,7 +165,6 @@ func reset_path() -> void:
 
 # creates the visuals for the map and adds them as a child of the manager
 func generate_visuals() -> void:
-
 	var color := Color(0, 0, .2)
 
 	player.icon = Sprite2D.new()

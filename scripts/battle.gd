@@ -18,6 +18,7 @@ var action_bar_max_amount: float = 100.0
 
 
 func _ready():
+	player.inventory = original_player.inventory
 	player.set_profile(original_player.profile)
 	opponent.set_profile(randomize_enemy_profile(original_player.profile.level))
 

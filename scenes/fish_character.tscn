@@ -1,8 +1,43 @@
-[gd_scene load_steps=4 format=3 uid="uid://baxxsojpi36f1"]
+[gd_scene load_steps=9 format=3 uid="uid://baxxsojpi36f1"]
 
 [ext_resource type="Script" uid="uid://qkykqr3hd6iw" path="res://scripts/fish_character.gd" id="1_wg25l"]
 [ext_resource type="Material" uid="uid://c6oefivlupje6" path="res://assets/materials/fish_character_dissolve.tres" id="2_rhh4d"]
 [ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="2_t45y5"]
+[ext_resource type="Shader" uid="uid://d0bsakbq4s5ma" path="res://assets/shaders/bubble_shield.gdshader" id="4_wwi0r"]
+
+[sub_resource type="Gradient" id="Gradient_nuchm"]
+colors = PackedColorArray(0.344076, 0.344076, 0.344076, 1, 0.787759, 0.787759, 0.787759, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_p6tbb"]
+noise_type = 3
+frequency = 0.004
+fractal_octaves = 8
+fractal_lacunarity = 1.435
+fractal_gain = 0.205
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k5pu3"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_nuchm")
+noise = SubResource("FastNoiseLite_p6tbb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7rx0e"]
+shader = ExtResource("4_wwi0r")
+shader_parameter/zoom_out = 1.0
+shader_parameter/border_decay = 0.953
+shader_parameter/shield_tint = Color(0.36973, 0.646771, 0.83819, 0.509804)
+shader_parameter/shield_saturation = Color(0.752365, 0.9349, 0.911351, 1)
+shader_parameter/attack_angle = -0.000184707
+shader_parameter/attack_penetration = 0.344
+shader_parameter/attack_radius = 0.0
+shader_parameter/attack_amplitude = 0.0
+shader_parameter/wave_speed = 7.888
+shader_parameter/wave_num = 17.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_k5pu3")
+shader_parameter/noise_speed = 1.0
+shader_parameter/noise_amplitude = 0.89
+shader_parameter/noise_deformation = 9.703
 
 [node name="FishCharacter" type="Node2D"]
 material = ExtResource("2_rhh4d")
@@ -25,6 +60,13 @@ texture = ExtResource("2_t45y5")
 use_parent_material = true
 texture = ExtResource("2_t45y5")
 
+[node name="BubbleShield" type="Sprite2D" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_7rx0e")
+position = Vector2(-2.99999, -8.5)
+scale = Vector2(2.10938, 1.69531)
+texture = ExtResource("2_t45y5")
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -33,7 +75,7 @@ anchor_bottom = 1.0
 offset_left = -100.0
 offset_top = -100.0
 offset_right = 100.0
-offset_bottom = 130.0
+offset_bottom = 183.0
 grow_horizontal = 2
 grow_vertical = 2
 

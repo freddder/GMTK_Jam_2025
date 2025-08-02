@@ -61,14 +61,16 @@ func deal_damage(damage: int) -> int:
 func heal(value: int) -> void:
 	var new_health: int = min(get_max_health(), curr_health + value)
 	if curr_health != new_health:
-		var delta := new_health + curr_health
+		var delta := new_health - curr_health
 		curr_health = new_health
 
 		on_healed.emit(delta)
+		update_health_bar()
 
 
 func _on_damage_taken(health_lost: int) -> void:
 	update_health_bar()
+	animate_bubble_shield()
 
 
 func get_max_health() -> int:
@@ -113,6 +115,8 @@ func prepare_to_battle() -> void:
 	update_health_bar()
 	sent_hits = 0
 
+	$BubbleShield.visible = get_inventory_item_count(Item.Type.BUBBLE_SHIELD) > 0
+
 
 func get_inventory_item_count(type: Item.Type) -> int:
 	var count: int = 0
@@ -150,3 +154,10 @@ func on_attack_sent(damage: int) -> void:
 		var value := damage * pow(0.4, teeth_count)
 		heal(value)
 		on_life_stolen.emit(value)
+
+
+func animate_bubble_shield() -> void:
+	var tween := get_tree().create_tween()
+	tween.tween_property($BubbleShield, "material:shader_parameter/attack_radius", 1.0, 1.0)
+	tween.tween_property($BubbleShield, "material:shader_parameter/attack_radius", 0.0, 0.8)
+	await tween.finished

@@ -1,13 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv204n8kxuhp2"]
+[gd_scene load_steps=8 format=3 uid="uid://cv204n8kxuhp2"]
 
 [ext_resource type="Script" uid="uid://coh1ki32aag1y" path="res://scripts/battle.gd" id="1_th188"]
 [ext_resource type="PackedScene" uid="uid://baxxsojpi36f1" path="res://scenes/fish_character.tscn" id="2_p1qf1"]
+[ext_resource type="Shader" uid="uid://qkkocme2gw7j" path="res://assets/shaders/burn_dissolve.gdshader" id="3_p1qf1"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wwi0r"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nuchm"]
+noise = SubResource("FastNoiseLite_wwi0r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a12nh"]
+resource_local_to_scene = true
+shader = ExtResource("3_p1qf1")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_nuchm")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.02
+shader_parameter/burn_color = Color(0.250159, 0.450449, 0.738281, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpir7"]
+resource_local_to_scene = true
+shader = ExtResource("3_p1qf1")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_nuchm")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.02
+shader_parameter/burn_color = Color(0.250159, 0.450449, 0.738281, 1)
 
 [node name="BattleTest" type="Node2D"]
 script = ExtResource("1_th188")
 
 [node name="Opponent" parent="." instance=ExtResource("2_p1qf1")]
+material = SubResource("ShaderMaterial_a12nh")
 position = Vector2(1468, 401)
 
 [node name="Player" parent="." instance=ExtResource("2_p1qf1")]
+material = SubResource("ShaderMaterial_lpir7")
 position = Vector2(467, 444)

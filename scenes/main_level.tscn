@@ -8,7 +8,7 @@
 [ext_resource type="Shader" uid="uid://d0bsakbq4s5ma" path="res://assets/shaders/bubble_shield.gdshader" id="6_bq26l"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="7_u2c82"]
 [ext_resource type="PackedScene" uid="uid://byrvjftegb2na" path="res://scenes/timeline_manager.tscn" id="8_k5pu3"]
-[ext_resource type="PackedScene" path="res://scenes/player_inventory.tscn" id="9_iqu8w"]
+[ext_resource type="PackedScene" uid="uid://cn4jmsu3ifyb" path="res://scenes/player_inventory.tscn" id="9_iqu8w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
 atlas = ExtResource("7_u2c82")
@@ -108,12 +108,6 @@ script = ExtResource("1_ufxs0")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="PlayerInventory" parent="HUD" instance=ExtResource("9_iqu8w")]
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 25.0
-offset_bottom = -25.0
-grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 8
 

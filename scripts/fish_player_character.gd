@@ -1,9 +1,12 @@
 class_name FishPlayerCharacter
 extends FishCharacter
 
+signal profile_update
+
 func _ready() -> void:
 	set_profile(FishProfile.create())
 	super._ready()
+
 
 
 func set_profile(in_profile: FishProfile) -> void:
@@ -11,3 +14,4 @@ func set_profile(in_profile: FishProfile) -> void:
 		EventBus.on_player_reincarnated.emit(profile)
 
 	super.set_profile(in_profile)
+	profile_update.emit()

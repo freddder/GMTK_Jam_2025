@@ -46,14 +46,13 @@ func deal_damage(damage: int) -> int:
 			scaled_damage *= 0.7
 
 	# Round up: make sure to deal at least 1 damage
-	var final_damage: int = ceil(scaled_damage)
+	var final_damage: int = max(1, ceil(scaled_damage))
 
 	curr_health -= final_damage
 	on_took_damage.emit(final_damage)
 
 	if curr_health > 0:
 		shake(2.5, 0.03, 20)
-		flash(0.1)
 
 	return final_damage
 
@@ -79,8 +78,7 @@ func add_item(item: Item) -> void:
 
 func dissolve(duration: float) -> void:
 	var tween := get_tree().create_tween()
-	material = load("res://assets/materials/fish_character_dissolve.tres")
-	tween.tween_property(%Sprite2D, "material:shader_parameter/dissolve_value", 0.0, duration)
+	tween.tween_property(self, "material:shader_parameter/dissolve_value", 0.0, duration)
 	await tween.finished
 
 
@@ -92,14 +90,3 @@ func shake(amplitude: float, duration: float, count: int) -> void:
 
 	tween.play()
 	await tween.finished
-
-
-func flash(duration: float) -> void:
-	#var tween := get_tree().create_tween()
-	#%Sprite2D.material = load("res://assets/materials/fish_character_flash.tres")
-	#%Sprite2D.set_instance_shader_parameter("alpha", 1.0)
-	#tween.tween_property(%Sprite2D, "material:shader_parameter/alpha", 0.0, duration)
-#
-	#tween.play()
-	#await tween.finished
-	pass

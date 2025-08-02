@@ -30,7 +30,12 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 
 		TimelineManager.Type.MATE:
 			await _promote_mating()
-			
+		
+		TimelineManager.Type.EVENT:
+			print("weed")
+		
+		TimelineManager.Type.BOSS:
+			print("boss fight")
 
 
 func _promote_mating() -> void:

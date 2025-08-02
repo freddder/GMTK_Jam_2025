@@ -218,7 +218,7 @@ func generate_timeline() -> void:
 	# generate random stuff
 	for i in total_length - 1:
 		var newCell: Cell = Cell.new()
-		newCell.type = Type[Type.keys()[randi() % Type.RETURN_UP]]
+		newCell.type = Type[Type.keys()[randi() % Type.RETURN_DOWN]]
 
 		if i % 4 == 0: #force mating tiles
 			newCell.type = Type.MATE
@@ -236,7 +236,7 @@ func generate_timeline() -> void:
 
 			for j in length - 1:
 				var newCell = Cell.new()
-				newCell.type = Type[Type.keys()[randi() % (Type.size() - 5)]]
+				newCell.type = Type[Type.keys()[randi() % (Type.size() - 6)]]
 				top_path.push_back(newCell)
 
 			var tempCell = Cell.new()
@@ -253,7 +253,7 @@ func generate_timeline() -> void:
 
 			for j in length - 1:
 				var newCell = Cell.new()
-				newCell.type = Type[Type.keys()[randi() % (Type.size() - 5)]]
+				newCell.type = Type[Type.keys()[randi() % (Type.size() - 6)]]
 				sub_path.push_back(newCell)
 
 			var tempCell = Cell.new()

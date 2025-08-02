@@ -27,7 +27,7 @@ var subPath: Array[cell] = []
 @onready var eventSprite = load("res://assets/sprites/Icons/questionmark_icon.png")
 @onready var fightSprite = load("res://assets/sprites/Icons/fight_icon.png")
 
-class playerIcon extends Node:
+class playerIcon:
 	var icon:Sprite2D
 	var pos:Vector2
 	var mainProgress:int = 0
@@ -36,7 +36,7 @@ class playerIcon extends Node:
 	var path:String
 
 var player:playerIcon = playerIcon.new()
-var visScale = .35
+var visScale = .6
 var moveing:bool = false
 var tweener:Tween
 var oldMoveing:bool = false
@@ -76,14 +76,14 @@ func on_action_completed(takePath:bool):
 			if mainPath[player.mainProgress].type == Type.PATH_UP:
 				player.path = "top"
 				player.mainProgress += topPath.size()
-				moveIcon(0,-32,1)
+				moveIcon(0,-(128 * visScale),1)
 				sendSignal(topPath[player.topProgress].type)
 				player.topProgress += 1
 				#move player
 			if mainPath[player.mainProgress].type == Type.PATH_DOWN:
 				player.path = "sub"
 				player.mainProgress += subPath.size()
-				moveIcon(0,32,1)
+				moveIcon(0,(128 * visScale),1)
 				sendSignal(subPath[player.subProgress].type)
 				player.subProgress += 1
 		else:
@@ -99,7 +99,7 @@ func on_action_completed(takePath:bool):
 		moveIcon(128 * visScale,0,1)
 		if topPath[player.topProgress].type == Type.RETURN_DOWN:
 			player.path = "main"
-			moveIcon(0,32,1)
+			moveIcon(0,(128 * visScale),1)
 			moveIcon(128 * visScale,0,1)
 			return
 		sendSignal(topPath[player.topProgress].type)
@@ -108,7 +108,7 @@ func on_action_completed(takePath:bool):
 		player.topProgress += 1
 		if subPath[player.subProgress].type == Type.RETURN_UP:
 			player.path = "main"
-			moveIcon(0,-32,1)
+			moveIcon(0,-(128 * visScale),1)
 			moveIcon(128 * visScale,0,1)
 			return
 		else:
@@ -157,12 +157,14 @@ func resetPath():
 func generateVisuals():
 	
 	var col = Color(0,0,.2)
-	var mainY = 100
+	var mainY = 128
+	var buffX = 200
+	var padX = 12
 
 	player.icon = Sprite2D.new()
 	player.icon.texture = playerSprite
 	player.icon.scale = Vector2(visScale,visScale)
-	player.pos = Vector2(64,mainY)
+	player.pos = Vector2(buffX + (padX * visScale),mainY)
 	player.icon.transform.origin = player.pos
 
 
@@ -172,34 +174,34 @@ func generateVisuals():
 		var track:Sprite2D = Sprite2D.new()
 		track.texture = playerSprite
 		track.self_modulate = col
-		track.position.x = i * 128 * visScale + 64
+		track.position.x = i * (128+ (padX * visScale)) * visScale + buffX + (padX * visScale)
 		track.position.y = mainY
 		track.scale = Vector2(visScale,visScale)
 		self.add_child(track)
 
-		self.placeIcon(mainPath[i].type, mainY, i * 128 * visScale + 64, .20)
+		self.placeIcon(mainPath[i].type, mainY, i *  (128+ (padX * visScale)) * visScale + buffX + (padX * visScale), .20)
 
 		if mainPath[i].type == Type.PATH_UP:
 			for j in topPath.size():
 				var uptrack:Sprite2D = Sprite2D.new()
 				uptrack.texture = playerSprite
 				uptrack.self_modulate = col
-				uptrack.position.x = (j * 128 * visScale) + (i * 128 * visScale) + 64
-				uptrack.position.y = mainY - 32
+				uptrack.position.x = (j * (128+ (padX * visScale)) * visScale) + (i *  (128+ (padX * visScale)) * visScale) + buffX 
+				uptrack.position.y = mainY - (128 * visScale)
 				uptrack.scale = Vector2(visScale,visScale)
 				self.add_child(uptrack)
-				self.placeIcon(topPath[j].type, mainY-32,((j * 128 * visScale) + (i * 128 * visScale) + 64), .2)
+				self.placeIcon(topPath[j].type, mainY-(128 * visScale),((j *  (128+ (padX * visScale)) * visScale) + (i *  (128+ (padX * visScale)) * visScale) + buffX + (padX * visScale)), .2)
 
 		if mainPath[i].type == Type.PATH_DOWN:
 			for j in subPath.size():
 				var subtrack:Sprite2D = Sprite2D.new()
 				subtrack.texture = playerSprite
 				subtrack.self_modulate = col
-				subtrack.position.x = (j * 128 * visScale) + (i * 128 * visScale) + 64
-				subtrack.position.y = mainY + 32
+				subtrack.position.x = (j *  (128+ (padX * visScale)) * visScale) + (i *  (128+ (padX * visScale)) * visScale) + buffX + (padX * visScale)
+				subtrack.position.y = mainY + (128 * visScale)
 				subtrack.scale = Vector2(visScale,visScale)
 				self.add_child(subtrack)
-				self.placeIcon(subPath[j].type, mainY + 32,((j * 128 * visScale) + (i * 128 * visScale) + 64), .2)
+				self.placeIcon(subPath[j].type, mainY + (128 * visScale),((j * (128+ (padX * visScale)) * visScale) + (i * (128+ (padX * visScale)) * visScale) + buffX + (padX * visScale)), .2)
 
 
 	self.add_child(player.icon)
@@ -260,6 +262,8 @@ func generateTimeline():
 	mainPath.push_back(finalCell)
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventMouse and event.is_pressed():
+		self.on_action_completed(false)
 	pass
 
 # for debugging

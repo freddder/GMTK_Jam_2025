@@ -12,6 +12,7 @@ func _ready() -> void:
 	EventBus.promote_player_mating.connect(_promote_mating)
 	EventBus.on_game_started.emit()
 	map_scene.on_tile_landed.connect(_on_tile_landed)
+	TextBoxManager.call_deferred("initialize")
 
 	# Start the game by mating; this will need to be moved after initial cut-scene
 	await _promote_mating()
@@ -27,6 +28,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_tile_landed(type: TimelineManager.Type) -> void:
+	TextBoxManager.display_text("test", 2)
 	match type:
 		TimelineManager.Type.FIGHT:
 			var winner: Battle.Winner = await _start_battle()

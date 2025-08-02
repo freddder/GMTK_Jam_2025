@@ -248,11 +248,6 @@ func generateTimeline() -> void:
 	mainPath.push_back(finalCell)
 
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouse and event.is_pressed():
-		self.on_action_completed(false)
-	pass
-
 
 # for debugging
 func _ready() -> void:

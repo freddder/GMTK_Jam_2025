@@ -139,4 +139,3 @@ offset_right = -200.0
 offset_bottom = -40.0
 
 [node name="TimelineManager" parent="." groups=["TimelineManager"] instance=ExtResource("8_k5pu3")]
-position = Vector2(275, 351)

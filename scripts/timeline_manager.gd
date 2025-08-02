@@ -20,10 +20,6 @@ var subPath: Array[cell] = []
 
 @export var totalLength: int = 20
 
-@onready var playerSprite = load("res://assets/sprites/Icons/fish_icon.png")
-@onready var mateSprite = load("res://assets/sprites/Icons/heart_icon.png")
-@onready var eventSprite = load("res://assets/sprites/Icons/questionmark_icon.png")
-@onready var fightSprite = load("res://assets/sprites/Icons/fight_icon.png")
 
 
 class playerIcon:
@@ -120,13 +116,13 @@ func placeIcon(type: Type, yPos: float, xPos: float, iScale: float) -> void:
 	icon.position.y = yPos
 
 	if type == Type.FIGHT:
-		icon.texture = fightSprite
+		icon.texture = ResourceManager.textures[ResourceManager.TextureId.FIGHT_ICON]
 	elif type == Type.EVENT:
-		icon.texture = eventSprite
+		icon.texture = ResourceManager.textures[ResourceManager.TextureId.EVENT_ICON]
 	elif type == Type.MATE:
-		icon.texture = mateSprite
+		icon.texture = ResourceManager.textures[ResourceManager.TextureId.MATE_ICON]
 	elif type == Type.BOSS:
-		icon.texture = playerSprite
+		icon.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
 		icon.self_modulate = Color(1, 0, 0)
 
 	self.add_child(icon)
@@ -153,7 +149,7 @@ func generateVisuals() -> void:
 
 
 	player.icon = Sprite2D.new()
-	player.icon.texture = playerSprite
+	player.icon.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
 	player.icon.scale = Vector2(visScale, visScale)
 	player.pos = Vector2(buffX + (padX * visScale), mainY)
 	player.icon.transform.origin = player.pos
@@ -161,7 +157,7 @@ func generateVisuals() -> void:
 
 	for i in totalLength:
 		var track: Sprite2D = Sprite2D.new()
-		track.texture = playerSprite
+		track.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
 		track.self_modulate = col
 		track.position.x = i * (128+ (padX * visScale)) * visScale + buffX + (padX * visScale)
 		track.position.y = mainY
@@ -173,7 +169,7 @@ func generateVisuals() -> void:
 		if mainPath[i].type == Type.PATH_UP:
 			for j in topPath.size():
 				var uptrack: Sprite2D = Sprite2D.new()
-				uptrack.texture = playerSprite
+				uptrack.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
 				uptrack.self_modulate = col
 				uptrack.position.x = (j * (128+ (padX * visScale)) * visScale) + (i *  (128+ (padX * visScale)) * visScale) + buffX
 				uptrack.position.y = mainY - (128 * visScale)
@@ -184,7 +180,7 @@ func generateVisuals() -> void:
 		if mainPath[i].type == Type.PATH_DOWN:
 			for j in subPath.size():
 				var subtrack: Sprite2D = Sprite2D.new()
-				subtrack.texture = playerSprite
+				subtrack.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
 				subtrack.self_modulate = col
 				subtrack.position.x = (j *  (128+ (padX * visScale)) * visScale) + (i *  (128+ (padX * visScale)) * visScale) + buffX + (padX * visScale)
 				subtrack.position.y = mainY + (128 * visScale)

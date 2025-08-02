@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmexpqdp2hgy6"]
+[gd_scene load_steps=15 format=3 uid="uid://dr8cdktg4i7ud"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_bqqt6"]
+[ext_resource type="Script" uid="uid://iu0pg3fkmu5m" path="res://scripts/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_l6cm7"]
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="2_ekxnf"]
-[ext_resource type="Theme" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
+[ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="4_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="6_oa1go"]
 

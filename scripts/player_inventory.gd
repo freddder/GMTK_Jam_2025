@@ -3,9 +3,9 @@ extends Control
 @onready var player: FishPlayerCharacter = get_tree().get_first_node_in_group("player")
 @onready var slot_scene := preload("res://scenes/player_inventory_slot.tscn")
 
-@onready var health_label : Label = $StatsMenu/MarginContainer/VBoxContainer/HBoxContainer/HealthLabel
-@onready var attack_label : Label = $StatsMenu/MarginContainer/VBoxContainer/HBoxContainer2/AttackLabel
-@onready var speed_label : Label = $StatsMenu/MarginContainer/VBoxContainer/HBoxContainer3/SpeedLabel
+@onready var health_label : Label = %HealthLabel
+@onready var attack_label : Label = %AttackLabel
+@onready var speed_label : Label = %SpeedLabel
 
 func _ready() -> void:
 	player.on_inventory_changed.connect(_on_inventory_changed)

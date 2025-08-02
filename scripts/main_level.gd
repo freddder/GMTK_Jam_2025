@@ -17,6 +17,8 @@ func _ready() -> void:
 	await _promote_mating()
 	map_scene.initialize()
 
+	_start_battle()
+
 
 func _input(event: InputEvent) -> void:
 	if can_handle_action_input:
@@ -44,11 +46,21 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 			print("weed")
 
 		TimelineManager.Type.BOSS:
-			print("boss fight")
+			# TODO: actually do something with the boss fight
+			var winner: Battle.Winner = await _start_battle()
+
+			if winner == Battle.Winner.PLAYER:
+				await _promote_random_rewards()
+				GameState.on_tile_cleared()
+			else:
+				# TODO: player has lost: return them back to square 1 with original stats
+				assert(false)
+				pass
 
 
 func _promote_mating() -> void:
 	can_handle_action_input = false
+	%PlayerInventory.visible = false
 
 	var initial_fish_profiles := FishRandomizer.randomize_many(3, player.profile.level,
 	player.profile.attributes, player.inventory)
@@ -58,6 +70,7 @@ func _promote_mating() -> void:
 	await $RewardSelectionScreen.on_option_selected
 
 	can_handle_action_input = true
+	%PlayerInventory.visible = true
 
 
 func _promote_random_rewards() -> void:

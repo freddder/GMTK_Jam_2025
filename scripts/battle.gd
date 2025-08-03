@@ -43,7 +43,7 @@ func _on_battle_finished(winner: Winner) -> void:
 
 	await to_dissolve.dissolve(2.0)
 
-	await get_tree().create_timer(2.0).timeout
+	await get_tree().create_timer(1.0).timeout
 
 	is_battle_active = false
 	on_battle_finished.emit(winner)

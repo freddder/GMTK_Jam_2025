@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://du5ookx6symg4"]
+[gd_scene load_steps=6 format=3 uid="uid://du5ookx6symg4"]
 
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_dyarx"]
+[ext_resource type="Texture2D" uid="uid://b0m83mxvqs51t" path="res://assets/sprites/background/Rotten_wood.png" id="1_qdwih"]
 [ext_resource type="Theme" path="res://assets/themes/button_text_theme.tres" id="2_dyarx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_11181"]
@@ -23,9 +24,11 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ColorRect" type="ColorRect" parent="DialogBox"]
+[node name="ColorRect" type="TextureRect" parent="DialogBox"]
 layout_mode = 2
-color = Color(0.56, 0.308, 0, 0.337255)
+texture = ExtResource("1_qdwih")
+expand_mode = 3
+stretch_mode = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="DialogBox"]
 material = SubResource("ShaderMaterial_11181")

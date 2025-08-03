@@ -73,15 +73,15 @@ func on_action_completed(takePath: bool) -> void:
 		if takePath:
 			if main_path[player.main_progress].type == Type.PATH_UP:
 				player.path = "top"
-				player.main_progress += top_path.size()
+				player.main_progress += top_path.size() - 1
 				move_icon(0, -(128 * cell_scale), 1, top_path[player.top_progress].type)
-				player.top_progress += 1
+				#player.top_progress += 1
 
 			if main_path[player.main_progress].type == Type.PATH_DOWN:
 				player.path = "sub"
-				player.main_progress += sub_path.size()
+				player.main_progress += sub_path.size() - 1
 				move_icon(0, (128 * cell_scale), 1, sub_path[player.sub_progress].type)
-				player.sub_progress += 1
+				#player.sub_progress += 1
 		else:
 			player.main_progress += 1
 			if player.main_progress >= total_length:
@@ -90,21 +90,25 @@ func on_action_completed(takePath: bool) -> void:
 			move_icon((128+ (padding_x * cell_scale)) * cell_scale, 0, 1, main_path[player.main_progress].type)
 
 	elif player.path == "top":
-		player.top_progress += 1
-
+		
 		if top_path[player.top_progress].type == Type.RETURN_DOWN:
+			await move_icon(0, (128 * cell_scale), 1,main_path[player.main_progress].type)
 			player.path = "main"
-			move_icon(0, (128 * cell_scale), 1,Type.NOTHING)
+			return
+		player.top_progress += 1
+		if top_path[player.top_progress].type == Type.RETURN_DOWN:
 			move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1,Type.NOTHING)
 			return
-
-		move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1, top_path[player.top_progress].type)
+		else:
+			move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1, top_path[player.top_progress].type)
 
 	elif player.path == "sub":
-		player.top_progress += 1
 		if sub_path[player.sub_progress].type == Type.RETURN_UP:
+			await move_icon(0, -(128 * cell_scale), 1,main_path[player.main_progress].type)
 			player.path = "main"
-			move_icon(0,  -(128 * cell_scale), 1, Type.NOTHING)
+			return
+		player.sub_progress += 1
+		if sub_path[player.sub_progress].type == Type.RETURN_UP:
 			move_icon((128 + (padding_x * cell_scale)) * cell_scale, 0, 1,Type.NOTHING)
 			return
 		else:

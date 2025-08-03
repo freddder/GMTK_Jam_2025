@@ -38,8 +38,8 @@ func on_player_death() -> void:
 
 
 func opening_cutscene() -> void:
-	_start_game()
-	return
+	#_start_game()
+	#return
 
 	$deathScreen.color = Color(.7,.7,.7,0)
 

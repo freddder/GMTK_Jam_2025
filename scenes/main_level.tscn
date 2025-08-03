@@ -163,6 +163,7 @@ stream = ExtResource("10_fkrx8")
 volume_db = -20.0
 autoplay = true
 bus = &"BGM"
+parameters/looping = true
 
 [node name="VictoryTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_al56o")

@@ -28,6 +28,8 @@ func _ready() -> void:
 
 
 func on_player_death() -> void:
+	
+	
 	var tween := get_tree().create_tween()
 	tween.tween_property($deathScreen, "color", Color(.1,.1,.1,1), 2)
 

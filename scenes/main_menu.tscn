@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="2_ekxnf"]
 [ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="4_rtw2f"]
-[ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="6_oa1go"]
+[ext_resource type="Theme" uid="uid://25syfjgemjex" path="res://assets/styles/sliders/fish_slider.tres" id="6_oa1go"]
 [ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="7_oa1go"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ln24"]
@@ -198,8 +198,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
-theme_override_icons/grabber = ExtResource("6_oa1go")
-theme_override_icons/grabber_highlight = ExtResource("6_oa1go")
+theme = ExtResource("6_oa1go")
 max_value = 1.0
 step = 0.01
 value = 1.0
@@ -214,8 +213,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
-theme_override_icons/grabber = ExtResource("6_oa1go")
-theme_override_icons/grabber_highlight = ExtResource("6_oa1go")
+theme = ExtResource("6_oa1go")
 max_value = 1.0
 step = 0.02
 value = 1.0

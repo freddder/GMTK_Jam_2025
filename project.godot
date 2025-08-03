@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 EventBus="*res://globals/event_bus.gd"
+FishParts="*res://globals/fish_parts.gd"
 FishNicknamePool="*res://globals/fish_nickname_pool.gd"
 ResourceManager="*res://globals/resource_manager.gd"
 FishRandomizer="*res://globals/fish_randomizer.gd"

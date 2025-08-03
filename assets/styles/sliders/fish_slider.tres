@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://25syfjgemjex"]
+
+[ext_resource type="Texture2D" uid="uid://vs5me87amcj1" path="res://assets/styles/sliders/grabber_fish_unhighlighted.png" id="1_0ym8q"]
+[ext_resource type="Texture2D" uid="uid://k2fkvh1dr8rd" path="res://assets/styles/sliders/grabber_fish.png" id="1_n8anb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j81ok"]
+load_path = "res://.godot/imported/slider_bg.png-8123013775f128cb4749771d33345cd7.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n8anb"]
+content_margin_top = 50.0
+content_margin_bottom = 50.0
+texture = SubResource("CompressedTexture2D_j81ok")
+axis_stretch_horizontal = 1
+region_rect = Rect2(42, 0, 332, 100)
+modulate_color = Color(2, 2, 2, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0ym8q"]
+content_margin_top = 50.0
+content_margin_bottom = 50.0
+texture = SubResource("CompressedTexture2D_j81ok")
+axis_stretch_horizontal = 1
+region_rect = Rect2(42, 0, 332, 100)
+
+[resource]
+HSlider/icons/grabber = ExtResource("1_0ym8q")
+HSlider/icons/grabber_disabled = ExtResource("1_0ym8q")
+HSlider/icons/grabber_highlight = ExtResource("1_n8anb")
+HSlider/styles/grabber_area = SubResource("StyleBoxTexture_n8anb")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxTexture_n8anb")
+HSlider/styles/slider = SubResource("StyleBoxTexture_0ym8q")

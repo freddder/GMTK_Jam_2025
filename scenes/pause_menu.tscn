@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cf0nxgp7cvdba"]
+[gd_scene load_steps=18 format=3 uid="uid://bn03wwfyr8fi2"]
 
-[ext_resource type="Script" uid="uid://bt7aeqey83dpw" path="res://scripts/pause_menu.gd" id="1_myx47"]
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_myx47"]
 [ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="1_n87rw"]
 [ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="3_7l7mv"]
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="4_v4r4p"]
-[ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="5_1s2dm"]
+[ext_resource type="Theme" uid="uid://25syfjgemjex" path="res://assets/styles/sliders/fish_slider.tres" id="5_7l7mv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_myx47"]
 
@@ -42,7 +42,7 @@ grow_vertical = 2
 color = Color(0.145098, 0.145098, 0.145098, 0.733333)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -150,8 +150,8 @@ process_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
-theme_override_icons/grabber = ExtResource("5_1s2dm")
-theme_override_icons/grabber_highlight = ExtResource("5_1s2dm")
+theme = ExtResource("5_7l7mv")
+theme_type_variation = &"slider"
 max_value = 1.0
 step = 0.01
 value = 1.0
@@ -167,8 +167,7 @@ process_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
-theme_override_icons/grabber = ExtResource("5_1s2dm")
-theme_override_icons/grabber_highlight = ExtResource("5_1s2dm")
+theme = ExtResource("5_7l7mv")
 max_value = 1.0
 step = 0.01
 value = 1.0

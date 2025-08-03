@@ -37,7 +37,7 @@ func _ready() -> void:
 func hide_ui():
 	$Control.hide()
 	$BubbleShield.hide()
-	
+
 
 func set_visuals():
 	#check if this exists
@@ -129,7 +129,7 @@ func add_item(item: Item) -> void:
 func remove_random_item() -> void:
 	if inventory.size() == 0:
 		return
-	
+
 	var index := randi_range(0, inventory.size())
 	inventory.remove_at(index)
 	on_inventory_changed.emit()

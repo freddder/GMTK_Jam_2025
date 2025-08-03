@@ -90,7 +90,7 @@ func on_action_completed(takePath: bool) -> void:
 			move_icon((128+ (padding_x * cell_scale)) * cell_scale, 0, 1, main_path[player.main_progress].type)
 
 	elif player.path == "top":
-		
+
 		if top_path[player.top_progress].type == Type.RETURN_DOWN:
 			await move_icon(0, (128 * cell_scale), 1,main_path[player.main_progress].type)
 			player.path = "main"
@@ -187,14 +187,14 @@ func generate_visuals() -> void:
 			track.texture = ResourceManager.textures[tile_type_to_texture_id(main_path[i].type)]
 		else:
 			track.texture = ResourceManager.textures[tile_type_to_texture_id(Type.NOTHING)]
-			
+
 		#track.self_modulate = color
 		track.position.x = i * (128+ (padding_x * cell_scale)) * cell_scale + buff_x + (padding_x * cell_scale)
 		track.position.y = main_y
 		track.scale = _cell_scale_vec
 		add_child(track)
-		
-		
+
+
 		place_icon(main_path[i].type, main_y, i *  (128+ (padding_x * cell_scale)) * cell_scale + buff_x + (padding_x * cell_scale), iconScale)
 
 		if main_path[i].type == Type.PATH_UP:
@@ -206,7 +206,7 @@ func generate_visuals() -> void:
 				uptrack.position.x = (j * (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x
 				uptrack.position.y = main_y - (128 * cell_scale)
 				uptrack.scale = _cell_scale_vec
-				
+
 				var tex = ResourceManager.textures[tile_type_to_texture_id(Type.NOTHING)]
 				if j == 0:
 					tex = ResourceManager.textures[tile_type_to_texture_id(Type.RETURN_DOWN)]
@@ -214,7 +214,7 @@ func generate_visuals() -> void:
 				elif j == top_path.size()-1:
 					tex = ResourceManager.textures[tile_type_to_texture_id(Type.RETURN_DOWN)]
 				uptrack.texture = tex
-				
+
 
 
 				add_child(uptrack)
@@ -229,7 +229,7 @@ func generate_visuals() -> void:
 				subtrack.position.x = (j *  (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)
 				subtrack.position.y = main_y + (128 * cell_scale)
 				subtrack.scale = _cell_scale_vec
-				
+
 				var tex = ResourceManager.textures[tile_type_to_texture_id(Type.NOTHING)]
 				if j == 0:
 					tex = ResourceManager.textures[tile_type_to_texture_id(Type.RETURN_UP)]

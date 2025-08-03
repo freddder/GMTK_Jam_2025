@@ -17,7 +17,7 @@ func _on_inventory_changed() -> void:
 	for child in $HBoxContainer.get_children():
 		$HBoxContainer.remove_child(child)
 		child.queue_free()
-	
+
 	for i in player.inventory.size():
 		var slot: PlayerInventorySlot = slot_scene.instantiate()
 		$HBoxContainer.add_child(slot)

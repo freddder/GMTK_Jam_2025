@@ -22,19 +22,19 @@ func _ready() -> void:
 	TextBoxManager.call_deferred("initialize")
 	$HUD.hide()
 	call_deferred("opening_cutscene")
-	
+
 
 func on_player_death() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property($deathScreen, "color", Color(.1,.1,.1,1), 2)
-	
+
 	await get_tree().create_timer(2.0).timeout
-	
+
 	map_scene.reset_path()
 	$HUD.hide()
-	
+
 	opening_cutscene()
-	
+
 	pass
 
 func opening_cutscene() -> void:
@@ -46,15 +46,15 @@ func opening_cutscene() -> void:
 	tweener.tween_property(mage, "position:x", 1000,3)
 	tweener.set_loops(5)
 	add_child(mage)
-	
+
 	TextBoxManager.display_text("I will curse you for what you have done to me", 9)
 	await get_tree().create_timer(5.0).timeout
-	
+
 	TextBoxManager.display_text("You will now swim forever, reincarnating in an endless loop of torment", 0)
 	await get_tree().create_timer(5.0).timeout
-	
+
 	mage.hide()
-	
+
 	await _promote_mating()
 	map_scene.initialize()
 	$HUD.show()
@@ -64,7 +64,7 @@ func _input(event: InputEvent) -> void:
 	if can_handle_action_input:
 		if event.is_action_pressed("lmb"):
 			map_scene.on_action_completed(false)
-	
+
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_ESCAPE:
 			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
@@ -80,7 +80,7 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 			else:
 				# TODO: reset the player's stats
 				on_player_death()
-				
+
 				pass
 
 		TimelineManager.Type.MATE:

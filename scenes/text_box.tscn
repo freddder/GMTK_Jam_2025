@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_dyarx"]
 [ext_resource type="Texture2D" uid="uid://b0m83mxvqs51t" path="res://assets/sprites/background/Rotten_wood.png" id="1_qdwih"]
-[ext_resource type="Theme" path="res://assets/themes/button_text_theme.tres" id="2_dyarx"]
+[ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="2_dyarx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_11181"]
 

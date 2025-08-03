@@ -28,7 +28,7 @@ shader_parameter/dissolve_value = 1.0
 shader_parameter/burn_size = 0.02
 shader_parameter/burn_color = Color(0.250159, 0.450449, 0.738281, 1)
 
-[node name="BattleTest" type="Node2D"]
+[node name="Battle" type="Node2D"]
 script = ExtResource("1_th188")
 
 [node name="Opponent" parent="." instance=ExtResource("2_p1qf1")]

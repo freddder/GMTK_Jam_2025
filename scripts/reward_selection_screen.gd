@@ -35,15 +35,5 @@ func _on_option_selected(option: RewardOption) -> void:
 		RewardOptionData.Type.INVENTORY_ITEM:
 			player.add_item(Item.from_reward(option.data))
 
-#	_DEBUG_propose_mating()
-
 	on_option_selected.emit(option.data)
 	$"../UpgradeSFX".play()
-
-
-func _DEBUG_propose_mating() -> void:
-	var test_options := FishProfile.to_reward_array(
-		FishRandomizer.randomize_many(
-			3, player.profile.level, player.profile.attributes, player.inventory))
-
-	show_rewards(test_options)

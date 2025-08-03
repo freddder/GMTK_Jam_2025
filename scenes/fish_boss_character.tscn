@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://b87nxd2dpv8sp"]
+
+[ext_resource type="Material" uid="uid://c6oefivlupje6" path="res://assets/materials/fish_character_dissolve.tres" id="1_lniiv"]
+[ext_resource type="Script" uid="uid://qkykqr3hd6iw" path="res://scripts/fish_character.gd" id="2_wv4ix"]
+[ext_resource type="Texture2D" uid="uid://mvcomhgcjefl" path="res://assets/sprites/decorations/mage_wand.PNG" id="3_2kdrl"]
+[ext_resource type="Texture2D" uid="uid://p8wvadbk80kd" path="res://assets/sprites/decorations/mage_stars.PNG" id="4_q7reg"]
+[ext_resource type="Texture2D" uid="uid://eoa0o7rbc5xn" path="res://assets/sprites/mage_body.PNG" id="5_08r36"]
+[ext_resource type="Texture2D" uid="uid://i273jqry3imo" path="res://assets/sprites/decorations/mage_hat.PNG" id="6_1clqs"]
+
+[node name="FishCharacter" type="Node2D"]
+material = ExtResource("1_lniiv")
+script = ExtResource("2_wv4ix")
+is_boss = true
+
+[node name="FishPivot" type="Sprite2D" parent="."]
+use_parent_material = true
+
+[node name="Wand" type="Sprite2D" parent="FishPivot"]
+use_parent_material = true
+texture = ExtResource("3_2kdrl")
+
+[node name="Stars" type="Sprite2D" parent="FishPivot"]
+use_parent_material = true
+texture = ExtResource("4_q7reg")
+
+[node name="Fish" type="Sprite2D" parent="FishPivot"]
+use_parent_material = true
+texture = ExtResource("5_08r36")
+
+[node name="Hat" type="Sprite2D" parent="FishPivot"]
+use_parent_material = true
+texture = ExtResource("6_1clqs")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+use_parent_material = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HealthBar" type="ProgressBar" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(1, 0, 0, 1)
+use_parent_material = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[node name="ActionBar" type="ProgressBar" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0, 0.733333, 1, 1)
+use_parent_material = true
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+show_percentage = false

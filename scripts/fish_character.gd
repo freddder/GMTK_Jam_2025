@@ -13,6 +13,7 @@ signal on_crit_rolled
 # The inventory has to limit
 @export var inventory: Array[Item]
 
+@export var is_boss: bool = false
 @export var flip_h: bool = false
 
 var profile: FishProfile
@@ -47,7 +48,7 @@ func set_profile(in_profile: FishProfile) -> void:
 
 	print("Set profile: ", profile._to_string())
 
-	if not profile.cosmetics.is_empty():
+	if not is_boss and not profile.cosmetics.is_empty():
 		%Body.texture = ResourceManager.fish_body[profile.cosmetics[0]]
 		%Tail.texture = ResourceManager.fish_tail[profile.cosmetics[1]]
 		%Fins.texture = ResourceManager.fish_fin[profile.cosmetics[2]]
@@ -143,7 +144,8 @@ func prepare_to_battle() -> void:
 	update_health_bar()
 	sent_hits = 0
 
-	$BubbleShield.visible = get_inventory_item_count(Item.Type.BUBBLE_SHIELD) > 0
+	if not is_boss:
+		$BubbleShield.visible = get_inventory_item_count(Item.Type.BUBBLE_SHIELD) > 0
 
 
 func get_inventory_item_count(type: Item.Type) -> int:
@@ -185,6 +187,9 @@ func on_attack_sent(damage: int) -> void:
 
 
 func animate_bubble_shield() -> void:
+	if is_boss:
+		return
+
 	var tween := get_tree().create_tween()
 	tween.tween_property($BubbleShield, "material:shader_parameter/attack_radius", 1.0, 1.0)
 	tween.tween_property($BubbleShield, "material:shader_parameter/attack_radius", 0.0, 0.8)

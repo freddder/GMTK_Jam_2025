@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=3 uid="uid://deeb4i4cpdylx"]
+
+[ext_resource type="Script" uid="uid://coh1ki32aag1y" path="res://scripts/battle.gd" id="1_4ao3g"]
+[ext_resource type="PackedScene" uid="uid://baxxsojpi36f1" path="res://scenes/fish_character.tscn" id="2_rtjyh"]
+[ext_resource type="Shader" uid="uid://qkkocme2gw7j" path="res://assets/shaders/burn_dissolve.gdshader" id="3_4d31r"]
+[ext_resource type="AudioStream" uid="uid://bxre2ysdcdhtq" path="res://sounds/hit_sfx.wav" id="4_lxvje"]
+[ext_resource type="PackedScene" uid="uid://b87nxd2dpv8sp" path="res://scenes/fish_boss_character.tscn" id="4_rtjyh"]
+[ext_resource type="AudioStream" uid="uid://cli2brls8cjec" path="res://sounds/death_sfx.mp3" id="5_d6w3r"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wwi0r"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nuchm"]
+noise = SubResource("FastNoiseLite_wwi0r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpir7"]
+resource_local_to_scene = true
+shader = ExtResource("3_4d31r")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_nuchm")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.02
+shader_parameter/burn_color = Color(0.250159, 0.450449, 0.738281, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4d31r"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lxvje"]
+noise = SubResource("FastNoiseLite_4d31r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d6w3r"]
+resource_local_to_scene = true
+shader = ExtResource("3_4d31r")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_lxvje")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.02
+shader_parameter/burn_color = Color(0.250159, 0.450449, 0.738281, 1)
+
+[node name="BattleTest" type="Node2D"]
+script = ExtResource("1_4ao3g")
+
+[node name="Player" parent="." instance=ExtResource("2_rtjyh")]
+material = SubResource("ShaderMaterial_lpir7")
+position = Vector2(666, 475)
+flip_h = true
+
+[node name="Opponent" parent="." instance=ExtResource("4_rtjyh")]
+material = SubResource("ShaderMaterial_d6w3r")
+position = Vector2(1360, 474)
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lxvje")
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_d6w3r")
+volume_db = -20.0
+bus = &"SFX"

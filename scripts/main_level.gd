@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var battle_scene := load("res://scenes/battle.tscn")
+@onready var final_battle_scene := load("res://scenes/battle_boss.tscn")
 @onready var player: FishPlayerCharacter = $PlayerCharacter
 @onready var map_scene := $TimelineManager
 @onready var events_manager : EventManager = $EventManager
@@ -19,10 +20,10 @@ func _ready() -> void:
 	$PauseMenu.on_activation_state_changed.connect(_on_activation_state_changed)
 
 	EventBus.on_game_started.emit()
-	TextBoxManager.call_deferred("initialize")
+	TextBoxManager.initialize()
 
 	$HUD.hide()
-	call_deferred("opening_cutscene")
+	opening_cutscene()
 
 
 func on_player_death() -> void:
@@ -77,6 +78,13 @@ func opening_cutscene() -> void:
 
 func _start_game() -> void:
 	player.set_profile(FishProfile.create())
+
+	# Reset the inventory, but leave one item
+	if not player.inventory.is_empty():
+		var item: Item = player.inventory.pick_random()
+		player.inventory.clear()
+		player.add_item(item)
+
 	await _promote_mating()
 	map_scene.initialize()
 	$HUD.show()
@@ -95,15 +103,11 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 	$Paralax.enable_scroll = false
 	match type:
 		TimelineManager.Type.FIGHT:
-			var winner: Battle.Winner = await _start_battle()
-
+			var winner: Battle.Winner = await _start_battle(false)
 			if winner == Battle.Winner.PLAYER:
 				await _promote_random_rewards()
 			else:
-				# TODO: reset the player's stats
 				on_player_death()
-
-				pass
 
 		TimelineManager.Type.MATE:
 			await _promote_mating()
@@ -114,15 +118,16 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 			can_handle_action_input = true
 
 		TimelineManager.Type.BOSS:
-			# TODO: actually do something with the boss fight
-			var winner: Battle.Winner = await _start_battle()
+			await _play_pre_final_battle_cutscene()
 
+			var winner: Battle.Winner = await _start_battle(true)
 			if winner == Battle.Winner.PLAYER:
-				await _promote_random_rewards()
+				await _play_final_cutscene()
 			else:
-				# TODO: player has lost: return them back to square 1 with original stats
-				assert(false)
-				pass
+				await on_player_death()
+
+			active_battle.queue_free()
+			can_handle_action_input = true
 
 		TimelineManager.Type.PATH_UP:
 			can_handle_action_input = false
@@ -170,6 +175,7 @@ func _promote_random_rewards() -> void:
 	can_handle_action_input = true
 
 
+func _start_battle(is_boss: bool) -> Battle.Winner:
 func _start_battle() -> Battle.Winner:
 	player.hide()
 	transition_theme_to_battle()
@@ -177,15 +183,21 @@ func _start_battle() -> Battle.Winner:
 
 	assert(active_battle == null)
 
-	active_battle = battle_scene.instantiate()
+	if not is_boss:
+		active_battle = battle_scene.instantiate()
+	else:
+		active_battle = final_battle_scene.instantiate()
+
 	get_tree().get_current_scene().add_child(active_battle)
 
 	active_battle.start_battle()
 	var winner: Battle.Winner = await active_battle.on_battle_finished
 
-	active_battle.queue_free()
+	if not is_boss:
+		active_battle.queue_free()
+		can_handle_action_input = true
+
 	player.show()
-	can_handle_action_input = true
 
 	return winner
 
@@ -217,3 +229,38 @@ func transition_theme_to_reward():
 func _on_activation_state_changed(is_active: bool) -> void:
 	can_handle_action_input = not is_active
 	get_tree().paused = is_active
+
+
+func _play_pre_final_battle_cutscene() -> void:
+	var tweener := get_tree().create_tween()
+	$MageFish.position = Vector2(3000, 0)
+	await tweener.tween_property($MageFish, "position", Vector2(1500, 500), 0.75).set_ease(Tween.EASE_IN_OUT).finished
+
+	await get_tree().create_timer(0.1).timeout
+
+	tweener = get_tree().create_tween()
+	tweener.tween_property($MageFish, "position:x", 1300, 3)
+	tweener.tween_property($MageFish, "position:x", 1500, 3)
+	tweener.set_loops(2)
+
+	TextBoxManager.display_text("You want to face me, huh? There's no way that you're going to win!")
+	await get_tree().create_timer(5.0).timeout
+
+	await TextBoxManager.on_close_text_box()
+
+	tweener.stop()
+	tweener = get_tree().create_tween()
+	await tweener.tween_property($MageFish, "modulate:a", 0.0, 0.5).finished
+
+	$MageFish.position = Vector2(3000, 0)
+	$MageFish.modulate.a = 1.0
+
+
+func _play_final_cutscene() -> void:
+	TextBoxManager.display_text("But... how...?")
+	await get_tree().create_timer(5.0).timeout
+
+	TextBoxManager.display_text("Victory?")
+	await get_tree().create_timer(2.0).timeout
+
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

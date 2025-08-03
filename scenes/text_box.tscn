@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://du5ookx6symg4"]
 
-[ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="2_dyarx"]
+[ext_resource type="Theme" path="res://assets/themes/button_text_theme.tres" id="2_dyarx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_11181"]
 

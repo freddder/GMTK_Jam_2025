@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cn4jmsu3ifyb"]
+[gd_scene load_steps=5 format=3 uid="uid://dbpng7km0nxl0"]
 
 [ext_resource type="Script" uid="uid://bct0rh122rqc2" path="res://scripts/player_inventory.gd" id="1_dmp4w"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="2_xrurq"]

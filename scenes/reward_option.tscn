@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://0x30u3drfr0v"]
+[gd_scene load_steps=16 format=3 uid="uid://0x30u3drfr0v"]
 
 [ext_resource type="Script" uid="uid://bf6bnr5sfwh6b" path="res://scripts/reward_option.gd" id="1_iaep2"]
 [ext_resource type="Texture2D" uid="uid://5ddiap7ujcfi" path="res://assets/sprites/cool_fish.png" id="1_ry3jo"]
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="2_iaep2"]
 [ext_resource type="StyleBox" uid="uid://ic3e4o4f8edx" path="res://assets/styles/panels/default_panel_style.tres" id="2_r3sid"]
+[ext_resource type="PackedScene" uid="uid://baxxsojpi36f1" path="res://scenes/fish_character.tscn" id="4_32gg8"]
+[ext_resource type="Shader" uid="uid://qkkocme2gw7j" path="res://assets/shaders/burn_dissolve.gdshader" id="5_kldy1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r3sid"]
 
@@ -16,6 +18,20 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s16l3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d0o8k"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_wwi0r"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nuchm"]
+noise = SubResource("FastNoiseLite_wwi0r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s16l3"]
+resource_local_to_scene = true
+shader = ExtResource("5_kldy1")
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_nuchm")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/burn_size = 0.02
+shader_parameter/burn_color = Color(0.250159, 0.450449, 0.738281, 1)
 
 [node name="RewardOption" type="Control"]
 layout_mode = 3
@@ -87,6 +103,11 @@ size_flags_vertical = 3
 texture = ExtResource("1_ry3jo")
 expand_mode = 3
 stretch_mode = 3
+
+[node name="FishCharacter" parent="Panel/Button/MarginContainer/VBoxContainer/Icon" instance=ExtResource("4_32gg8")]
+material = SubResource("ShaderMaterial_s16l3")
+position = Vector2(180, 125.5)
+forReward = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Panel/Button/MarginContainer/VBoxContainer"]
 layout_mode = 2

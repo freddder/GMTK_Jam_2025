@@ -291,6 +291,12 @@ func generate_timeline() -> void:
 func _ready() -> void:
 	player.icon = Sprite2D.new()
 
+func set_player_to_start() ->void:
+	player.pos = Vector2(buff_x + (padding_x * cell_scale), main_y)
+	player.main_progress = 0
+	player.top_progress = 0
+	player.sub_progress = 0
+
 
 func initialize() -> void:
 	reset_path()

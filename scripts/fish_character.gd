@@ -12,6 +12,7 @@ signal on_crit_rolled
 
 # The inventory has to limit
 @export var inventory: Array[Item]
+@export var forReward: bool
 
 var profile: FishProfile
 
@@ -24,9 +25,40 @@ var curr_action_amount: float = 0.0
 var sent_hits: int = 0
 
 
+
+
 func _ready() -> void:
 	on_took_damage.connect(_on_damage_taken)
+	call_deferred("set_visuals")
+	if forReward:
+		hide_ui()
 
+
+func hide_ui():
+	$Control.hide()
+	
+
+func set_visuals():
+	#check if this exists
+	if %Sprite2D/Body:
+		body = FishParts.fishOptions.pick_random()
+		%Sprite2D/Body.texture = FishParts.BODIES[body]
+		if body == "orng":
+			%Sprite2D/Body.flip_h = true
+
+		tail = FishParts.fishOptions.pick_random()
+		%Sprite2D/Tail.texture = FishParts.TAILS[tail]
+		if tail == "orng":
+			%Sprite2D/Tail.flip_h = true
+
+		deco = FishParts.fishOptions.pick_random()
+		%Sprite2D/Fins.texture = FishParts.DECORATIONS[deco]
+		if deco == "orng":
+			%Sprite2D/Fins.flip_h = true
+	
+	
+	
+	
 
 func increase_action_amount(amount: float) -> void:
 	curr_action_amount += amount

@@ -1,7 +1,7 @@
 extends Control
 
 @onready var player: FishPlayerCharacter = get_tree().get_first_node_in_group("player")
-@onready var slot_scene := preload("res://scenes/player_inventory_slot.tscn")
+@onready var slot_scene := load("res://scenes/player_inventory_slot.tscn")
 
 @onready var health_label : Label = %HealthLabel
 @onready var attack_label : Label = %AttackLabel

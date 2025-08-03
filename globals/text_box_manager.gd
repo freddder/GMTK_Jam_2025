@@ -3,7 +3,7 @@ extends Node
 signal close_text_box
 signal _close_text_box_animation_finished
 
-@onready var scene := preload("res://scenes/text_box.tscn")
+@onready var scene := load("res://scenes/text_box.tscn")
 var dialog_box: Control
 var dialog_label: RichTextLabel
 

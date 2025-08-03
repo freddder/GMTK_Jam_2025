@@ -43,7 +43,7 @@ shader_parameter/noise_deformation = 9.703
 material = ExtResource("2_rhh4d")
 script = ExtResource("1_wg25l")
 
-[node name="FishPivot" type="Node2D" parent="."]
+[node name="FishPivot" type="Sprite2D" parent="."]
 use_parent_material = true
 
 [node name="Body" type="Sprite2D" parent="FishPivot"]

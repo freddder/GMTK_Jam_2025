@@ -1,6 +1,7 @@
 extends Node
 
 signal close_text_box
+signal _close_text_box_animation_finished
 
 @onready var scene := preload("res://scenes/text_box.tscn")
 var dialog_box: Control
@@ -31,17 +32,21 @@ func initialize():
 	options_button_2.button_down.connect(on_option_2_selected)
 	options_button_3.button_down.connect(on_option_3_selected)
 
-func display_text(text: String, auto_close_time: float = 0.0):
+func display_text(text: String, auto_close_time: float = 0.0) -> void:
 	dialog_label.clear()
 	dialog_label.add_text(text)
 
-	var tween := create_tween()
-	tween.set_trans(Tween.TRANS_QUART)
 	if not is_text_box_shown:
 		is_text_box_shown = true
-		tween.tween_property(dialog_box, "position:y", -dialog_box.size.y, 1).as_relative()
+		var tween := create_tween()
+		tween.set_trans(Tween.TRANS_QUART)
+		await tween.tween_property(dialog_box, "position:y", -dialog_box.size.y, 1).as_relative().finished
+
 	if auto_close_time != 0.0 and is_text_box_shown:
-		tween.tween_callback(on_close_text_box).set_delay(auto_close_time)
+		var tween := create_tween()
+		tween.set_trans(Tween.TRANS_QUART)
+		await tween.tween_callback(on_close_text_box).set_delay(auto_close_time).finished
+		await _close_text_box_animation_finished
 
 func on_close_text_box():
 	if not is_text_box_shown:
@@ -49,7 +54,8 @@ func on_close_text_box():
 
 	is_text_box_shown = false
 	var tween := create_tween()
-	tween.tween_property(dialog_box, "position:y", dialog_box.size.y, 1).as_relative().set_trans(Tween.TRANS_QUART)
+	await tween.tween_property(dialog_box, "position:y", dialog_box.size.y, 1).as_relative().set_trans(Tween.TRANS_QUART).finished
+	_close_text_box_animation_finished.emit()
 
 func on_option_1_selected():
 	on_option_selected(1)

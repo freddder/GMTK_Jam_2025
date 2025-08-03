@@ -5,4 +5,4 @@ var timer: float
 
 func _process(delta: float) -> void:
 	timer += delta * speed
-	self.position.y += sin(timer)
+	position.y += sin(timer)

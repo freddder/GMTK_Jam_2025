@@ -1,0 +1,184 @@
+[gd_scene load_steps=18 format=3 uid="uid://cf0nxgp7cvdba"]
+
+[ext_resource type="Script" uid="uid://bt7aeqey83dpw" path="res://scripts/pause_menu.gd" id="1_myx47"]
+[ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="1_n87rw"]
+[ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="3_7l7mv"]
+[ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="4_v4r4p"]
+[ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="5_1s2dm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_myx47"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kukqi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5d2l8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7l7mv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4r4p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1s2dm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_88e76"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_knqa7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rgno"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71k7c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cmnsq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ofnjo"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_myx47")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.145098, 0.145098, 0.145098, 0.733333)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = 120.0
+offset_right = 350.0
+offset_bottom = 251.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Button_Continue" type="Button" parent="VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme = ExtResource("1_n87rw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_myx47")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kukqi")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_5d2l8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7l7mv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v4r4p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1s2dm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_88e76")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_knqa7")
+text = "Continue"
+
+[node name="Button_MainMenu" type="Button" parent="VBoxContainer"]
+process_mode = 2
+layout_mode = 2
+theme = ExtResource("1_n87rw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_myx47")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kukqi")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_5d2l8")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7l7mv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_v4r4p")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1s2dm")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_88e76")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_knqa7")
+text = "Main Menu"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_1rgno")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_7l7mv")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+label_settings = ExtResource("4_v4r4p")
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_71k7c")
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_7l7mv")
+expand_mode = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+label_settings = ExtResource("4_v4r4p")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Slider_Music" type="HSlider" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_icons/grabber = ExtResource("5_1s2dm")
+theme_override_icons/grabber_highlight = ExtResource("5_1s2dm")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+theme_override_styles/separator = SubResource("StyleBoxEmpty_cmnsq")
+
+[node name="Slider_SFX" type="HSlider" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_icons/grabber = ExtResource("5_1s2dm")
+theme_override_icons/grabber_highlight = ExtResource("5_1s2dm")
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ofnjo")
+
+[connection signal="pressed" from="VBoxContainer/Button_Continue" to="." method="_on_button_continue_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button_MainMenu" to="." method="_on_button_main_menu_pressed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Slider_Music" to="." method="_on_slider_music_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Slider_SFX" to="." method="_on_slider_sfx_value_changed"]

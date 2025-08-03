@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://cuhrm3x6dqagi"]
+[gd_scene load_steps=25 format=3 uid="uid://cuhrm3x6dqagi"]
 
 [ext_resource type="Script" uid="uid://cw2041xcsj26y" path="res://scripts/main_level.gd" id="1_ufxs0"]
 [ext_resource type="PackedScene" uid="uid://dy7hncax65228" path="res://scenes/reward_selection_screen.tscn" id="2_6we3w"]
 [ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="4_bq26l"]
 [ext_resource type="PackedScene" uid="uid://b7w13cmgfwh2r" path="res://scenes/fish_player_character.tscn" id="5_8ra5a"]
+[ext_resource type="PackedScene" uid="uid://cf0nxgp7cvdba" path="res://scenes/pause_menu.tscn" id="5_ff0s2"]
 [ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="5_u2c82"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="7_u2c82"]
 [ext_resource type="PackedScene" uid="uid://byrvjftegb2na" path="res://scenes/timeline_manager.tscn" id="8_k5pu3"]
@@ -14,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://cullx7iloonao" path="res://sounds/battle-theme-ish.mp3" id="11_mwgft"]
 [ext_resource type="AudioStream" uid="uid://e6uk7dmj6r11" path="res://sounds/pause-and-upgrade-theme.mp3" id="12_adxub"]
 [ext_resource type="AudioStream" uid="uid://cacx5enj43dsk" path="res://sounds/upgrade.mp3" id="13_mwgft"]
+[ext_resource type="PackedScene" uid="uid://tfse7yg0nmvd" path="res://scenes/mage_fish.tscn" id="16_uk2yf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
 atlas = ExtResource("7_u2c82")
@@ -93,6 +95,9 @@ size_flags_vertical = 8
 [node name="RewardSelectionScreen" parent="." instance=ExtResource("2_6we3w")]
 
 [node name="PostProcess" parent="." instance=ExtResource("5_u2c82")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_ff0s2")]
+layer = 50
 visible = false
 
 [node name="Background" type="CanvasLayer" parent="."]
@@ -132,17 +137,24 @@ texture = ExtResource("10_adxub")
 stream = ExtResource("10_fkrx8")
 volume_db = -20.0
 autoplay = true
+bus = &"BGM"
 
 [node name="BattleTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_mwgft")
 volume_db = -50.0
 autoplay = true
+bus = &"BGM"
 
 [node name="RewardTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_adxub")
 volume_db = -50.0
 autoplay = true
+bus = &"BGM"
 
 [node name="UpgradeSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_mwgft")
 volume_db = -20.0
+bus = &"SFX"
+
+[node name="MageFish" parent="." instance=ExtResource("16_uk2yf")]
+position = Vector2(2407, 948)

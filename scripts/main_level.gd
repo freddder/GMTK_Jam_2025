@@ -1,9 +1,7 @@
 extends Node2D
 
-@onready var mage_fish := load("res://scenes/mage_fish.tscn")
-
 @onready var battle_scene := load("res://scenes/battle.tscn")
-@onready var player := $PlayerCharacter
+@onready var player: FishPlayerCharacter = $PlayerCharacter
 @onready var map_scene := $TimelineManager
 @onready var events_manager : EventManager = $EventManager
 
@@ -13,19 +11,22 @@ extends Node2D
 
 var active_battle: Battle
 var can_handle_action_input: bool = false
-var mage :Node2D
+
 
 func _ready() -> void:
 	EventBus.promote_player_mating.connect(_promote_mating)
-	EventBus.on_game_started.emit()
 	map_scene.on_tile_landed.connect(_on_tile_landed)
+	$PauseMenu.on_activation_state_changed.connect(_on_activation_state_changed)
+
+	EventBus.on_game_started.emit()
 	TextBoxManager.call_deferred("initialize")
+
 	$HUD.hide()
 	call_deferred("opening_cutscene")
 
 
 func on_player_death() -> void:
-	var tween = get_tree().create_tween()
+	var tween := get_tree().create_tween()
 	tween.tween_property($deathScreen, "color", Color(.1,.1,.1,1), 2)
 
 	await get_tree().create_timer(2.0).timeout
@@ -35,30 +36,47 @@ func on_player_death() -> void:
 
 	opening_cutscene()
 
-	pass
 
 func opening_cutscene() -> void:
+	_start_game()
+	return
+
 	$deathScreen.color = Color(.7,.7,.7,0)
-	mage = mage_fish.instantiate()
-	mage.position = Vector2 (1000,500)
-	var tweener = get_tree().create_tween()
-	tweener.tween_property(mage, "position:x", 1500,3)
-	tweener.tween_property(mage, "position:x", 1000,3)
-	tweener.set_loops(5)
-	add_child(mage)
 
-	TextBoxManager.display_text("I will curse you for what you have done to me", 9)
+	var tweener := get_tree().create_tween()
+	$MageFish.position = Vector2(2500, 1000)
+	await tweener.tween_property($MageFish, "position", Vector2(1500, 500), 1.0).set_ease(Tween.EASE_IN_OUT).finished
+
+	await get_tree().create_timer(0.1).timeout
+
+	tweener = get_tree().create_tween()
+	tweener.tween_property($MageFish, "position:x", 1300, 3)
+	tweener.tween_property($MageFish, "position:x", 1500, 3)
+	tweener.set_loops(2)
+
+	TextBoxManager.display_text("I will curse you for what you have done to me")
 	await get_tree().create_timer(5.0).timeout
 
-	TextBoxManager.display_text("You will now swim forever, reincarnating in an endless loop of torment", 0)
+	TextBoxManager.display_text("You will now swim forever, reincarnating in an endless loop of torment")
 	await get_tree().create_timer(5.0).timeout
 
-	mage.hide()
+	await TextBoxManager.on_close_text_box()
+
+	tweener.stop()
+	await get_tree().create_timer(1.0).timeout
+
+	$MageFish.scale.x = -1.0
+	await get_tree().create_timer(0.5).timeout
+
+	tweener = get_tree().create_tween()
+	await tweener.tween_property($MageFish, "position", Vector2(3000, 0), 0.5).finished
+
 	_start_game()
 
 
 
 func _start_game() -> void:
+	player.set_profile(FishProfile.create())
 	await _promote_mating()
 	map_scene.initialize()
 	$HUD.show()
@@ -69,9 +87,8 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("lmb"):
 			map_scene.on_action_completed(false)
 
-	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_ESCAPE:
-			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	if event.is_action_pressed("pause"):
+		$PauseMenu.set_active(true)
 
 
 func _on_tile_landed(type: TimelineManager.Type) -> void:
@@ -91,7 +108,9 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 			await _promote_mating()
 
 		TimelineManager.Type.EVENT:
+			can_handle_action_input = false
 			await events_manager.start_random_event()
+			can_handle_action_input = true
 
 		TimelineManager.Type.BOSS:
 			# TODO: actually do something with the boss fight
@@ -157,7 +176,7 @@ func _start_battle() -> Battle.Winner:
 	assert(active_battle == null)
 
 	active_battle = battle_scene.instantiate()
-	get_tree().root.add_child(active_battle)
+	get_tree().get_current_scene().add_child(active_battle)
 
 	active_battle.start_battle()
 	var winner: Battle.Winner = await active_battle.on_battle_finished
@@ -167,12 +186,14 @@ func _start_battle() -> Battle.Winner:
 
 	return winner
 
+
 func transition_theme_to_main():
 	print("to main")
 	var tween := create_tween()
 	tween.tween_property(main_theme_player, "volume_db", -20, 0.5)
 	tween.tween_property(battle_theme_player, "volume_db", -50, 0.5)
 	tween.tween_property(reward_theme_player, "volume_db", -50, 0.5)
+
 
 func transition_theme_to_battle():
 	print("to battle")
@@ -181,9 +202,15 @@ func transition_theme_to_battle():
 	tween.tween_property(battle_theme_player, "volume_db", -20, 0.5)
 	tween.tween_property(reward_theme_player, "volume_db", -50, 0.5)
 
+
 func transition_theme_to_reward():
 	print("to reward")
 	var tween := create_tween()
 	tween.tween_property(main_theme_player, "volume_db", -50, 0.5)
 	tween.tween_property(battle_theme_player, "volume_db", -50, 0.5)
 	tween.tween_property(reward_theme_player, "volume_db", -20, 0.5)
+
+
+func _on_activation_state_changed(is_active: bool) -> void:
+	can_handle_action_input = not is_active
+	get_tree().paused = is_active

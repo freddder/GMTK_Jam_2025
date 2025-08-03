@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmexpqdp2hgy6"]
+[gd_scene load_steps=16 format=3 uid="uid://cmexpqdp2hgy6"]
 
 [ext_resource type="Script" uid="uid://iu0pg3fkmu5m" path="res://scripts/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_l6cm7"]
@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="4_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="6_oa1go"]
+[ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="7_oa1go"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ln24"]
 font = ExtResource("1_l6cm7")
@@ -43,6 +44,7 @@ shadow_color = Color(0.737961, 0.883982, 1, 0.6)
 script = ExtResource("1_bqqt6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 50
 
 [node name="Label_GameTitle" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
@@ -235,6 +237,22 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_wu84c")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
 text = "Close"
+
+[node name="PostProcess" parent="." instance=ExtResource("7_oa1go")]
+
+[node name="FadeIn" type="ColorRect" parent="PostProcess"]
+unique_name_in_owner = true
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 150
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 0, 0, 1)
 
 [connection signal="pressed" from="HUD/VBoxContainer/Button_Play" to="." method="_on_button_play_pressed"]
 [connection signal="pressed" from="HUD/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]

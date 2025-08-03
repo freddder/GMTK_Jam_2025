@@ -114,7 +114,7 @@ func add_item(item: Item) -> void:
 
 
 func remove_random_item() -> void:
-	if inventory.size() == 0:
+	if inventory.is_empty():
 		return
 
 	var index := randi_range(0, inventory.size())
@@ -132,7 +132,7 @@ func shake(amplitude: float, duration: float, count: int) -> void:
 	var tween := get_tree().create_tween()
 	for i in count:
 		var destination := Vector2(randf_range(-amplitude, amplitude), randf_range(-amplitude, amplitude))
-		tween.tween_property(%Sprite2D, "position", destination, duration)
+		tween.tween_property($FishPivot, "position", destination, duration)
 
 	tween.play()
 	await tween.finished

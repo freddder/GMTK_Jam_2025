@@ -13,7 +13,11 @@ enum TextureId {
 	L_DOWN_PATH,
 	L_UP_PATH,
 	T_DOWN_PATH,
-	T_UP_PATH
+	T_UP_PATH,
+	SUS_KELP,
+	SUNKEN_SLOT_MACHINE,
+	MERCHANT,
+	SAD_FISH
 }
 
 var textures: Dictionary = {
@@ -28,7 +32,11 @@ var textures: Dictionary = {
 	TextureId.L_DOWN_PATH: preload("res://assets/sprites/path/l_down_path.png"),
 	TextureId.L_UP_PATH: preload("res://assets/sprites/path/l_up_path.png"),
 	TextureId.T_DOWN_PATH: preload("res://assets/sprites/path/t_down_path.png"),
-	TextureId.T_UP_PATH: preload("res://assets/sprites/path/t_up_path.png")
+	TextureId.T_UP_PATH: preload("res://assets/sprites/path/t_up_path.png"),
+	TextureId.SUS_KELP: preload("res://assets/sprites/items/SUS_kelp.png"),
+	TextureId.SUNKEN_SLOT_MACHINE: preload("res://assets/sprites/items/Sunken_slot_machine.png"),
+	TextureId.MERCHANT: preload("res://assets/sprites/items/Merchant.png"),
+	TextureId.SAD_FISH: preload("res://assets/sprites/items/sad_fish.png")
 }
 
 enum FishPart {

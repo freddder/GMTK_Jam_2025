@@ -83,6 +83,7 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Panel/Button/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ipwok")
 
 [node name="Icon1" type="TextureRect" parent="Panel/Button/MarginContainer/VBoxContainer/PanelContainer"]

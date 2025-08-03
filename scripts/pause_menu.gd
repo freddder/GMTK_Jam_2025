@@ -1,4 +1,22 @@
-extends Node2D
+class_name PauseMenu
+extends CanvasLayer
+
+signal on_activation_state_changed(is_active: bool)
+
+
+func set_active(is_active: bool) -> void:
+	visible = is_active
+	on_activation_state_changed.emit(is_active)
+	# change bgm?
+
+
+func _on_button_continue_pressed() -> void:
+	set_active(false)
+
+
+func _on_button_main_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
 
 @export var min_volume_db: float = -30.0
 @export var max_volume_db: float = 0.0
@@ -7,8 +25,6 @@ var bgm_bus_idx := 1
 var sfx_bus_idx := 2
 
 func _ready() -> void:
-	$Settings.visible = false
-
 	var bgm_slider_value := 1.0 - (AudioServer.get_bus_volume_db(bgm_bus_idx) / min_volume_db)
 	%Slider_Music.set_value_no_signal(bgm_slider_value)
 	AudioServer.set_bus_mute(bgm_bus_idx, bgm_slider_value == 0.0)
@@ -18,14 +34,7 @@ func _ready() -> void:
 	AudioServer.set_bus_mute(sfx_bus_idx, sfx_slider_value == 0.0)
 
 func _on_button_play_pressed() -> void:
-	var main_level := load("res://scenes/main_level.tscn")
-
-	%FadeIn.show()
-	var tween := get_tree().create_tween()
-	await tween.tween_property(%FadeIn , "modulate", Color.BLACK, 1.7).finished
-	await get_tree().create_timer(0.5).timeout
-
-	get_tree().change_scene_to_packed(main_level)
+	get_tree().change_scene_to_file("res://scenes/main_level.tscn")
 
 
 func _on_button_settings_pressed() -> void:
@@ -35,6 +44,7 @@ func _on_button_settings_pressed() -> void:
 func _on_slider_music_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(bgm_bus_idx, lerp(min_volume_db, max_volume_db, value))
 	AudioServer.set_bus_mute(bgm_bus_idx, value == 0.0)
+	print(value)
 
 
 func _on_slider_sfx_value_changed(value: float) -> void:

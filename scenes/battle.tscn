@@ -43,7 +43,9 @@ flip_h = true
 [node name="HitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_lpir7")
 volume_db = -20.0
+bus = &"SFX"
 
 [node name="DeathSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_6vh42")
 volume_db = -20.0
+bus = &"SFX"

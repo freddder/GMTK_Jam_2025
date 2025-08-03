@@ -5,6 +5,7 @@ extends Node2D
 @onready var battle_scene := load("res://scenes/battle.tscn")
 @onready var player := $PlayerCharacter
 @onready var map_scene := $TimelineManager
+@onready var events_manager : EventManager = $EventManager
 
 @onready var main_theme_player : AudioStreamPlayer = $MainTheme
 @onready var battle_theme_player : AudioStreamPlayer = $BattleTheme
@@ -86,9 +87,7 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 			await _promote_mating()
 
 		TimelineManager.Type.EVENT:
-			TextBoxManager.display_options("Hello", "World", "Maybe")
-
-			print("weed")
+			await events_manager.start_random_event()
 
 		TimelineManager.Type.BOSS:
 			# TODO: actually do something with the boss fight

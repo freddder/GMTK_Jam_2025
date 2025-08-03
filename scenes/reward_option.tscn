@@ -169,6 +169,6 @@ size_flags_horizontal = 4
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
 label_settings = ExtResource("2_iaep2")
 horizontal_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 2
 
 [connection signal="button_down" from="Panel/Button" to="." method="_on_button_down"]

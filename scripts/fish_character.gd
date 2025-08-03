@@ -39,8 +39,9 @@ func _ready() -> void:
 
 
 func increase_action_amount(amount: float) -> void:
-	curr_action_amount += amount
-	action_bar.value = curr_action_amount
+	if action_bar != null:
+		curr_action_amount += amount
+		action_bar.value = curr_action_amount
 
 
 func set_profile(in_profile: FishProfile) -> void:
@@ -99,8 +100,9 @@ func get_normalized_health() -> float:
 
 
 func update_health_bar():
-	var max_health := get_max_health()
-	health_bar.value = (float(curr_health) / float(max_health)) * 100.0
+	if health_bar != null:
+		var max_health := get_max_health()
+		health_bar.value = (float(curr_health) / float(max_health)) * 100.0
 
 
 func add_random_items(amount: int) -> void:

@@ -19,8 +19,7 @@ func start_random_event():
 	pool.append_array([1, 4])
 
 	var is_early_sprite_out: bool = false
-	#var event_id: int = pool.pick_random()
-	var event_id: int = 4
+	var event_id: int = pool.pick_random()
 	create_tween().tween_property(sprite, "position:x", 1500, 1).set_trans(Tween.TRANS_QUART).finished
 	match event_id:
 		1:

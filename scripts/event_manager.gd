@@ -70,7 +70,7 @@ func start_random_event():
 			var answer := await TextBoxManager.display_options("Tell a bad joke", "Ask about their problems")
 			if answer == 1:
 				if randi() % 2 == 0:
-					await TextBoxManager.display_text("They liked it!", 2)
+					await TextBoxManager.display_text("They liked it! Maybe a bit too much...", 2)
 					EventBus.promote_player_mating.emit()
 					await EventBus.on_player_reincarnated
 				else:

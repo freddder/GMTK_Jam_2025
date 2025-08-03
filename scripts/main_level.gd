@@ -171,6 +171,7 @@ func _promote_random_rewards() -> void:
 
 
 func _start_battle() -> Battle.Winner:
+	player.hide()
 	transition_theme_to_battle()
 	can_handle_action_input = false
 
@@ -183,6 +184,7 @@ func _start_battle() -> Battle.Winner:
 	var winner: Battle.Winner = await active_battle.on_battle_finished
 
 	active_battle.queue_free()
+	player.show()
 	can_handle_action_input = true
 
 	return winner

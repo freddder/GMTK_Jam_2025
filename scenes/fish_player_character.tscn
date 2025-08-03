@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b7w13cmgfwh2r"]
+[gd_scene load_steps=5 format=3 uid="uid://b7w13cmgfwh2r"]
 
 [ext_resource type="Script" uid="uid://bewtquq7ak32o" path="res://scripts/fish_player_character.gd" id="1_0g0r5"]
-[ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="2_f6bb3"]
+[ext_resource type="Texture2D" uid="uid://c8bagbfcnmwp6" path="res://assets/sprites/bodies/red_body.PNG" id="2_dfse1"]
+[ext_resource type="Texture2D" uid="uid://qwww241lwf5a" path="res://assets/sprites/decorations/green_fin.PNG" id="3_omdh5"]
+[ext_resource type="Texture2D" uid="uid://5nu33626j0lh" path="res://assets/sprites/decorations/orng_fin.PNG" id="4_oo7kd"]
 
 [node name="FishPlayerCharacter" type="Node2D" groups=["player"]]
 script = ExtResource("1_0g0r5")
@@ -14,14 +16,14 @@ use_parent_material = true
 unique_name_in_owner = true
 use_parent_material = true
 position = Vector2(-3.8147e-06, 1.35525e-20)
-texture = ExtResource("2_f6bb3")
+texture = ExtResource("2_dfse1")
 
 [node name="Tail" type="Sprite2D" parent="FishPivot"]
 unique_name_in_owner = true
 use_parent_material = true
-texture = ExtResource("2_f6bb3")
+texture = ExtResource("3_omdh5")
 
 [node name="Fins" type="Sprite2D" parent="FishPivot"]
 unique_name_in_owner = true
 use_parent_material = true
-texture = ExtResource("2_f6bb3")
+texture = ExtResource("4_oo7kd")

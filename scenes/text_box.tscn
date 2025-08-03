@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://du5ookx6symg4"]
+[gd_scene load_steps=5 format=3 uid="uid://du5ookx6symg4"]
 
+[ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_dyarx"]
 [ext_resource type="Theme" path="res://assets/themes/button_text_theme.tres" id="2_dyarx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_11181"]
@@ -29,6 +30,7 @@ color = Color(0.56, 0.308, 0, 0.337255)
 [node name="RichTextLabel" type="RichTextLabel" parent="DialogBox"]
 material = SubResource("ShaderMaterial_11181")
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_dyarx")
 theme_override_font_sizes/bold_italics_font_size = 64
 theme_override_font_sizes/italics_font_size = 64
 theme_override_font_sizes/mono_font_size = 64

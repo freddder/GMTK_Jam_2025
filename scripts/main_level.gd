@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var mage_fish := load("res://scenes/mage_fish.tscn")
+
 @onready var battle_scene := load("res://scenes/battle.tscn")
 @onready var player := $PlayerCharacter
 @onready var map_scene := $TimelineManager
@@ -10,18 +12,38 @@ extends Node2D
 
 var active_battle: Battle
 var can_handle_action_input: bool = false
-
+var mage :Node2D
 
 func _ready() -> void:
 	EventBus.promote_player_mating.connect(_promote_mating)
 	EventBus.on_game_started.emit()
 	map_scene.on_tile_landed.connect(_on_tile_landed)
 	TextBoxManager.call_deferred("initialize")
+	$HUD.hide()
+	call_deferred("opening_cutscene")
+	
 
-	# Start the game by mating; this will need to be moved after initial cut-scene
+func opening_cutscene() -> void:
+	mage = mage_fish.instantiate()
+	mage.position = Vector2 (1000,500)
+	var tweener = get_tree().create_tween()
+	tweener.tween_property(mage, "position:x", 1500,3)
+	tweener.tween_property(mage, "position:x", 1000,3)
+	tweener.set_loops(5)
+	add_child(mage)
+	
+	TextBoxManager.display_text("I will curse you for what you have done to me", 9)
+	await get_tree().create_timer(5.0).timeout
+	
+	TextBoxManager.display_text("You will now swim forever, reincarnating in an endless loop of torment", 0)
+	await get_tree().create_timer(5.0).timeout
+	
+	mage.hide()
+	
 	await _promote_mating()
 	map_scene.initialize()
-
+	$HUD.show()
+	pass
 
 func _input(event: InputEvent) -> void:
 	if can_handle_action_input:

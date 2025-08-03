@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://tfse7yg0nmvd"]
+
+[ext_resource type="Script" uid="uid://bwxne10mm7y0x" path="res://scripts/mage_fish.gd" id="1_qtcvw"]
+[ext_resource type="Texture2D" uid="uid://mvcomhgcjefl" path="res://assets/sprites/decorations/mage_wand.PNG" id="1_yfg7g"]
+[ext_resource type="Texture2D" uid="uid://p8wvadbk80kd" path="res://assets/sprites/decorations/mage_stars.PNG" id="2_qtcvw"]
+[ext_resource type="Texture2D" uid="uid://eoa0o7rbc5xn" path="res://assets/sprites/mage_body.PNG" id="3_2bh23"]
+[ext_resource type="Texture2D" uid="uid://i273jqry3imo" path="res://assets/sprites/decorations/mage_hat.PNG" id="4_jvvxu"]
+
+[node name="MageFish" type="Node2D"]
+script = ExtResource("1_qtcvw")
+speed = 7.775
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture = ExtResource("1_yfg7g")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = ExtResource("2_qtcvw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_2bh23")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+texture = ExtResource("4_jvvxu")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://cmexpqdp2hgy6"]
+[gd_scene load_steps=43 format=3 uid="uid://cmexpqdp2hgy6"]
 
 [ext_resource type="Script" uid="uid://iu0pg3fkmu5m" path="res://scripts/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_l6cm7"]
@@ -135,6 +135,13 @@ shadow_color = Color(0.737961, 0.883982, 1, 0.6)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vr8o3"]
+font = ExtResource("1_l6cm7")
+font_size = 91
+font_color = Color(0.727236, 0.795334, 0.886719, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
 atlas = ExtResource("25_3wgol")
@@ -375,6 +382,15 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_wu84c")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
 text = "Close"
+
+[node name="Label3" type="Label" parent="Settings"]
+offset_left = 560.0
+offset_top = 316.0
+offset_right = 1360.0
+offset_bottom = 356.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_vr8o3")
+horizontal_alignment = 1
 
 [node name="PostProcess" parent="." instance=ExtResource("7_oa1go")]
 

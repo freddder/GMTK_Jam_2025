@@ -36,6 +36,7 @@ func _ready() -> void:
 
 func hide_ui():
 	$Control.hide()
+	$BubbleShield.hide()
 	
 
 func set_visuals():

@@ -10,6 +10,7 @@ extends Node2D
 @onready var battle_theme_player : AudioStreamPlayer = $BattleTheme
 @onready var reward_theme_player : AudioStreamPlayer = $RewardTheme
 @onready var victory_theme_player : AudioStreamPlayer = $VictoryTheme
+@onready var death_theme_player : AudioStreamPlayer = $DeathTheme
 
 var active_battle: Battle
 var can_handle_action_input: bool = false
@@ -30,6 +31,7 @@ func _ready() -> void:
 func on_player_death() -> void:
 	var tween := get_tree().create_tween()
 	tween.tween_property($deathScreen, "color", Color(.1,.1,.1,1), 2)
+	play_death_theme()
 
 	await get_tree().create_timer(2.0).timeout
 
@@ -75,6 +77,7 @@ func opening_cutscene() -> void:
 
 	$MageFish.scale.x = 1.0
 
+	resume_main_theme()
 	_start_game()
 
 
@@ -211,6 +214,17 @@ func transition_theme_to_main():
 	tween.tween_property(battle_theme_player, "volume_db", -50, 0.5)
 	tween.tween_property(reward_theme_player, "volume_db", -50, 0.5)
 
+func play_death_theme():
+	death_theme_player.play()
+	main_theme_player.stop()
+	battle_theme_player.stop()
+	reward_theme_player.stop()
+
+func resume_main_theme():
+	death_theme_player.stop()
+	main_theme_player.play()
+	battle_theme_player.play()
+	reward_theme_player.play()
 
 func transition_theme_to_battle():
 	print("to battle")

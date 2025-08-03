@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://0x30u3drfr0v"]
+[gd_scene load_steps=13 format=3 uid="uid://0x30u3drfr0v"]
 
 [ext_resource type="Script" uid="uid://bf6bnr5sfwh6b" path="res://scripts/reward_option.gd" id="1_iaep2"]
 [ext_resource type="Texture2D" uid="uid://5ddiap7ujcfi" path="res://assets/sprites/cool_fish.png" id="1_ry3jo"]
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="2_iaep2"]
 [ext_resource type="StyleBox" uid="uid://ic3e4o4f8edx" path="res://assets/styles/panels/default_panel_style.tres" id="2_r3sid"]
+[ext_resource type="Texture2D" uid="uid://c0q1rac4iltby" path="res://assets/sprites/bodies/brown_body.PNG" id="3_80kx2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r3sid"]
 
@@ -86,16 +87,17 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_ipwok")
 
 [node name="Icon1" type="TextureRect" parent="Panel/Button/MarginContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-texture = ExtResource("1_ry3jo")
+texture = ExtResource("3_80kx2")
 expand_mode = 5
 stretch_mode = 4
 
 [node name="Icon2" type="TextureRect" parent="Panel/Button/MarginContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -106,6 +108,7 @@ stretch_mode = 4
 
 [node name="Icon3" type="TextureRect" parent="Panel/Button/MarginContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 4

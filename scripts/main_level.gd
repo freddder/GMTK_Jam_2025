@@ -75,6 +75,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_tile_landed(type: TimelineManager.Type) -> void:
+	$Paralax.enable_scroll = false
 	match type:
 		TimelineManager.Type.FIGHT:
 			var winner: Battle.Winner = await _start_battle()

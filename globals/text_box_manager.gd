@@ -10,7 +10,7 @@ var options_menu: MarginContainer
 var options_button_1: Button
 var options_button_2: Button
 var options_button_3: Button
-var options_callback: Callable
+signal option_selected(index: int)
 
 var is_text_box_shown: bool = false
 
@@ -23,6 +23,7 @@ func initialize():
 	dialog_label = dialog_box.get_node("RichTextLabel")
 	
 	options_menu = instance.get_node("OptionsMenu")
+	options_menu.hide()
 	options_button_1 = options_menu.get_node("VBoxContainer/Option1")
 	options_button_2 = options_menu.get_node("VBoxContainer/Option2")
 	options_button_3 = options_menu.get_node("VBoxContainer/Option3")
@@ -61,17 +62,15 @@ func on_option_3_selected():
 
 func on_option_selected(index: int):
 	options_menu.hide()
-	# TODO: make sure this works
-	options_callback.call(index)
+	option_selected.emit(index)
 
-func display_options(callback: Callable, option_1_text : String, option_2_text : String, option_3_text : String = ""):
+func display_options(option_1_text : String, option_2_text : String, option_3_text : String = "") -> int:
 	if option_1_text == "" or option_2_text == "":
-		return
+		return 0
 	
 	options_button_1.text = option_1_text
 	options_button_2.text = option_2_text
 	
-	options_callback = callback
 	options_menu.show()
 	if option_3_text != "":
 		options_button_3.show()
@@ -79,3 +78,5 @@ func display_options(callback: Callable, option_1_text : String, option_2_text :
 	else:
 		options_button_3.hide()
 	
+	var picked_option = await option_selected
+	return picked_option

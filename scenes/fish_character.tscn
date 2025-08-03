@@ -61,6 +61,7 @@ use_parent_material = true
 texture = ExtResource("2_t45y5")
 
 [node name="BubbleShield" type="Sprite2D" parent="."]
+visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_7rx0e")
 position = Vector2(-2.99999, -8.5)

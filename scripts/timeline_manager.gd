@@ -168,6 +168,10 @@ func reset_path() -> void:
 
 	player.pos = Vector2(-100, -100)
 	player.path = "main"
+	player.main_progress = 0
+	player.top_progress = 0
+	player.sub_progress = 0
+	
 
 
 # creates the visuals for the map and adds them as a child of the manager

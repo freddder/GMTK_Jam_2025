@@ -38,6 +38,7 @@ func _on_option_selected(option: RewardOption) -> void:
 #	_DEBUG_propose_mating()
 
 	on_option_selected.emit(option.data)
+	$"../UpgradeSFX".play()
 
 
 func _DEBUG_propose_mating() -> void:

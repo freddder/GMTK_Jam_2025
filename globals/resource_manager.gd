@@ -53,33 +53,33 @@ enum FishPart {
 
 var fish_body := {
 	FishPart.DEBUG: load("res://icon.svg"),
-	FishPart.ORANGE: load("res://assets/sprites/bodies/orng_body.png"),
-	FishPart.BLUE: load("res://assets/sprites/bodies/blue_body.png"),
-	FishPart.BROWN: load("res://assets/sprites/bodies/brown_body.png"),
-	FishPart.GREEN: load("res://assets/sprites/bodies/green_body.png"),
-	FishPart.HLMT: load("res://assets/sprites/bodies/hlmt_body.png"),
-	FishPart.RED: load("res://assets/sprites/bodies/red_body.png"),
-	FishPart.TEAL: load("res://assets/sprites/bodies/teal_body.png")
+	FishPart.ORANGE: load("res://assets/sprites/bodies/orng_body.PNG"),
+	FishPart.BLUE: load("res://assets/sprites/bodies/blue_body.PNG"),
+	FishPart.BROWN: load("res://assets/sprites/bodies/brown_body.PNG"),
+	FishPart.GREEN: load("res://assets/sprites/bodies/green_body.PNG"),
+	FishPart.HLMT: load("res://assets/sprites/bodies/hlmt_body.PNG"),
+	FishPart.RED: load("res://assets/sprites/bodies/red_body.PNG"),
+	FishPart.TEAL: load("res://assets/sprites/bodies/teal_body.PNG")
 }
 
 var fish_tail := {
 	FishPart.DEBUG :load("res://icon.svg"),
-	FishPart.ORANGE: load("res://assets/sprites/tails/orng_tail.png"),
-	FishPart.BLUE: load("res://assets/sprites/tails/blue_tail.png"),
-	FishPart.BROWN: load("res://assets/sprites/tails/brown_tail.png"),
-	FishPart.GREEN: load("res://assets/sprites/tails/green_tail.png"),
-	FishPart.HLMT: load("res://assets/sprites/tails/hlmt_tail.png"),
-	FishPart.RED: load("res://assets/sprites/tails/red_tail.png"),
-	FishPart.TEAL: load("res://assets/sprites/tails/teal_tail.png")
+	FishPart.ORANGE: load("res://assets/sprites/tails/orng_tail.PNG"),
+	FishPart.BLUE: load("res://assets/sprites/tails/blue_tail.PNG"),
+	FishPart.BROWN: load("res://assets/sprites/tails/brown_tail.PNG"),
+	FishPart.GREEN: load("res://assets/sprites/tails/green_tail.PNG"),
+	FishPart.HLMT: load("res://assets/sprites/tails/hlmt_tail.PNG"),
+	FishPart.RED: load("res://assets/sprites/tails/red_tail.PNG"),
+	FishPart.TEAL: load("res://assets/sprites/tails/teal_tail.PNG")
 }
 
 var fish_fin := {
 	FishPart.DEBUG: load("res://icon.svg"),
-	FishPart.ORANGE: load("res://assets/sprites/decorations/orng_fin.png"),
-	FishPart.BLUE: load("res://assets/sprites/decorations/blue_fin.png"),
-	FishPart.BROWN: load("res://assets/sprites/decorations/brown_fin.png"),
-	FishPart.GREEN: load("res://assets/sprites/decorations/green_fin.png"),
-	FishPart.HLMT: load("res://assets/sprites/decorations/hlmt_fin.png"),
-	FishPart.RED: load("res://assets/sprites/decorations/red_fin.png"),
-	FishPart.TEAL: load("res://assets/sprites/decorations/teal_fin.png")
+	FishPart.ORANGE: load("res://assets/sprites/decorations/orng_fin.PNG"),
+	FishPart.BLUE: load("res://assets/sprites/decorations/blue_fin.PNG"),
+	FishPart.BROWN: load("res://assets/sprites/decorations/brown_fin.PNG"),
+	FishPart.GREEN: load("res://assets/sprites/decorations/green_fin.PNG"),
+	FishPart.HLMT: load("res://assets/sprites/decorations/hlmt_fin.PNG"),
+	FishPart.RED: load("res://assets/sprites/decorations/red_fin.PNG"),
+	FishPart.TEAL: load("res://assets/sprites/decorations/teal_fin.PNG")
 }

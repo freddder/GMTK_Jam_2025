@@ -63,6 +63,10 @@ func _input(event: InputEvent) -> void:
 	if can_handle_action_input:
 		if event.is_action_pressed("lmb"):
 			map_scene.on_action_completed(false)
+	
+	if event is InputEventKey and event.is_pressed():
+		if event.keycode == KEY_ESCAPE:
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 
 func _on_tile_landed(type: TimelineManager.Type) -> void:

@@ -69,6 +69,7 @@ func on_action_completed(takePath: bool) -> void:
 	if is_moving:
 		return
 
+	$"../Paralax".enable_scroll = true
 	if player.path == "main":
 		if takePath:
 			if main_path[player.main_progress].type == Type.PATH_UP:

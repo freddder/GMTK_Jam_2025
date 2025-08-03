@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cmexpqdp2hgy6"]
+[gd_scene load_steps=40 format=3 uid="uid://cmexpqdp2hgy6"]
 
 [ext_resource type="Script" uid="uid://iu0pg3fkmu5m" path="res://scripts/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_l6cm7"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dqeh6346jwsd3" path="res://assets/sprites/logo/IMG_9019.PNG" id="17_q13xq"]
 [ext_resource type="Texture2D" uid="uid://xagbewg7u34u" path="res://assets/sprites/logo/IMG_9020.PNG" id="18_u43bj"]
 [ext_resource type="Texture2D" uid="uid://ckpflalirpgdr" path="res://assets/sprites/logo/IMG_9021.PNG" id="19_jvjdd"]
+[ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="25_3wgol"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ln24"]
 font = ExtResource("1_l6cm7")
@@ -133,6 +134,42 @@ shadow_color = Color(0.737961, 0.883982, 1, 0.6)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
+atlas = ExtResource("25_3wgol")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqu8w"]
+atlas = ExtResource("25_3wgol")
+region = Rect2(1920, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fr2l"]
+atlas = ExtResource("25_3wgol")
+region = Rect2(3840, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sb77"]
+atlas = ExtResource("25_3wgol")
+region = Rect2(5760, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1acrt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5pu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqu8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fr2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sb77")
+}],
+"loop": true,
+"name": &"cycle_texture",
+"speed": 4.0
+}]
+
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_bqqt6")
 
@@ -157,7 +194,7 @@ scale = Vector2(0.432854, 0.432854)
 sprite_frames = SubResource("SpriteFrames_yxnar")
 animation = &"logo"
 autoplay = "logo"
-frame_progress = 0.917942
+frame_progress = 0.994565
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -353,6 +390,15 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0, 0, 0, 1)
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(960, 540)
+sprite_frames = SubResource("SpriteFrames_1acrt")
+animation = &"cycle_texture"
+autoplay = "cycle_texture"
 
 [connection signal="pressed" from="HUD/VBoxContainer/Button_Play" to="." method="_on_button_play_pressed"]
 [connection signal="pressed" from="HUD/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]

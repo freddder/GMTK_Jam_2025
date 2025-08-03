@@ -25,19 +25,18 @@ func _ready() -> void:
 	TextBoxManager.initialize()
 
 	$HUD.hide()
-	opening_cutscene()
+	await opening_cutscene()
 
 
 func on_player_death() -> void:
-	
-	
+	can_handle_action_input = false
 	var tween := get_tree().create_tween()
 	tween.tween_property($deathScreen, "color", Color(.1,.1,.1,1), 2)
 	play_death_theme()
 
 	await get_tree().create_timer(2.0).timeout
 
-	#map_scene.reset_path()
+	map_scene.reset_path()
 	$HUD.hide()
 
 	opening_cutscene()
@@ -289,8 +288,10 @@ func _play_final_cutscene() -> void:
 
 func transition_theme_to_victory():
 	print("to victory")
+
 	var tween := create_tween()
-	tween.tween_property(main_theme_player, "volume_db", -50, 0.5)
-	tween.tween_property(battle_theme_player, "volume_db", -50, 0.5)
-	tween.tween_property(reward_theme_player, "volume_db", -50, 0.5)
-	tween.tween_property(victory_theme_player, "volume_db", -20, 0.5)
+	tween.tween_property(main_theme_player, "volume_db", -80, 0.5)
+	tween.tween_property(battle_theme_player, "volume_db", -80, 0.5)
+	tween.tween_property(reward_theme_player, "volume_db", -80, 0.5)
+
+	victory_theme_player.play()

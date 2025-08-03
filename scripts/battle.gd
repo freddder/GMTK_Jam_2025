@@ -61,7 +61,12 @@ func _attack_fish(attacker: FishCharacter, victim: FishCharacter) -> bool:
 		var dealt_damage := victim.deal_damage(damage)
 
 		attacker.on_attack_sent(dealt_damage)
-		return victim.curr_health <= 0
+		var is_victim_dead := victim.curr_health <= 0
+		if is_victim_dead:
+			$DeathSFX.play()
+		else:
+			$HitSFX.play()
+		return is_victim_dead
 
 	return false
 

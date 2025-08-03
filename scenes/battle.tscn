@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cv204n8kxuhp2"]
+[gd_scene load_steps=10 format=3 uid="uid://cv204n8kxuhp2"]
 
 [ext_resource type="Script" uid="uid://coh1ki32aag1y" path="res://scripts/battle.gd" id="1_th188"]
 [ext_resource type="PackedScene" uid="uid://baxxsojpi36f1" path="res://scenes/fish_character.tscn" id="2_p1qf1"]
 [ext_resource type="Shader" uid="uid://qkkocme2gw7j" path="res://assets/shaders/burn_dissolve.gdshader" id="3_p1qf1"]
+[ext_resource type="AudioStream" uid="uid://bxre2ysdcdhtq" path="res://sounds/hit_sfx.wav" id="4_lpir7"]
+[ext_resource type="AudioStream" uid="uid://cli2brls8cjec" path="res://sounds/death_sfx.mp3" id="5_6vh42"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wwi0r"]
 noise_type = 2
@@ -36,3 +38,11 @@ position = Vector2(1468, 401)
 [node name="Player" parent="." instance=ExtResource("2_p1qf1")]
 material = SubResource("ShaderMaterial_lpir7")
 position = Vector2(467, 444)
+
+[node name="HitSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_lpir7")
+volume_db = -20.0
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6vh42")
+volume_db = -20.0

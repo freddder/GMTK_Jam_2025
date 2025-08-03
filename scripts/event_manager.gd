@@ -2,7 +2,7 @@ extends Node2D
 class_name EventManager
 
 func start_random_event():
-	var event_id := 4#randi_range(1, 5)
+	var event_id := randi_range(1, 5)
 	
 	match event_id:
 		1:

@@ -176,7 +176,6 @@ func _promote_random_rewards() -> void:
 
 
 func _start_battle(is_boss: bool) -> Battle.Winner:
-func _start_battle() -> Battle.Winner:
 	player.hide()
 	transition_theme_to_battle()
 	can_handle_action_input = false

@@ -40,8 +40,8 @@ func display_text(text: String, auto_close_time: float = 0.0):
 	if not is_text_box_shown:
 		is_text_box_shown = true
 		tween.tween_property(dialog_box, "position:y", -dialog_box.size.y, 1).as_relative()
-		if auto_close_time != 0.0:
-			tween.tween_callback(on_close_text_box).set_delay(auto_close_time)
+	if auto_close_time != 0.0 and is_text_box_shown:
+		tween.tween_callback(on_close_text_box).set_delay(auto_close_time)
 
 func on_close_text_box():
 	if not is_text_box_shown:

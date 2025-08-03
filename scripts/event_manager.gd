@@ -2,7 +2,7 @@ extends Node2D
 class_name EventManager
 
 func start_random_event():
-	var event_id := randi_range(1, 5)
+	var event_id := 4#randi_range(1, 5)
 	
 	match event_id:
 		1:
@@ -17,17 +17,23 @@ func start_random_event():
 			TextBoxManager.display_text("You found a mystery trader. Would you like to swap your items for other random items?")
 			# TODO: show merchant sprite
 			var answer := await TextBoxManager.display_options("Yes", "No")
-			if answer == 1:
-				# TODO: swap players items to other random items
-				pass
+			var player : FishCharacter = $"../PlayerCharacter"
+			var amount := player.inventory.size()
+			if answer == 1 and amount != 0:
+				player.inventory.clear()
+				player.add_random_items(amount)
 			TextBoxManager.close_text_box.emit()
 		3:
 			TextBoxManager.display_text("You came across a sunken slot machine and it looks like it still works. Do you want to gamble for double the amount of items inserted?")
 			# TODO: show slot machine sprite
 			var answer := await TextBoxManager.display_options("Insert 2 random items", "Insert 1 random item", "Insert no items")
 			if answer != 3 and randi_range(0, 1) == 0:
-				# TODO: delete 2 random items and give 4 random items if aswer is 1 or delete 1 and give 2 if answer is 2
-				pass
+				var player : FishCharacter = $"../PlayerCharacter"
+				player.remove_random_item()
+				player.add_random_items(2)
+				if answer == 1:
+					player.remove_random_item()
+					player.add_random_items(2)
 			TextBoxManager.close_text_box.emit()
 		4:
 			TextBoxManager.display_text("You stumble upon another fish in a bad mood. How do you want to help?")
@@ -35,7 +41,8 @@ func start_random_event():
 			var answer := await TextBoxManager.display_options("Tell a bad joke", "Ask about their problems")
 			if answer == 1:
 				if randi_range(1, 4) == 1:
-					pass
+					# TODO: breed
+					TextBoxManager.close_text_box.emit()
 				else:
 					TextBoxManager.display_text("It seems your joke was worse than expected... They simply left", 2)
 			else:

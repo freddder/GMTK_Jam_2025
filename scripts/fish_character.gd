@@ -56,10 +56,7 @@ func set_visuals():
 		%Sprite2D/Fins.texture = FishParts.DECORATIONS[deco]
 		if deco == "orng":
 			%Sprite2D/Fins.flip_h = true
-	
-	
-	
-	
+
 
 func increase_action_amount(amount: float) -> void:
 	curr_action_amount += amount
@@ -120,12 +117,22 @@ func update_health_bar():
 	var max_health := get_max_health()
 	health_bar.value = (float(curr_health) / float(max_health)) * 100.0
 
+func add_random_items(amount: int) -> void:
+	for item in Item.get_random_count(amount):
+		add_item(item)
 
 func add_item(item: Item) -> void:
 	assert(item != null)
 	inventory.append(item)
 	on_inventory_changed.emit()
 
+func remove_random_item() -> void:
+	if inventory.size() == 0:
+		return
+	
+	var index := randi_range(0, inventory.size())
+	inventory.remove_at(index)
+	on_inventory_changed.emit()
 
 func dissolve(duration: float) -> void:
 	var tween := get_tree().create_tween()

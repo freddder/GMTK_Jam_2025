@@ -14,7 +14,11 @@ func _ready() -> void:
 
 
 func _on_inventory_changed() -> void:
-	for i in range($HBoxContainer.get_child_count(), player.inventory.size()):
+	for child in $HBoxContainer.get_children():
+		$HBoxContainer.remove_child(child)
+		child.queue_free()
+	
+	for i in player.inventory.size():
 		var slot: PlayerInventorySlot = slot_scene.instantiate()
 		$HBoxContainer.add_child(slot)
 		slot.set_icon(player.inventory[i])

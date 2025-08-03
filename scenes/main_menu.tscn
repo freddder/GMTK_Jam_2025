@@ -1,12 +1,29 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmexpqdp2hgy6"]
+[gd_scene load_steps=34 format=3 uid="uid://cmexpqdp2hgy6"]
 
 [ext_resource type="Script" uid="uid://iu0pg3fkmu5m" path="res://scripts/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_l6cm7"]
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="2_ekxnf"]
-[ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://df3vh02dydloh" path="res://assets/sprites/logo/IMG_9004.PNG" id="3_qywvv"]
+[ext_resource type="Theme" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://bkik2bkrc2pjx" path="res://assets/sprites/logo/IMG_9005.PNG" id="4_3wgol"]
 [ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://bb87nquf5yva1" path="res://assets/sprites/logo/IMG_9006.PNG" id="5_1acrt"]
 [ext_resource type="Theme" uid="uid://25syfjgemjex" path="res://assets/styles/sliders/fish_slider.tres" id="6_oa1go"]
+[ext_resource type="Texture2D" uid="uid://c5gihf8sbgoq" path="res://assets/sprites/logo/IMG_9007.PNG" id="6_vr8o3"]
+[ext_resource type="Texture2D" uid="uid://j3eismv4q2sy" path="res://assets/sprites/logo/IMG_9008.PNG" id="7_1a85y"]
 [ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="7_oa1go"]
+[ext_resource type="Texture2D" uid="uid://fu1hx4x32w4j" path="res://assets/sprites/logo/IMG_9010.PNG" id="8_hl5e0"]
+[ext_resource type="Texture2D" uid="uid://srqpo38rf7s0" path="res://assets/sprites/logo/IMG_9011.PNG" id="9_engjn"]
+[ext_resource type="Texture2D" uid="uid://d1sgdp7m11b1c" path="res://assets/sprites/logo/IMG_9012.PNG" id="10_6h3lr"]
+[ext_resource type="Texture2D" uid="uid://d33e1xy0rtl17" path="res://assets/sprites/logo/IMG_9013.PNG" id="11_dj67d"]
+[ext_resource type="Texture2D" uid="uid://g1j8arrs5x3k" path="res://assets/sprites/logo/IMG_9014.PNG" id="12_6vcge"]
+[ext_resource type="Texture2D" uid="uid://cedftd31u1hvu" path="res://assets/sprites/logo/IMG_9015.PNG" id="13_ip0br"]
+[ext_resource type="Texture2D" uid="uid://dwjog7aeeyky8" path="res://assets/sprites/logo/IMG_9016.PNG" id="14_xyero"]
+[ext_resource type="Texture2D" uid="uid://diegloo8y4so1" path="res://assets/sprites/logo/IMG_9017.PNG" id="15_tcusk"]
+[ext_resource type="Texture2D" uid="uid://bslgo60jwhqra" path="res://assets/sprites/logo/IMG_9018.PNG" id="16_4puye"]
+[ext_resource type="Texture2D" uid="uid://dqeh6346jwsd3" path="res://assets/sprites/logo/IMG_9019.PNG" id="17_q13xq"]
+[ext_resource type="Texture2D" uid="uid://xagbewg7u34u" path="res://assets/sprites/logo/IMG_9020.PNG" id="18_u43bj"]
+[ext_resource type="Texture2D" uid="uid://ckpflalirpgdr" path="res://assets/sprites/logo/IMG_9021.PNG" id="19_jvjdd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ln24"]
 font = ExtResource("1_l6cm7")
@@ -14,6 +31,82 @@ font_size = 300
 font_color = Color(0.727236, 0.795334, 0.886719, 1)
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yxnar"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qywvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3wgol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1acrt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vr8o3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1a85y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hl5e0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_engjn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6h3lr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_dj67d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_6vcge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ip0br")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_xyero")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tcusk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_4puye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_q13xq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_u43bj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_jvjdd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qywvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qywvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qywvv")
+}, {
+"duration": 3.0,
+"texture": ExtResource("3_qywvv")
+}],
+"loop": true,
+"name": &"logo",
+"speed": 8.0
+}]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bqqt6"]
 
@@ -44,9 +137,9 @@ shadow_color = Color(0.737961, 0.883982, 1, 0.6)
 script = ExtResource("1_bqqt6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 50
 
 [node name="Label_GameTitle" type="Label" parent="CanvasLayer"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -57,6 +150,14 @@ offset_bottom = 424.0
 grow_horizontal = 2
 text = "POOL"
 label_settings = SubResource("LabelSettings_8ln24")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(963, 344)
+scale = Vector2(0.432854, 0.432854)
+sprite_frames = SubResource("SpriteFrames_yxnar")
+animation = &"logo"
+autoplay = "logo"
+frame_progress = 0.917942
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -110,6 +211,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
 text = "Settings"
 
 [node name="Settings" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="Panel" type="Panel" parent="Settings"]
 anchors_preset = 8

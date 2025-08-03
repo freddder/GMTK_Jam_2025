@@ -42,7 +42,7 @@ var landed_tile: Type
 
 var main_y := 128
 var buff_x := 200
-var padding_x := 12
+var padding_x := 0
 
 
 func _process(delta: float) -> void:
@@ -117,11 +117,11 @@ func tile_type_to_texture_id(tile_type: Type) -> ResourceManager.TextureId:
 		Type.EVENT: return ResourceManager.TextureId.EVENT_ICON
 		Type.MATE: return ResourceManager.TextureId.MATE_ICON
 		Type.BOSS: return ResourceManager.TextureId.PLAYER_ICON
-		Type.RETURN_UP: return ResourceManager.TextureId.NONE
-		Type.RETURN_DOWN: return ResourceManager.TextureId.NONE
-		Type.PATH_UP: return ResourceManager.TextureId.NONE
-		Type.NOTHING: return ResourceManager.TextureId.NONE
-		Type.PATH_DOWN: return ResourceManager.TextureId.NONE
+		Type.RETURN_UP: return ResourceManager.TextureId.L_UP_PATH
+		Type.RETURN_DOWN: return ResourceManager.TextureId.L_DOWN_PATH
+		Type.PATH_UP: return ResourceManager.TextureId.T_UP_PATH
+		Type.NOTHING: return ResourceManager.TextureId.H_PATH
+		Type.PATH_DOWN: return ResourceManager.TextureId.T_DOWN_PATH
 
 	return ResourceManager.TextureId.INVALID
 
@@ -135,7 +135,8 @@ func tile_type_to_color(tile_type: Type) -> Color:
 # internal method, places an icon of a type with position and scale
 func place_icon(type: Type, pos_y: float, pos_x: float, uniform_scale: float) -> void:
 	var icon: Sprite2D = Sprite2D.new()
-
+	if type >= 3 and type != Type.BOSS:
+		return
 	var scale_vec := Vector2(uniform_scale, uniform_scale)
 	icon.position.x = pos_x
 	icon.position.y = pos_y
@@ -166,6 +167,7 @@ func reset_path() -> void:
 
 # creates the visuals for the map and adds them as a child of the manager
 func generate_visuals() -> void:
+	var iconScale = .3
 	var color := Color(0, 0, .2)
 
 	player.icon = Sprite2D.new()
@@ -177,43 +179,63 @@ func generate_visuals() -> void:
 
 	for i in total_length:
 		var track: Sprite2D = Sprite2D.new()
-		track.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
-		track.self_modulate = color
+		if main_path[i].type == Type.PATH_UP or main_path[i].type == Type.PATH_DOWN:
+			track.texture = ResourceManager.textures[tile_type_to_texture_id(main_path[i].type)]
+		else:
+			track.texture = ResourceManager.textures[tile_type_to_texture_id(Type.NOTHING)]
+			
+		#track.self_modulate = color
 		track.position.x = i * (128+ (padding_x * cell_scale)) * cell_scale + buff_x + (padding_x * cell_scale)
 		track.position.y = main_y
 		track.scale = _cell_scale_vec
 		add_child(track)
-
-		place_icon(main_path[i].type, main_y, i *  (128+ (padding_x * cell_scale)) * cell_scale + buff_x + (padding_x * cell_scale), .20)
+		
+		
+		place_icon(main_path[i].type, main_y, i *  (128+ (padding_x * cell_scale)) * cell_scale + buff_x + (padding_x * cell_scale), iconScale)
 
 		if main_path[i].type == Type.PATH_UP:
-			track.rotate(-1.73)
+			#track.rotate(-1.73)
 			for j in top_path.size():
 				var uptrack: Sprite2D = Sprite2D.new()
 				uptrack.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
-				uptrack.self_modulate = color
+				#uptrack.self_modulate = color
 				uptrack.position.x = (j * (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x
 				uptrack.position.y = main_y - (128 * cell_scale)
 				uptrack.scale = _cell_scale_vec
-				if top_path[j].type == Type.RETURN_DOWN:
-					uptrack.rotate(1.73)
+				
+				var tex = ResourceManager.textures[tile_type_to_texture_id(Type.NOTHING)]
+				if j == 0:
+					tex = ResourceManager.textures[tile_type_to_texture_id(Type.RETURN_DOWN)]
+					uptrack.flip_h = true
+				elif j == top_path.size()-1:
+					tex = ResourceManager.textures[tile_type_to_texture_id(Type.RETURN_DOWN)]
+				uptrack.texture = tex
+				
+
 
 				add_child(uptrack)
-				place_icon(top_path[j].type, main_y-(128 * cell_scale), ((j *  (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)), .2)
+				place_icon(top_path[j].type, main_y-(128 * cell_scale), ((j *  (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)), iconScale)
 
 		if main_path[i].type == Type.PATH_DOWN:
-			track.rotate(1.73)
+			#track.rotate(1.73)
 			for j in sub_path.size():
 				var subtrack: Sprite2D = Sprite2D.new()
 				subtrack.texture = ResourceManager.textures[ResourceManager.TextureId.PLAYER_ICON]
-				subtrack.self_modulate = color
+				#subtrack.self_modulate = color
 				subtrack.position.x = (j *  (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)
 				subtrack.position.y = main_y + (128 * cell_scale)
 				subtrack.scale = _cell_scale_vec
-				if sub_path[j].type == Type.RETURN_UP:
-					subtrack.rotate(-1.73)
+				
+				var tex = ResourceManager.textures[tile_type_to_texture_id(Type.NOTHING)]
+				if j == 0:
+					tex = ResourceManager.textures[tile_type_to_texture_id(Type.RETURN_UP)]
+					subtrack.flip_h = true
+				elif j == sub_path.size()-1:
+					tex = ResourceManager.textures[tile_type_to_texture_id(Type.RETURN_UP)]
+				subtrack.texture = tex
+
 				add_child(subtrack)
-				place_icon(sub_path[j].type, main_y + (128 * cell_scale), ((j * (128+ (padding_x * cell_scale)) * cell_scale) + (i * (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)), .2)
+				place_icon(sub_path[j].type, main_y + (128 * cell_scale), ((j * (128+ (padding_x * cell_scale)) * cell_scale) + (i * (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)), iconScale)
 
 	add_child(player.icon)
 

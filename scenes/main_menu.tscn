@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cmexpqdp2hgy6"]
+[gd_scene load_steps=44 format=3 uid="uid://cmexpqdp2hgy6"]
 
 [ext_resource type="Script" uid="uid://iu0pg3fkmu5m" path="res://scripts/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_l6cm7"]
@@ -26,7 +26,44 @@
 [ext_resource type="Texture2D" uid="uid://dqeh6346jwsd3" path="res://assets/sprites/logo/IMG_9019.PNG" id="17_q13xq"]
 [ext_resource type="Texture2D" uid="uid://xagbewg7u34u" path="res://assets/sprites/logo/IMG_9020.PNG" id="18_u43bj"]
 [ext_resource type="Texture2D" uid="uid://ckpflalirpgdr" path="res://assets/sprites/logo/IMG_9021.PNG" id="19_jvjdd"]
+[ext_resource type="Texture2D" uid="uid://cymrakixv4un5" path="res://assets/styles/panels/settings_background.png" id="22_1a85y"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="25_3wgol"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
+atlas = ExtResource("25_3wgol")
+region = Rect2(0, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqu8w"]
+atlas = ExtResource("25_3wgol")
+region = Rect2(1920, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fr2l"]
+atlas = ExtResource("25_3wgol")
+region = Rect2(3840, 0, 1920, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2sb77"]
+atlas = ExtResource("25_3wgol")
+region = Rect2(5760, 0, 1920, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1acrt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5pu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqu8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fr2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2sb77")
+}],
+"loop": true,
+"name": &"cycle_texture",
+"speed": 4.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ln24"]
 font = ExtResource("1_l6cm7")
@@ -119,68 +156,31 @@ animations = [{
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtw2f"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtw2f"]
-bg_color = Color(0.429372, 0.540495, 0.6, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.594414, 0.733059, 0.8, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-shadow_color = Color(0.737961, 0.883982, 1, 0.6)
+[sub_resource type="LabelSettings" id="LabelSettings_vr8o3"]
+font = ExtResource("1_l6cm7")
+font_size = 91
+font_color = Color(0.984664, 0.993529, 0.992275, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hl5e0"]
+texture = ExtResource("22_1a85y")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_vr8o3"]
-font = ExtResource("1_l6cm7")
-font_size = 91
-font_color = Color(0.727236, 0.795334, 0.886719, 1)
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
-atlas = ExtResource("25_3wgol")
-region = Rect2(0, 0, 1920, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iqu8w"]
-atlas = ExtResource("25_3wgol")
-region = Rect2(1920, 0, 1920, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5fr2l"]
-atlas = ExtResource("25_3wgol")
-region = Rect2(3840, 0, 1920, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2sb77"]
-atlas = ExtResource("25_3wgol")
-region = Rect2(5760, 0, 1920, 1080)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1acrt"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_k5pu3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iqu8w")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5fr2l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2sb77")
-}],
-"loop": true,
-"name": &"cycle_texture",
-"speed": 4.0
-}]
-
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_bqqt6")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background"]
+position = Vector2(960, 540)
+sprite_frames = SubResource("SpriteFrames_1acrt")
+animation = &"cycle_texture"
+autoplay = "cycle_texture"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -258,21 +258,32 @@ text = "Settings"
 
 [node name="Settings" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="Settings"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -450.0
-offset_top = -300.0
-offset_right = 450.0
-offset_bottom = 300.0
+[node name="MarginContainer" type="MarginContainer" parent="Settings"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rtw2f")
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 100
 
-[node name="MarginContainer" type="MarginContainer" parent="Settings/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/MarginContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_vr8o3")
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Settings/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_hl5e0")
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/MarginContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -284,18 +295,18 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Settings/Panel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer"]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Panel/MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -303,18 +314,18 @@ size_flags_vertical = 4
 texture = ExtResource("4_tbmy8")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Music"
 label_settings = ExtResource("2_ekxnf")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_tbmy8")
 
-[node name="TextureRect2" type="TextureRect" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -322,25 +333,17 @@ size_flags_vertical = 4
 texture = ExtResource("6_jk1qb")
 expand_mode = 1
 
-[node name="Label2" type="Label" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "SFX"
 label_settings = ExtResource("2_ekxnf")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Settings/Panel/MarginContainer/HBoxContainer"]
+[node name="VsliderBoxContainer" type="VBoxContainer" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Slider_Music" type="HSlider" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Slider_Music" type="HSlider" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VsliderBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -350,12 +353,12 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="HSeparator" type="HSeparator" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VsliderBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_jk1qb")
 
-[node name="Slider_SFX" type="HSlider" parent="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Slider_SFX" type="HSlider" parent="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VsliderBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -365,32 +368,29 @@ max_value = 1.0
 step = 0.02
 value = 1.0
 
-[node name="Button_CloseSettings" type="Button" parent="Settings/Panel/MarginContainer"]
+[node name="Button_CloseSettings" type="Button" parent="Settings/MarginContainer/VBoxContainer/Panel"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
+offset_left = 310.0
+offset_top = 526.0
+offset_right = 610.0
+offset_bottom = 626.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
 theme = ExtResource("3_wu84c")
-theme_override_colors/font_hover_color = Color(0.771584, 0.84542, 0.941406, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0.727236, 0.795334, 0.886719, 1)
-theme_override_colors/font_focus_color = Color(0.727236, 0.795334, 0.886719, 1)
-theme_override_colors/font_pressed_color = Color(0.820143, 0.896941, 1, 1)
+theme_override_colors/font_color = Color(0.976099, 0.996854, 0.991962, 1)
+theme_override_colors/font_focus_color = Color(0.940234, 0.967772, 0.962387, 1)
+theme_override_colors/font_pressed_color = Color(0.806561, 0.914091, 0.893014, 1)
 theme_override_constants/outline_size = 10
 theme_override_styles/focus = SubResource("StyleBoxEmpty_bqqt6")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_wu84c")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8ln24")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
 text = "Close"
-
-[node name="Label3" type="Label" parent="Settings"]
-offset_left = 560.0
-offset_top = 316.0
-offset_right = 1360.0
-offset_bottom = 356.0
-text = "Settings"
-label_settings = SubResource("LabelSettings_vr8o3")
-horizontal_alignment = 1
 
 [node name="PostProcess" parent="." instance=ExtResource("7_oa1go")]
 
@@ -408,15 +408,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0, 0, 0, 1)
 
-[node name="Background" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background"]
-position = Vector2(960, 540)
-sprite_frames = SubResource("SpriteFrames_1acrt")
-animation = &"cycle_texture"
-autoplay = "cycle_texture"
-
 [node name="MainMenuTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_tbmy8")
 volume_db = -20.0
@@ -425,6 +416,6 @@ bus = &"BGM"
 
 [connection signal="pressed" from="HUD/VBoxContainer/Button_Play" to="." method="_on_button_play_pressed"]
 [connection signal="pressed" from="HUD/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]
-[connection signal="value_changed" from="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Slider_Music" to="." method="_on_slider_music_value_changed"]
-[connection signal="value_changed" from="Settings/Panel/MarginContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Slider_SFX" to="." method="_on_slider_sfx_value_changed"]
-[connection signal="pressed" from="Settings/Panel/MarginContainer/Button_CloseSettings" to="." method="_on_button_close_settings_pressed"]
+[connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VsliderBoxContainer/Slider_Music" to="." method="_on_slider_music_value_changed"]
+[connection signal="value_changed" from="Settings/MarginContainer/VBoxContainer/Panel/MarginContainer/HBoxContainer/VsliderBoxContainer/Slider_SFX" to="." method="_on_slider_sfx_value_changed"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/Panel/Button_CloseSettings" to="." method="_on_button_close_settings_pressed"]

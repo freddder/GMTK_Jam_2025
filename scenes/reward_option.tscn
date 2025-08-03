@@ -98,7 +98,7 @@ stretch_mode = 4
 [node name="Icon2" type="TextureRect" parent="Panel/Button/MarginContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -109,7 +109,7 @@ stretch_mode = 4
 [node name="Icon3" type="TextureRect" parent="Panel/Button/MarginContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3

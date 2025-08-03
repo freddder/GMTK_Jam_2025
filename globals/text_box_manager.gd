@@ -17,7 +17,7 @@ var is_text_box_shown: bool = false
 
 func initialize():
 	var instance := scene.instantiate()
-	get_tree().root.add_child(instance)
+	get_tree().get_current_scene().add_child(instance)
 	close_text_box.connect(on_close_text_box)
 
 	dialog_box = instance.get_node("DialogBox")

@@ -1,12 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy7hncax65228"]
+[gd_scene load_steps=4 format=3 uid="uid://dy7hncax65228"]
 
 [ext_resource type="PackedScene" uid="uid://0x30u3drfr0v" path="res://scenes/reward_option.tscn" id="1_bksdm"]
 [ext_resource type="Script" uid="uid://d6kiwpa5pq7e" path="res://scripts/reward_selection_screen.gd" id="1_cwmr2"]
+[ext_resource type="Theme" uid="uid://c5c2nxj0xof5h" path="res://assets/themes/default_text_theme.tres" id="2_6oi26"]
 
 [node name="RewardSelectionScreen" type="CanvasLayer"]
 script = ExtResource("1_cwmr2")
 
+[node name="Label_Title" type="Label" parent="."]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -383.0
+offset_top = 100.0
+offset_right = 383.0
+offset_bottom = 187.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_6oi26")
+theme_override_font_sizes/font_size = 80
+text = "Choose your reward"
+horizontal_alignment = 1
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

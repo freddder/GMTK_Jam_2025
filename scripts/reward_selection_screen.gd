@@ -9,13 +9,20 @@ var options: Array[RewardOption]
 
 
 func _ready() -> void:
-	for child in $HBoxContainer.get_children():
+	visible = false
+
+	for child in %HBoxContainer.get_children():
 		var option: RewardOption = child
 		options.append(option)
 		option.on_option_selected.connect(_on_option_selected)
 
 
 func show_rewards(data: Array[RewardOptionData]) -> void:
+	if data[0].type == RewardOptionData.Type.MATING:
+		%Label_Title.text = "Choose a fish to breed with"
+	else:
+		%Label_Title.text = "Choose your reward"
+
 	for option in options:
 		option.visible = false
 
@@ -23,11 +30,11 @@ func show_rewards(data: Array[RewardOptionData]) -> void:
 		options[i].visible = true
 		options[i].set_option_data(data[i])
 
-	$HBoxContainer.visible = true
+	visible = true
 
 
 func _on_option_selected(option: RewardOption) -> void:
-	$HBoxContainer.visible = false
+	visible = false
 
 	match option.data.type:
 		RewardOptionData.Type.MATING:

@@ -30,7 +30,7 @@ func _on_option_selected(option: RewardOption) -> void:
 	$HBoxContainer.visible = false
 
 	match option.data.type:
-		RewardOptionData.Type.MATTING:
+		RewardOptionData.Type.MATING:
 			player.set_profile(FishProfile.from_reward(player.profile.level + 1, option.data))
 		RewardOptionData.Type.INVENTORY_ITEM:
 			player.add_item(Item.from_reward(option.data))

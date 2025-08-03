@@ -33,11 +33,12 @@ script = ExtResource("1_th188")
 
 [node name="Opponent" parent="." instance=ExtResource("2_p1qf1")]
 material = SubResource("ShaderMaterial_a12nh")
-position = Vector2(1468, 401)
+position = Vector2(1360, 474)
 
 [node name="Player" parent="." instance=ExtResource("2_p1qf1")]
 material = SubResource("ShaderMaterial_lpir7")
-position = Vector2(467, 444)
+position = Vector2(666, 475)
+flip_h = true
 
 [node name="HitSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_lpir7")

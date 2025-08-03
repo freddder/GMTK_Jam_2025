@@ -56,6 +56,11 @@ func randomize_many(count: int, level: int, base_attributes: Attributes,
 
 			profile.attributes.data[attribute] = base_attributes.data[attribute] + value
 
+		# Randomize body, tail, thin
+		profile.cosmetics.append(randi() % ResourceManager.FishPart.COUNT)
+		profile.cosmetics.append(randi() % ResourceManager.FishPart.COUNT)
+		profile.cosmetics.append(randi() % ResourceManager.FishPart.COUNT)
+
 		result[i] = profile
 
 	#var weight := (level + 1) * 8

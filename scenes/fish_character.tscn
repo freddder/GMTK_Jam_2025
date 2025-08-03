@@ -43,20 +43,22 @@ shader_parameter/noise_deformation = 9.703
 material = ExtResource("2_rhh4d")
 script = ExtResource("1_wg25l")
 
-[node name="Sprite2D" type="Node2D" parent="."]
-unique_name_in_owner = true
+[node name="FishPivot" type="Node2D" parent="."]
 use_parent_material = true
 
-[node name="Body" type="Sprite2D" parent="Sprite2D"]
+[node name="Body" type="Sprite2D" parent="FishPivot"]
+unique_name_in_owner = true
 use_parent_material = true
 position = Vector2(-3.8147e-06, 1.35525e-20)
 texture = ExtResource("2_t45y5")
 
-[node name="Tail" type="Sprite2D" parent="Sprite2D"]
+[node name="Tail" type="Sprite2D" parent="FishPivot"]
+unique_name_in_owner = true
 use_parent_material = true
 texture = ExtResource("2_t45y5")
 
-[node name="Fins" type="Sprite2D" parent="Sprite2D"]
+[node name="Fins" type="Sprite2D" parent="FishPivot"]
+unique_name_in_owner = true
 use_parent_material = true
 texture = ExtResource("2_t45y5")
 

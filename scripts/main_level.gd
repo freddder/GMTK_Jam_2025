@@ -54,11 +54,15 @@ func opening_cutscene() -> void:
 	await get_tree().create_timer(5.0).timeout
 
 	mage.hide()
+	_start_game()
 
+
+
+func _start_game() -> void:
 	await _promote_mating()
 	map_scene.initialize()
 	$HUD.show()
-	pass
+
 
 func _input(event: InputEvent) -> void:
 	if can_handle_action_input:

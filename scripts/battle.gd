@@ -126,4 +126,8 @@ func randomize_enemy_profile(player_level: int) -> FishProfile:
 	for attribute in profile.attributes.data.size():
 		profile.attributes.data[attribute] = max(1, profile.attributes.data[attribute])
 
+	profile.cosmetics.append(randi() % ResourceManager.FishPart.COUNT)
+	profile.cosmetics.append(randi() % ResourceManager.FishPart.COUNT)
+	profile.cosmetics.append(randi() % ResourceManager.FishPart.COUNT)
+
 	return profile

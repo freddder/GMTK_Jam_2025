@@ -2,7 +2,7 @@ class_name RewardOptionData
 
 enum Type {
 	INVALID,
-	MATTING,
+	MATING,
 	INVENTORY_ITEM,
 }
 
@@ -11,6 +11,7 @@ var icon: CompressedTexture2D
 var title: String
 var description: String
 var attributes: Attributes
+var cosmetics: Array[ResourceManager.FishPart]
 var item_type: Item.Type
 
 

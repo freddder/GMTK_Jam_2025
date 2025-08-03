@@ -65,13 +65,21 @@ func _handle_attributes(reward_data: RewardOptionData) -> void:
 func set_option_data(reward_data: RewardOptionData) -> void:
 	data = reward_data
 
-	%Icon.texture = data.icon
+	%Icon1.texture = data.icon
 	%Label_Title.text = data.title
 	%Label_Description.text = data.description
 
 	%AttributesContainer.visible = false
-	if reward_data.type == RewardOptionData.Type.MATTING:
+	if reward_data.type == RewardOptionData.Type.MATING:
 		_handle_attributes(reward_data)
+		%Icon1.texture = ResourceManager.fish_body[reward_data.cosmetics[0]]
+		%Icon2.texture = ResourceManager.fish_tail[reward_data.cosmetics[1]]
+		%Icon3.texture = ResourceManager.fish_fin[reward_data.cosmetics[2]]
+		%Icon2.visible = true
+		%Icon3.visible = true
+	else:
+		%Icon2.visible = false
+		%Icon3.visible = false
 
 
 func _on_button_down() -> void:

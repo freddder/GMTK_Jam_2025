@@ -1,7 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7w13cmgfwh2r"]
+[gd_scene load_steps=3 format=3 uid="uid://b7w13cmgfwh2r"]
 
 [ext_resource type="Script" uid="uid://bewtquq7ak32o" path="res://scripts/fish_player_character.gd" id="1_0g0r5"]
+[ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="2_f6bb3"]
 
 [node name="FishPlayerCharacter" type="Node2D" groups=["player"]]
 script = ExtResource("1_0g0r5")
 metadata/_custom_type_script = "uid://qkykqr3hd6iw"
+
+[node name="FishPivot" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="Body" type="Sprite2D" parent="FishPivot"]
+unique_name_in_owner = true
+use_parent_material = true
+position = Vector2(-3.8147e-06, 1.35525e-20)
+texture = ExtResource("2_f6bb3")
+
+[node name="Tail" type="Sprite2D" parent="FishPivot"]
+unique_name_in_owner = true
+use_parent_material = true
+texture = ExtResource("2_f6bb3")
+
+[node name="Fins" type="Sprite2D" parent="FishPivot"]
+unique_name_in_owner = true
+use_parent_material = true
+texture = ExtResource("2_f6bb3")

@@ -4,6 +4,7 @@ var icon: CompressedTexture2D
 var title: String
 var attributes: Attributes
 var level: int
+var cosmetics: Array[ResourceManager.FishPart]
 
 
 static func create() -> FishProfile:
@@ -15,10 +16,11 @@ static func create() -> FishProfile:
 func to_reward() -> RewardOptionData:
 	var option := RewardOptionData.new()
 
-	option.type = RewardOptionData.Type.MATTING
+	option.type = RewardOptionData.Type.MATING
 	option.icon = icon
 	option.title = title
 	option.attributes = attributes
+	option.cosmetics = cosmetics
 
 	return option
 
@@ -30,6 +32,7 @@ static func from_reward(level: int, data: RewardOptionData) -> FishProfile:
 	profile.title = data.title
 	profile.attributes = data.attributes
 	profile.level = level
+	profile.cosmetics = data.cosmetics
 
 	return profile
 

@@ -12,7 +12,8 @@ signal on_crit_rolled
 
 # The inventory has to limit
 @export var inventory: Array[Item]
-@export var forReward: bool
+
+@export var flip_h: bool = false
 
 var profile: FishProfile
 
@@ -29,33 +30,11 @@ var sent_hits: int = 0
 
 func _ready() -> void:
 	on_took_damage.connect(_on_damage_taken)
-	call_deferred("set_visuals")
-	if forReward:
-		hide_ui()
 
-
-func hide_ui():
-	$Control.hide()
-	$BubbleShield.hide()
-
-
-func set_visuals():
-	#check if this exists
-	if %Sprite2D/Body:
-		body = FishParts.fishOptions.pick_random()
-		%Sprite2D/Body.texture = FishParts.BODIES[body]
-		if body == "orng":
-			%Sprite2D/Body.flip_h = true
-
-		tail = FishParts.fishOptions.pick_random()
-		%Sprite2D/Tail.texture = FishParts.TAILS[tail]
-		if tail == "orng":
-			%Sprite2D/Tail.flip_h = true
-
-		deco = FishParts.fishOptions.pick_random()
-		%Sprite2D/Fins.texture = FishParts.DECORATIONS[deco]
-		if deco == "orng":
-			%Sprite2D/Fins.flip_h = true
+	if flip_h:
+		%Body.flip_h = flip_h
+		%Tail.flip_h = flip_h
+		%Fins.flip_h = flip_h
 
 
 func increase_action_amount(amount: float) -> void:
@@ -67,6 +46,11 @@ func set_profile(in_profile: FishProfile) -> void:
 	profile = in_profile
 
 	print("Set profile: ", profile._to_string())
+
+	if not profile.cosmetics.is_empty():
+		%Body.texture = ResourceManager.fish_body[profile.cosmetics[0]]
+		%Tail.texture = ResourceManager.fish_tail[profile.cosmetics[1]]
+		%Fins.texture = ResourceManager.fish_fin[profile.cosmetics[2]]
 
 
 func deal_damage(damage: int) -> int:
@@ -117,14 +101,17 @@ func update_health_bar():
 	var max_health := get_max_health()
 	health_bar.value = (float(curr_health) / float(max_health)) * 100.0
 
+
 func add_random_items(amount: int) -> void:
 	for item in Item.get_random_count(amount):
 		add_item(item)
+
 
 func add_item(item: Item) -> void:
 	assert(item != null)
 	inventory.append(item)
 	on_inventory_changed.emit()
+
 
 func remove_random_item() -> void:
 	if inventory.size() == 0:
@@ -133,6 +120,7 @@ func remove_random_item() -> void:
 	var index := randi_range(0, inventory.size())
 	inventory.remove_at(index)
 	on_inventory_changed.emit()
+
 
 func dissolve(duration: float) -> void:
 	var tween := get_tree().create_tween()

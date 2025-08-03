@@ -37,7 +37,7 @@ func on_player_death() -> void:
 
 	await get_tree().create_timer(2.0).timeout
 
-	map_scene.reset_path()
+	#map_scene.reset_path()
 	$HUD.hide()
 
 	opening_cutscene()

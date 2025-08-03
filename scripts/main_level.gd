@@ -9,6 +9,7 @@ extends Node2D
 @onready var main_theme_player : AudioStreamPlayer = $MainTheme
 @onready var battle_theme_player : AudioStreamPlayer = $BattleTheme
 @onready var reward_theme_player : AudioStreamPlayer = $RewardTheme
+@onready var victory_theme_player : AudioStreamPlayer = $VictoryTheme
 
 var active_battle: Battle
 var can_handle_action_input: bool = false
@@ -71,6 +72,8 @@ func opening_cutscene() -> void:
 
 	tweener = get_tree().create_tween()
 	await tweener.tween_property($MageFish, "position", Vector2(3000, 0), 0.5).finished
+
+	$MageFish.scale.x = 1.0
 
 	_start_game()
 
@@ -259,7 +262,19 @@ func _play_final_cutscene() -> void:
 	TextBoxManager.display_text("But... how...?")
 	await get_tree().create_timer(5.0).timeout
 
+	transition_theme_to_victory()
 	TextBoxManager.display_text("Victory?")
-	await get_tree().create_timer(2.0).timeout
 
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	# TODO: Commented out because I don't really want the music to play
+	# for 2 seconds
+	#get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+
+func transition_theme_to_victory():
+	print("to victory")
+	var tween := create_tween()
+	tween.tween_property(main_theme_player, "volume_db", -50, 0.5)
+	tween.tween_property(battle_theme_player, "volume_db", -50, 0.5)
+	tween.tween_property(reward_theme_player, "volume_db", -50, 0.5)
+	tween.tween_property(victory_theme_player, "volume_db", -20, 0.5)

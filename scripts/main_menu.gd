@@ -20,6 +20,8 @@ func _ready() -> void:
 func _on_button_play_pressed() -> void:
 	var main_level := load("res://scenes/main_level.tscn")
 
+	get_tree().create_tween().tween_property($MainMenuTheme, "volume_db", -40, 2.3)
+
 	%FadeIn.show()
 	var tween := get_tree().create_tween()
 	await tween.tween_property(%FadeIn , "modulate", Color.BLACK, 1.7).finished

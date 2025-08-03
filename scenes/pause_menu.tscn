@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://bn03wwfyr8fi2"]
+[gd_scene load_steps=19 format=3 uid="uid://cf0nxgp7cvdba"]
 
-[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_myx47"]
+[ext_resource type="Script" uid="uid://bt7aeqey83dpw" path="res://scripts/pause_menu.gd" id="1_myx47"]
 [ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="1_n87rw"]
 [ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="3_7l7mv"]
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="4_v4r4p"]
 [ext_resource type="Theme" uid="uid://25syfjgemjex" path="res://assets/styles/sliders/fish_slider.tres" id="5_7l7mv"]
+[ext_resource type="AudioStream" uid="uid://e6uk7dmj6r11" path="res://sounds/pause-and-upgrade-theme.mp3" id="6_v4r4p"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_myx47"]
 
@@ -176,6 +177,12 @@ value = 1.0
 custom_minimum_size = Vector2(96, 0)
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ofnjo")
+
+[node name="PauseMenuTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_v4r4p")
+volume_db = -20.0
+autoplay = true
+bus = &"BGM"
 
 [connection signal="pressed" from="VBoxContainer/Button_Continue" to="." method="_on_button_continue_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button_MainMenu" to="." method="_on_button_main_menu_pressed"]

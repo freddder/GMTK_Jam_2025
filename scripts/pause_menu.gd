@@ -7,7 +7,10 @@ signal on_activation_state_changed(is_active: bool)
 func set_active(is_active: bool) -> void:
 	visible = is_active
 	on_activation_state_changed.emit(is_active)
-	# change bgm?
+	if is_active:
+		$PauseMenuTheme.play()
+	else:
+		$PauseMenuTheme.stop()
 
 
 func _on_button_continue_pressed() -> void:

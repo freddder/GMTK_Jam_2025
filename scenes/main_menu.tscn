@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://xagbewg7u34u" path="res://assets/sprites/logo/IMG_9020.PNG" id="18_u43bj"]
 [ext_resource type="Texture2D" uid="uid://ckpflalirpgdr" path="res://assets/sprites/logo/IMG_9021.PNG" id="19_jvjdd"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="25_3wgol"]
+[ext_resource type="AudioStream" uid="uid://cjqxp1k01v6tl" path="res://sounds/menu-theme.mp3" id="8_tbmy8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ln24"]
 font = ExtResource("1_l6cm7")
@@ -399,6 +400,12 @@ position = Vector2(960, 540)
 sprite_frames = SubResource("SpriteFrames_1acrt")
 animation = &"cycle_texture"
 autoplay = "cycle_texture"
+
+[node name="MainMenuTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_tbmy8")
+volume_db = -20.0
+autoplay = true
+bus = &"BGM"
 
 [connection signal="pressed" from="HUD/VBoxContainer/Button_Play" to="." method="_on_button_play_pressed"]
 [connection signal="pressed" from="HUD/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]

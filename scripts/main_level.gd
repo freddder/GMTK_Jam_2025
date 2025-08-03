@@ -4,6 +4,10 @@ extends Node2D
 @onready var player := $PlayerCharacter
 @onready var map_scene := $TimelineManager
 
+@onready var main_theme_player : AudioStreamPlayer = $MainTheme
+@onready var battle_theme_player : AudioStreamPlayer = $BattleTheme
+@onready var reward_theme_player : AudioStreamPlayer = $RewardTheme
+
 var active_battle: Battle
 var can_handle_action_input: bool = false
 
@@ -91,16 +95,19 @@ func _promote_mating() -> void:
 
 
 func _promote_random_rewards() -> void:
+	transition_theme_to_reward()
 	can_handle_action_input = false
 
 	var rewards := Item.to_reward_array(Item.get_random_count(3))
 	$RewardSelectionScreen.show_rewards(rewards)
 	await $RewardSelectionScreen.on_option_selected
 
+	transition_theme_to_main()
 	can_handle_action_input = true
 
 
 func _start_battle() -> Battle.Winner:
+	transition_theme_to_battle()
 	can_handle_action_input = false
 
 	assert(active_battle == null)
@@ -115,3 +122,24 @@ func _start_battle() -> Battle.Winner:
 	can_handle_action_input = true
 
 	return winner
+
+func transition_theme_to_main():
+	print("to main")
+	var tween := create_tween()
+	tween.tween_property(main_theme_player, "volume_db", -20, 0.5)
+	tween.tween_property(battle_theme_player, "volume_db", -50, 0.5)
+	tween.tween_property(reward_theme_player, "volume_db", -50, 0.5)
+
+func transition_theme_to_battle():
+	print("to battle")
+	var tween := create_tween()
+	tween.tween_property(main_theme_player, "volume_db", -50, 0.5)
+	tween.tween_property(battle_theme_player, "volume_db", -20, 0.5)
+	tween.tween_property(reward_theme_player, "volume_db", -50, 0.5)
+
+func transition_theme_to_reward():
+	print("to reward")
+	var tween := create_tween()
+	tween.tween_property(main_theme_player, "volume_db", -50, 0.5)
+	tween.tween_property(battle_theme_player, "volume_db", -50, 0.5)
+	tween.tween_property(reward_theme_player, "volume_db", -20, 0.5)

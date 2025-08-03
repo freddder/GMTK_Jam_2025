@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cuhrm3x6dqagi"]
+[gd_scene load_steps=20 format=3 uid="uid://cuhrm3x6dqagi"]
 
 [ext_resource type="Script" uid="uid://cw2041xcsj26y" path="res://scripts/main_level.gd" id="1_ufxs0"]
 [ext_resource type="PackedScene" uid="uid://dy7hncax65228" path="res://scenes/reward_selection_screen.tscn" id="2_6we3w"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="7_u2c82"]
 [ext_resource type="PackedScene" uid="uid://byrvjftegb2na" path="res://scenes/timeline_manager.tscn" id="8_k5pu3"]
 [ext_resource type="PackedScene" uid="uid://dbpng7km0nxl0" path="res://scenes/player_inventory.tscn" id="9_iqu8w"]
+[ext_resource type="AudioStream" uid="uid://bembh11u0rj23" path="res://sounds/main-theme.mp3" id="10_fkrx8"]
+[ext_resource type="AudioStream" uid="uid://cullx7iloonao" path="res://sounds/battle-theme-ish.mp3" id="11_mwgft"]
+[ext_resource type="AudioStream" uid="uid://e6uk7dmj6r11" path="res://sounds/pause-and-upgrade-theme.mp3" id="12_adxub"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
 atlas = ExtResource("7_u2c82")
@@ -80,6 +83,7 @@ size_flags_vertical = 8
 [node name="RewardSelectionScreen" parent="." instance=ExtResource("2_6we3w")]
 
 [node name="PostProcess" parent="." instance=ExtResource("5_u2c82")]
+visible = false
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -105,3 +109,18 @@ process_material = SubResource("ParticleProcessMaterial_fkrx8")
 position = Vector2(-350, 374)
 
 [node name="TimelineManager" parent="." groups=["TimelineManager"] instance=ExtResource("8_k5pu3")]
+
+[node name="MainTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_fkrx8")
+volume_db = -20.0
+autoplay = true
+
+[node name="BattleTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_mwgft")
+volume_db = -50.0
+autoplay = true
+
+[node name="RewardTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_adxub")
+volume_db = -50.0
+autoplay = true

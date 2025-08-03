@@ -23,7 +23,21 @@ func _ready() -> void:
 	call_deferred("opening_cutscene")
 	
 
+func on_player_death() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property($deathScreen, "color", Color(.1,.1,.1,1), 2)
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	map_scene.reset_path()
+	$HUD.hide()
+	
+	opening_cutscene()
+	
+	pass
+
 func opening_cutscene() -> void:
+	$deathScreen.color = Color(.7,.7,.7,0)
 	mage = mage_fish.instantiate()
 	mage.position = Vector2 (1000,500)
 	var tweener = get_tree().create_tween()
@@ -59,8 +73,9 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 			if winner == Battle.Winner.PLAYER:
 				await _promote_random_rewards()
 			else:
-				# TODO: player has lost: return them back to square 1 with original stats
-				assert(false)
+				# TODO: reset the player's stats
+				on_player_death()
+				
 				pass
 
 		TimelineManager.Type.MATE:

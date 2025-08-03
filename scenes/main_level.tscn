@@ -73,6 +73,13 @@ alpha_curve = SubResource("CurveTexture_u2c82")
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_ufxs0")
 
+[node name="deathScreen" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(0.55, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(48.48, 27)
+color = Color(0, 0.0352941, 0.176471, 0)
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="PlayerInventory" parent="HUD" instance=ExtResource("9_iqu8w")]

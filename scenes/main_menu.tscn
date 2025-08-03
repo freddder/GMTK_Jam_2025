@@ -1,10 +1,10 @@
-[gd_scene load_steps=40 format=3 uid="uid://cmexpqdp2hgy6"]
+[gd_scene load_steps=41 format=3 uid="uid://cmexpqdp2hgy6"]
 
 [ext_resource type="Script" uid="uid://iu0pg3fkmu5m" path="res://scripts/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_l6cm7"]
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="2_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://df3vh02dydloh" path="res://assets/sprites/logo/IMG_9004.PNG" id="3_qywvv"]
-[ext_resource type="Theme" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
+[ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bkik2bkrc2pjx" path="res://assets/sprites/logo/IMG_9005.PNG" id="4_3wgol"]
 [ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="4_rtw2f"]
 [ext_resource type="Texture2D" uid="uid://bb87nquf5yva1" path="res://assets/sprites/logo/IMG_9006.PNG" id="5_1acrt"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://j3eismv4q2sy" path="res://assets/sprites/logo/IMG_9008.PNG" id="7_1a85y"]
 [ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="7_oa1go"]
 [ext_resource type="Texture2D" uid="uid://fu1hx4x32w4j" path="res://assets/sprites/logo/IMG_9010.PNG" id="8_hl5e0"]
+[ext_resource type="AudioStream" uid="uid://cjqxp1k01v6tl" path="res://sounds/menu-theme.mp3" id="8_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://srqpo38rf7s0" path="res://assets/sprites/logo/IMG_9011.PNG" id="9_engjn"]
 [ext_resource type="Texture2D" uid="uid://d1sgdp7m11b1c" path="res://assets/sprites/logo/IMG_9012.PNG" id="10_6h3lr"]
 [ext_resource type="Texture2D" uid="uid://d33e1xy0rtl17" path="res://assets/sprites/logo/IMG_9013.PNG" id="11_dj67d"]
@@ -25,7 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://xagbewg7u34u" path="res://assets/sprites/logo/IMG_9020.PNG" id="18_u43bj"]
 [ext_resource type="Texture2D" uid="uid://ckpflalirpgdr" path="res://assets/sprites/logo/IMG_9021.PNG" id="19_jvjdd"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="25_3wgol"]
-[ext_resource type="AudioStream" uid="uid://cjqxp1k01v6tl" path="res://sounds/menu-theme.mp3" id="8_tbmy8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8ln24"]
 font = ExtResource("1_l6cm7")

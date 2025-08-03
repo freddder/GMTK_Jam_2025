@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cuhrm3x6dqagi"]
+[gd_scene load_steps=17 format=3 uid="uid://cuhrm3x6dqagi"]
 
 [ext_resource type="Script" uid="uid://cw2041xcsj26y" path="res://scripts/main_level.gd" id="1_ufxs0"]
 [ext_resource type="PackedScene" uid="uid://dy7hncax65228" path="res://scenes/reward_selection_screen.tscn" id="2_6we3w"]
 [ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="4_bq26l"]
 [ext_resource type="PackedScene" uid="uid://b7w13cmgfwh2r" path="res://scenes/fish_player_character.tscn" id="5_8ra5a"]
 [ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="5_u2c82"]
-[ext_resource type="Shader" uid="uid://d0bsakbq4s5ma" path="res://assets/shaders/bubble_shield.gdshader" id="6_bq26l"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="7_u2c82"]
 [ext_resource type="PackedScene" uid="uid://byrvjftegb2na" path="res://scenes/timeline_manager.tscn" id="8_k5pu3"]
 [ext_resource type="PackedScene" uid="uid://cn4jmsu3ifyb" path="res://scenes/player_inventory.tscn" id="9_iqu8w"]
@@ -68,40 +67,6 @@ scale_min = 0.1
 scale_max = 0.3
 alpha_curve = SubResource("CurveTexture_u2c82")
 
-[sub_resource type="Gradient" id="Gradient_bq26l"]
-colors = PackedColorArray(0.344076, 0.344076, 0.344076, 1, 0.787759, 0.787759, 0.787759, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_u2c82"]
-noise_type = 3
-frequency = 0.004
-fractal_octaves = 8
-fractal_lacunarity = 1.435
-fractal_gain = 0.205
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iqu8w"]
-in_3d_space = true
-seamless = true
-seamless_blend_skirt = 1.0
-color_ramp = SubResource("Gradient_bq26l")
-noise = SubResource("FastNoiseLite_u2c82")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqu8w"]
-shader = ExtResource("6_bq26l")
-shader_parameter/zoom_out = 2.053
-shader_parameter/border_decay = 0.953
-shader_parameter/shield_tint = Color(0.36973, 0.646771, 0.83819, 0.509804)
-shader_parameter/shield_saturation = Color(0.752365, 0.9349, 0.911351, 1)
-shader_parameter/attack_angle = -0.000184707
-shader_parameter/attack_penetration = 0.344
-shader_parameter/attack_radius = 0.977
-shader_parameter/attack_amplitude = 0.134
-shader_parameter/wave_speed = 7.888
-shader_parameter/wave_num = 17.0
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_iqu8w")
-shader_parameter/noise_speed = 1.0
-shader_parameter/noise_amplitude = 0.89
-shader_parameter/noise_deformation = 300.0
-
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_ufxs0")
 
@@ -138,12 +103,5 @@ process_material = SubResource("ParticleProcessMaterial_fkrx8")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("5_8ra5a")]
 position = Vector2(-350, 374)
-
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_iqu8w")
-offset_left = -494.0
-offset_top = -309.0
-offset_right = -200.0
-offset_bottom = -40.0
 
 [node name="TimelineManager" parent="." groups=["TimelineManager"] instance=ExtResource("8_k5pu3")]

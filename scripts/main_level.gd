@@ -18,8 +18,6 @@ func _ready() -> void:
 	await _promote_mating()
 	map_scene.initialize()
 
-	_start_battle()
-
 
 func _input(event: InputEvent) -> void:
 	if can_handle_action_input:
@@ -28,14 +26,12 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_tile_landed(type: TimelineManager.Type) -> void:
-	TextBoxManager.display_text("test", 2)
 	match type:
 		TimelineManager.Type.FIGHT:
 			var winner: Battle.Winner = await _start_battle()
 
 			if winner == Battle.Winner.PLAYER:
 				await _promote_random_rewards()
-				GameState.on_tile_cleared()
 			else:
 				# TODO: player has lost: return them back to square 1 with original stats
 				assert(false)
@@ -45,6 +41,8 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 			await _promote_mating()
 
 		TimelineManager.Type.EVENT:
+			TextBoxManager.display_options("Hello", "World", "Maybe")
+
 			print("weed")
 
 		TimelineManager.Type.BOSS:
@@ -53,11 +51,28 @@ func _on_tile_landed(type: TimelineManager.Type) -> void:
 
 			if winner == Battle.Winner.PLAYER:
 				await _promote_random_rewards()
-				GameState.on_tile_cleared()
 			else:
 				# TODO: player has lost: return them back to square 1 with original stats
 				assert(false)
 				pass
+
+		TimelineManager.Type.PATH_UP:
+			can_handle_action_input = false
+			var option: int = await TextBoxManager.display_options("Go forward", "Go up")
+			map_scene.on_action_completed(option == 2)
+			can_handle_action_input = true
+
+		TimelineManager.Type.PATH_DOWN:
+			can_handle_action_input = false
+			var option: int = await TextBoxManager.display_options("Go forward", "Go down")
+			map_scene.on_action_completed(option == 2)
+			can_handle_action_input = true
+
+		TimelineManager.Type.RETURN_DOWN:
+			map_scene.on_action_completed(true)
+
+		TimelineManager.Type.RETURN_UP:
+			map_scene.on_action_completed(true)
 
 
 func _promote_mating() -> void:

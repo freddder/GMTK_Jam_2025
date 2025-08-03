@@ -3,10 +3,10 @@ extends Node
 signal close_text_box
 
 @onready var scene := preload("res://scenes/text_box.tscn")
-var dialog_box: MarginContainer
+var dialog_box: Control
 var dialog_label: RichTextLabel
 
-var options_menu: MarginContainer
+var options_menu: Control
 var options_button_1: Button
 var options_button_2: Button
 var options_button_3: Button
@@ -18,15 +18,15 @@ func initialize():
 	var instance := scene.instantiate()
 	get_tree().root.add_child(instance)
 	close_text_box.connect(on_close_text_box)
-	
+
 	dialog_box = instance.get_node("DialogBox")
 	dialog_label = dialog_box.get_node("RichTextLabel")
-	
-	options_menu = instance.get_node("OptionsMenu")
+
+	options_menu = instance.get_node("OptionsContainer")
 	options_menu.hide()
-	options_button_1 = options_menu.get_node("VBoxContainer/Option1")
-	options_button_2 = options_menu.get_node("VBoxContainer/Option2")
-	options_button_3 = options_menu.get_node("VBoxContainer/Option3")
+	options_button_1 = options_menu.get_node("VBoxContainer/Button_Option1")
+	options_button_2 = options_menu.get_node("VBoxContainer/Button_Option2")
+	options_button_3 = options_menu.get_node("VBoxContainer/Button_Option3")
 	options_button_1.button_down.connect(on_option_1_selected)
 	options_button_2.button_down.connect(on_option_2_selected)
 	options_button_3.button_down.connect(on_option_3_selected)
@@ -67,16 +67,16 @@ func on_option_selected(index: int):
 func display_options(option_1_text : String, option_2_text : String, option_3_text : String = "") -> int:
 	if option_1_text == "" or option_2_text == "":
 		return 0
-	
+
 	options_button_1.text = option_1_text
 	options_button_2.text = option_2_text
-	
+
 	options_menu.show()
 	if option_3_text != "":
 		options_button_3.show()
 		options_button_3.text = option_3_text
 	else:
 		options_button_3.hide()
-	
+
 	var picked_option = await option_selected
 	return picked_option

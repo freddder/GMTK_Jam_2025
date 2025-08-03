@@ -24,8 +24,6 @@ ResourceManager="*res://globals/resource_manager.gd"
 FishRandomizer="*res://globals/fish_randomizer.gd"
 FamilyTree="*res://globals/family_tree.gd"
 TextBoxManager="*res://globals/text_box_manager.gd"
-GameState="*res://globals/game_state.gd"
-GameSettings="*res://globals/game_settings.gd"
 
 [display]
 

@@ -1,20 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://du5ookx6symg4"]
+[gd_scene load_steps=4 format=3 uid="uid://du5ookx6symg4"]
 
-[ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="1_wscpg"]
+[ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="2_dyarx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_11181"]
 
-[node name="TextBox" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wscpg"]
+
+[node name="TextBox" type="CanvasLayer"]
 
 [node name="DialogBox" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(0, 300)
-layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -26,7 +21,6 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
-metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="DialogBox"]
 layout_mode = 2
@@ -42,41 +36,39 @@ theme_override_font_sizes/normal_font_size = 64
 theme_override_font_sizes/bold_font_size = 64
 text = "AAAAAAAAAAAAAAAAAAAA"
 
-[node name="OptionsMenu" type="MarginContainer" parent="."]
-layout_mode = 1
+[node name="OptionsContainer" type="PanelContainer" parent="."]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -347.0
-offset_top = -90.0
-offset_bottom = 100.0
+offset_top = -95.0
+offset_bottom = 95.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wscpg")
 
-[node name="TextureRect" type="TextureRect" parent="OptionsMenu"]
-layout_mode = 2
-texture = ExtResource("1_wscpg")
-expand_mode = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsContainer"]
 layout_mode = 2
 
-[node name="Option1" type="Button" parent="OptionsMenu/VBoxContainer"]
+[node name="Button_Option1" type="Button" parent="OptionsContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_dyarx")
 theme_override_font_sizes/font_size = 32
 text = "Option 1"
 alignment = 0
 
-[node name="Option2" type="Button" parent="OptionsMenu/VBoxContainer"]
+[node name="Button_Option2" type="Button" parent="OptionsContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_dyarx")
 theme_override_font_sizes/font_size = 32
 text = "Option 2"
 alignment = 0
 
-[node name="Option3" type="Button" parent="OptionsMenu/VBoxContainer"]
+[node name="Button_Option3" type="Button" parent="OptionsContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_dyarx")
 theme_override_font_sizes/font_size = 32
 text = "Option 3"
 alignment = 0

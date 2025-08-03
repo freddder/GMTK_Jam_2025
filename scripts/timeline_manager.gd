@@ -140,8 +140,8 @@ func place_icon(type: Type, pos_y: float, pos_x: float, uniform_scale: float) ->
 	icon.position.x = pos_x
 	icon.position.y = pos_y
 	icon.scale = scale_vec
-	
-	
+
+
 	var texture_id := tile_type_to_texture_id(type)
 	if texture_id != ResourceManager.TextureId.NONE:
 		icon.texture = ResourceManager.textures[texture_id]
@@ -197,7 +197,7 @@ func generate_visuals() -> void:
 				uptrack.scale = _cell_scale_vec
 				if top_path[j].type == Type.RETURN_DOWN:
 					uptrack.rotate(1.73)
-					
+
 				add_child(uptrack)
 				place_icon(top_path[j].type, main_y-(128 * cell_scale), ((j *  (128+ (padding_x * cell_scale)) * cell_scale) + (i *  (128+ (padding_x * cell_scale)) * cell_scale) + buff_x + (padding_x * cell_scale)), .2)
 
@@ -230,7 +230,7 @@ func generate_timeline() -> void:
 
 		if i % 4 == 0: #force mating tiles
 			newCell.type = Type.MATE
-		
+
 		if i % 6 == 0: #force fight tiles
 			newCell.type = Type.FIGHT
 
@@ -244,7 +244,7 @@ func generate_timeline() -> void:
 		if main_path[i].type == Type.PATH_UP and not has_top: # generate the top path at the first oppurtunity
 			var length: int = max(randi() % (total_length - 4 - i), 3)
 			main_path[min(i+length, total_length - 4)].type = Type.NOTHING
-			
+
 			for j in length - 1:
 				var newCell = Cell.new()
 				newCell.type = Type[Type.keys()[randi() % (Type.size() - 6)]]
@@ -267,10 +267,10 @@ func generate_timeline() -> void:
 			for j in length - 1:
 				var newCell = Cell.new()
 				newCell.type = Type[Type.keys()[randi() % (Type.size() - 6)]]
-				
+
 				if j % 3 == 0: #force mating tiles
 					newCell.type = Type.FIGHT
-				
+
 				sub_path.push_back(newCell)
 
 			var tempCell = Cell.new()

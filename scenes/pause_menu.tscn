@@ -1,11 +1,23 @@
-[gd_scene load_steps=19 format=3 uid="uid://cf0nxgp7cvdba"]
+[gd_scene load_steps=24 format=3 uid="uid://cf0nxgp7cvdba"]
 
 [ext_resource type="Script" uid="uid://bt7aeqey83dpw" path="res://scripts/pause_menu.gd" id="1_myx47"]
 [ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="1_n87rw"]
-[ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="3_7l7mv"]
+[ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="2_88e76"]
+[ext_resource type="Texture2D" uid="uid://cymrakixv4un5" path="res://assets/styles/panels/settings_background.png" id="4_71k7c"]
+[ext_resource type="Texture2D" uid="uid://c5uf8bxj3mcir" path="res://assets/sprites/Icons/music_icon.png" id="4_knqa7"]
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="4_v4r4p"]
 [ext_resource type="Theme" uid="uid://25syfjgemjex" path="res://assets/styles/sliders/fish_slider.tres" id="5_7l7mv"]
+[ext_resource type="Texture2D" uid="uid://cdgybt5f12sxs" path="res://assets/sprites/Icons/fx_icon.png" id="6_71k7c"]
 [ext_resource type="AudioStream" uid="uid://e6uk7dmj6r11" path="res://sounds/pause-and-upgrade-theme.mp3" id="6_v4r4p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cmnsq"]
+font = ExtResource("2_88e76")
+font_size = 126
+font_color = Color(0.87451, 0.87451, 0.87451, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rgno"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_myx47"]
 
@@ -23,7 +35,8 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_knqa7"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rgno"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cmnsq"]
+texture = ExtResource("4_71k7c")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71k7c"]
 
@@ -42,21 +55,37 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.145098, 0.145098, 0.145098, 0.733333)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -350.0
-offset_top = 120.0
-offset_right = 350.0
-offset_bottom = 251.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -138.0
+offset_top = -117.0
+offset_right = 142.0
+offset_bottom = 574.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
 
-[node name="Button_Continue" type="Button" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PauseLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Pause"
+label_settings = SubResource("LabelSettings_cmnsq")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 65
+theme_override_styles/separator = SubResource("StyleBoxEmpty_1rgno")
+
+[node name="Button_Continue" type="Button" parent="MarginContainer/VBoxContainer"]
 process_mode = 2
 layout_mode = 2
 theme = ExtResource("1_n87rw")
@@ -70,7 +99,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_88e76")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_knqa7")
 text = "Continue"
 
-[node name="Button_MainMenu" type="Button" parent="VBoxContainer"]
+[node name="Button_MainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
 process_mode = 2
 layout_mode = 2
 theme = ExtResource("1_n87rw")
@@ -84,68 +113,85 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_88e76")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_knqa7")
 text = "Main Menu"
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 theme_override_styles/separator = SubResource("StyleBoxEmpty_1rgno")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 400
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(1000, 1000)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_cmnsq")
+
+[node name="PanelContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(700, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_7l7mv")
+texture = ExtResource("4_knqa7")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Music"
 label_settings = ExtResource("4_v4r4p")
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_71k7c")
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("3_7l7mv")
+texture = ExtResource("6_71k7c")
 expand_mode = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "SFX"
 label_settings = ExtResource("4_v4r4p")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="Slider_Music" type="HSlider" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Slider_Music" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 process_mode = 2
 layout_mode = 2
@@ -157,12 +203,12 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 20
 theme_override_styles/separator = SubResource("StyleBoxEmpty_cmnsq")
 
-[node name="Slider_SFX" type="HSlider" parent="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Slider_SFX" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
 process_mode = 2
 layout_mode = 2
@@ -173,9 +219,9 @@ max_value = 1.0
 step = 0.01
 value = 1.0
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(96, 0)
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 260
 theme_override_styles/separator = SubResource("StyleBoxEmpty_ofnjo")
 
 [node name="PauseMenuTheme" type="AudioStreamPlayer" parent="."]
@@ -184,7 +230,7 @@ volume_db = -20.0
 autoplay = true
 bus = &"BGM"
 
-[connection signal="pressed" from="VBoxContainer/Button_Continue" to="." method="_on_button_continue_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button_MainMenu" to="." method="_on_button_main_menu_pressed"]
-[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Slider_Music" to="." method="_on_slider_music_value_changed"]
-[connection signal="value_changed" from="VBoxContainer/HBoxContainer/HBoxContainer/MarginContainer/VBoxContainer/Slider_SFX" to="." method="_on_slider_sfx_value_changed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button_Continue" to="." method="_on_button_continue_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button_MainMenu" to="." method="_on_button_main_menu_pressed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Slider_Music" to="." method="_on_slider_music_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer2/Panel/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Slider_SFX" to="." method="_on_slider_sfx_value_changed"]

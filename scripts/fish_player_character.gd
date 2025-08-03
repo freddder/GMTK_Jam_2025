@@ -9,3 +9,8 @@ func set_profile(in_profile: FishProfile) -> void:
 
 	super.set_profile(in_profile)
 	profile_update.emit()
+
+
+func add_item(item: Item) -> void:
+	super.add_item(item)
+	$BubbleShield.visible = get_inventory_item_count(Item.Type.BUBBLE_SHIELD) > 0

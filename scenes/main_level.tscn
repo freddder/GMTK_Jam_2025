@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dy7hncax65228" path="res://scenes/reward_selection_screen.tscn" id="2_6we3w"]
 [ext_resource type="Texture2D" uid="uid://c2g2r1tcj2jv0" path="res://assets/sprites/bubble.png" id="4_bq26l"]
 [ext_resource type="PackedScene" uid="uid://b7w13cmgfwh2r" path="res://scenes/fish_player_character.tscn" id="5_8ra5a"]
-[ext_resource type="PackedScene" uid="uid://bn03wwfyr8fi2" path="res://scenes/pause_menu.tscn" id="5_ff0s2"]
+[ext_resource type="PackedScene" uid="uid://cf0nxgp7cvdba" path="res://scenes/pause_menu.tscn" id="5_ff0s2"]
 [ext_resource type="PackedScene" uid="uid://185j55ncdwcn" path="res://scenes/post_process.tscn" id="5_u2c82"]
 [ext_resource type="Texture2D" uid="uid://bdq7x3yoybbic" path="res://assets/sprites/background/back_floor.png" id="6_ff0s2"]
 [ext_resource type="Texture2D" uid="uid://dhnta2neerv8p" path="res://assets/sprites/background/background_filling_sheet.png" id="7_u2c82"]

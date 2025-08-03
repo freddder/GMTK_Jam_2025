@@ -1,9 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7w13cmgfwh2r"]
+[gd_scene load_steps=11 format=3 uid="uid://b7w13cmgfwh2r"]
 
 [ext_resource type="Script" uid="uid://bewtquq7ak32o" path="res://scripts/fish_player_character.gd" id="1_0g0r5"]
 [ext_resource type="Texture2D" uid="uid://c8bagbfcnmwp6" path="res://assets/sprites/bodies/red_body.PNG" id="2_dfse1"]
+[ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="2_f6bb3"]
 [ext_resource type="Texture2D" uid="uid://qwww241lwf5a" path="res://assets/sprites/decorations/green_fin.PNG" id="3_omdh5"]
 [ext_resource type="Texture2D" uid="uid://5nu33626j0lh" path="res://assets/sprites/decorations/orng_fin.PNG" id="4_oo7kd"]
+[ext_resource type="Shader" uid="uid://d0bsakbq4s5ma" path="res://assets/shaders/bubble_shield.gdshader" id="5_oo7kd"]
+
+[sub_resource type="Gradient" id="Gradient_fbc1x"]
+colors = PackedColorArray(0.344076, 0.344076, 0.344076, 1, 0.787759, 0.787759, 0.787759, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_16n2h"]
+noise_type = 3
+frequency = 0.004
+fractal_octaves = 8
+fractal_lacunarity = 1.435
+fractal_gain = 0.205
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k5pu3"]
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_fbc1x")
+noise = SubResource("FastNoiseLite_16n2h")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y17jl"]
+shader = ExtResource("5_oo7kd")
+shader_parameter/zoom_out = 1.0
+shader_parameter/border_decay = 0.953
+shader_parameter/shield_tint = Color(0.36973, 0.646771, 0.83819, 0.509804)
+shader_parameter/shield_saturation = Color(0.752365, 0.9349, 0.911351, 1)
+shader_parameter/attack_angle = -0.000184707
+shader_parameter/attack_penetration = 0.344
+shader_parameter/attack_radius = 0.0
+shader_parameter/attack_amplitude = 0.0
+shader_parameter/wave_speed = 7.888
+shader_parameter/wave_num = 17.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_k5pu3")
+shader_parameter/noise_speed = 1.0
+shader_parameter/noise_amplitude = 0.89
+shader_parameter/noise_deformation = 9.703
 
 [node name="FishPlayerCharacter" type="Node2D" groups=["player"]]
 script = ExtResource("1_0g0r5")
@@ -27,3 +63,11 @@ texture = ExtResource("3_omdh5")
 unique_name_in_owner = true
 use_parent_material = true
 texture = ExtResource("4_oo7kd")
+
+[node name="BubbleShield" type="Sprite2D" parent="."]
+visible = false
+z_index = 10
+material = SubResource("ShaderMaterial_y17jl")
+position = Vector2(-2.99999, -8.5)
+scale = Vector2(2.10938, 1.69531)
+texture = ExtResource("2_f6bb3")

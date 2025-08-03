@@ -1,13 +1,14 @@
-[gd_scene load_steps=41 format=3 uid="uid://cmexpqdp2hgy6"]
+[gd_scene load_steps=42 format=3 uid="uid://cmexpqdp2hgy6"]
 
 [ext_resource type="Script" uid="uid://iu0pg3fkmu5m" path="res://scripts/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="FontFile" uid="uid://45ftonyxd42m" path="res://assets/fonts/YeastyFlavorsRegular.ttf" id="1_l6cm7"]
 [ext_resource type="LabelSettings" uid="uid://br2rr3gvloa36" path="res://assets/styles/labels/default_text_style.tres" id="2_ekxnf"]
 [ext_resource type="Texture2D" uid="uid://df3vh02dydloh" path="res://assets/sprites/logo/IMG_9004.PNG" id="3_qywvv"]
-[ext_resource type="Theme" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
+[ext_resource type="Theme" uid="uid://d1ts7kas1ofut" path="res://assets/themes/button_text_theme.tres" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bkik2bkrc2pjx" path="res://assets/sprites/logo/IMG_9005.PNG" id="4_3wgol"]
-[ext_resource type="Texture2D" uid="uid://bsmyniit3uwu2" path="res://icon.svg" id="4_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://c5uf8bxj3mcir" path="res://assets/sprites/Icons/music_icon.png" id="4_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://bb87nquf5yva1" path="res://assets/sprites/logo/IMG_9006.PNG" id="5_1acrt"]
+[ext_resource type="Texture2D" uid="uid://cdgybt5f12sxs" path="res://assets/sprites/Icons/fx_icon.png" id="6_jk1qb"]
 [ext_resource type="Theme" uid="uid://25syfjgemjex" path="res://assets/styles/sliders/fish_slider.tres" id="6_oa1go"]
 [ext_resource type="Texture2D" uid="uid://c5gihf8sbgoq" path="res://assets/sprites/logo/IMG_9007.PNG" id="6_vr8o3"]
 [ext_resource type="Texture2D" uid="uid://j3eismv4q2sy" path="res://assets/sprites/logo/IMG_9008.PNG" id="7_1a85y"]
@@ -249,7 +250,6 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
 text = "Settings"
 
 [node name="Settings" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Panel" type="Panel" parent="Settings"]
 anchors_preset = 8
@@ -293,7 +293,7 @@ custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("4_rtw2f")
+texture = ExtResource("4_tbmy8")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
@@ -312,7 +312,7 @@ custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("4_rtw2f")
+texture = ExtResource("6_jk1qb")
 expand_mode = 1
 
 [node name="Label2" type="Label" parent="Settings/Panel/MarginContainer/HBoxContainer/VBoxContainer"]

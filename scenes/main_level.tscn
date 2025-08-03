@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://def3t34yh5inf" path="res://assets/sprites/background/front_floor.png" id="12_ondrs"]
 [ext_resource type="AudioStream" uid="uid://cacx5enj43dsk" path="res://sounds/upgrade.mp3" id="13_mwgft"]
 [ext_resource type="AudioStream" uid="uid://dpb21onle5bwm" path="res://sounds/winning-theme.mp3" id="16_al56o"]
-[ext_resource type="PackedScene" path="res://scenes/mage_fish.tscn" id="16_uk2yf"]
+[ext_resource type="PackedScene" uid="uid://tfse7yg0nmvd" path="res://scenes/mage_fish.tscn" id="16_uk2yf"]
 [ext_resource type="AudioStream" uid="uid://c1n4unf5p7a4r" path="res://sounds/death_theme_loop.mp3" id="19_1bmon"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5pu3"]
